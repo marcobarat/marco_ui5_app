@@ -1,6 +1,6 @@
 # Learning SAPUI5 #
 
-This readme cames from Eltony81
+This readme comes from Eltony81
 https://github.com/eltony81/sapui5skeleton
 How to compile:
 
