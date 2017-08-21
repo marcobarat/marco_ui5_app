@@ -14,12 +14,12 @@
                                 <FlexBox alignItems="Start" direction="Column" class="daghespazio">
                                     <items>
                                         <Label text=""></Label>
-                                        <Button text="Start" type="Emphasized" class="sapUiSmallMarginEnd">
+                                        <Button id="start" text="Start" type="Emphasized" class="sapUiSmallMarginEnd" press="understand">
                                             <layoutData>
                                                 <FlexItemData growFactor="1" />
                                             </layoutData>
                                         </Button>
-                                        <Button text="Stop" type="Emphasized" class="sapUiSmallMarginEnd">
+                                        <Button id="stop" text="Stop" type="Emphasized" class="sapUiSmallMarginEnd" press="understand">
                                             <layoutData>
                                                 <FlexItemData growFactor="2" />
                                             </layoutData>
