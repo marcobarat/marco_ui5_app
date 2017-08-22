@@ -2,12 +2,13 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageToast",
+	'sap/ui/core/Fragment',
 	"sap/ui/core/format/DateFormat"
-], function(Controller, JSONModel, MessageToast, DateFormat) {
+], function(Controller, JSONModel, MessageToast, Fragment, DateFormat) {
 	"use strict";
- 
+        var _timeout;
+
 	return Controller.extend("myapp.controller.Main", {
- 
 		onInit : function () {
 			// set explored app's demo model on this sample
 			var oJSONModel = this.initSampleDataModel();
@@ -84,7 +85,54 @@ sap.ui.define([
                 understand : function(oEvent) {
                     alert("ciao anche a te "+sap.ui.getCore().byId(oEvent.getParameters().id).getProperty("text"));
                     console.log(oEvent);
-                }
+                },
+		onOpenDialog: function (oEvent) {
+                        var that = this;
+			// instantiate dialog
+			if (!this._dialog) {
+                            this._dialog = sap.ui.xmlfragment("myapp.view.BusyDialog", this);
+                            this.getView().addDependent(this._dialog);
+			}
+ 
+			// open dialog
+			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._dialog);
+			this._dialog.open();
+                        this.returnName(that);
+			// simulate end of operation
+			
+		},
+                
+		returnName: function (q) {
+                        var that = this;
+			var name;
+                        $.ajax({
+                           url: 'http://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&minLength=5&maxLength=15&limit=1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
+                           data: {
+                              format: 'json'
+                           },
+                           error: function() {
+                               var yourControl =   that.getView().byId("tab1");
+                               yourControl.setTitle("errore");
+                           },
+                           dataType: 'jsonp',
+                           success: function(data) {
+                               var yourControl =   that.getView().byId("tab1");
+                               yourControl.setTitle(data[0].word);
+                               that._dialog.close();
+                           },
+                           type: 'GET'
+                        });
+		},
+ 
+		onDialogClosed: function (res) {
+                        var that = this;
+			if (res == "errore") {
+				MessageToast.show("The operation has been cancelled");
+			} else {
+				MessageToast.show("The operation has been completed");
+			}
+                        
+		}
  
 	});
  

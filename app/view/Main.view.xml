@@ -14,7 +14,7 @@
                                 <FlexBox alignItems="Start" direction="Column" class="daghespazio">
                                     <items>
                                         <Label text=""></Label>
-                                        <Button id="start" text="Start" type="Emphasized" class="sapUiSmallMarginEnd" press="understand">
+                                        <Button id="start" text="Start" type="Emphasized" class="sapUiSmallMarginEnd" press="onOpenDialog">
                                             <layoutData>
                                                 <FlexItemData growFactor="1" />
                                             </layoutData>
