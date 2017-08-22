@@ -13,7 +13,22 @@ sap.ui.define([
 			var oJSONModel = this.initSampleDataModel();
 			this.getView().setModel(oJSONModel);
 		},
- 
+                /*onAfterRendering: function(){
+                        var yourControl =  sap.ui.getCore().byId("__xmlview1--tab1");
+                        alert(yourControl);
+                        var f = function(evt) {
+                            alert("click");
+                        };
+                        yourControl.cellClick(f);
+                },*/
+                
+                clickCell : function(oControlEvent){
+                    var yourControl =   this.getView().byId("tab1");
+                    var columnIndex = oControlEvent.mParameters.columnIndex;
+                    var rowIndex = oControlEvent.mParameters.rowIndex;
+                    alert("click on "+oControlEvent.getParameters().cellControl.mProperties.text);
+
+                },
 		initSampleDataModel : function() {
 			var oModel = new JSONModel();
  

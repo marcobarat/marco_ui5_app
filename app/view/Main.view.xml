@@ -48,7 +48,7 @@
                                 </FlexBox>
                             </l:content>
                         </l:VerticalLayout>
-                        <t:Table rows="{/ProductCollection}" title="Products" selectionMode="MultiToggle" visibleRowCount="7" width="100%">
+                        <t:Table cellClick="clickCell" rows="{/ProductCollection}" title="Products" selectionMode="MultiToggle" visibleRowCount="7" width="100%" id="tab1">
                             <t:columns>
                                 <t:Column width="11rem">
                                     <Label text="Product Name" />
