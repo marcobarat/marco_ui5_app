@@ -82,7 +82,7 @@ sap.ui.define([
 			MessageToast.show("Details for product with id " + this.getView().getModel().getProperty("ProductId", oEvent.getSource().getBindingContext()));
 		},
                 understand : function(oEvent) {
-                    alert("ciao anche a te");
+                    alert("ciao anche a te "+sap.ui.getCore().byId(oEvent.getParameters().id).getProperty("text"));
                     console.log(oEvent);
                 }
  

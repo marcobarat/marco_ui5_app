@@ -24,22 +24,22 @@
                                                 <FlexItemData growFactor="2" />
                                             </layoutData>
                                         </Button>
-                                        <Button text="Log DC" type="Emphasized" class="sapUiSmallMarginEnd">
+                                        <Button text="Log DC" type="Emphasized" class="sapUiSmallMarginEnd" press="understand">
                                             <layoutData>
                                                 <FlexItemData growFactor="3" />
                                             </layoutData>
                                         </Button>
-                                        <Button text="Log NC" type="Emphasized" class="sapUiSmallMarginEnd">
+                                        <Button text="Log NC" type="Emphasized" class="sapUiSmallMarginEnd" press="understand">
                                             <layoutData>
                                                 <FlexItemData growFactor="4" />
                                             </layoutData>
                                         </Button>
-                                        <Button text="Assembly" type="Emphasized" class="sapUiSmallMarginEnd">
+                                        <Button text="Assembly" type="Emphasized" class="sapUiSmallMarginEnd" press="understand">
                                             <layoutData>
                                                 <FlexItemData growFactor="5" />
                                             </layoutData>
                                         </Button>
-                                        <Button text="Log comment" type="Emphasized" class="sapUiSmallMarginEnd">
+                                        <Button text="Log comment" type="Emphasized" class="sapUiSmallMarginEnd" press="understand">
                                             <layoutData>
                                                 <FlexItemData growFactor="6" />
                                             </layoutData>
