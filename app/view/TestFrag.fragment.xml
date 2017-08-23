@@ -1,0 +1,38 @@
+<core:FragmentDefinition controllerName="myapp.controller.TestFrag"
+	xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<l:VerticalLayout>
+		<SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop">
+			<tiles>
+				<GenericTile
+					backgroundImage="http://www.japan-guide.com/thumb/XYZeXYZe3016_sea_375.jpg"
+					frameType="TwoByOne" press="asd">
+					<tileContent>
+						<TileContent footer="August 21, 2016">
+							<content>
+								<NewsContent
+									contentText="SAP Unveils Powerful New Player Comparision Tool Exclusively on NFL.com"
+									subheader="Today, SAP News">
+								</NewsContent>
+							</content>
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+				<GenericTile
+					backgroundImage="https://st.marcotogni.it/v-2/1/t/tokyo-tower-f.jpg"
+					frameType="TwoByOne" press="pressOnTileTwo">
+					<tileContent>
+						<TileContent footer="August 21, 2016">
+							<content>
+								<NewsContent
+									contentText="Wind Map: Monitoring Real-Time and Forecasted Wind Conditions across the Globe"
+									subheader="Today, SAP News">
+								</NewsContent>
+							</content>
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+			</tiles>
+		</SlideTile>
+
+	</l:VerticalLayout>
+</core:FragmentDefinition>

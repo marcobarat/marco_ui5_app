@@ -1,16 +1,19 @@
-<mvc:View controllerName="myapp.controller.Main" xmlns:t="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m">
+<mvc:View controllerName="myapp.controller.Main"     xmlns:core="sap.ui.core"
+xmlns:t="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m">
     <l:VerticalLayout width="100%">
         <l:content>
             <Panel class="sapUiDemoFlexBoxSizeAdjustments">
                 <headerToolbar>
                     <Toolbar>
-                        <Title level="H2" text="My First POD" />
+                        <Title id="head" level="H2" text="My First POD" />
                     </Toolbar>
                 </headerToolbar>
                 <FlexBox alignItems="Start">
                     <items>
                         <l:VerticalLayout width="100%">
                             <l:content>
+                            <core:Fragment fragmentName="myapp.view.TestFrag" type="XML" />
+
                                 <FlexBox alignItems="Start" direction="Column" class="daghespazio">
                                     <items>
                                         <Label text=""></Label>

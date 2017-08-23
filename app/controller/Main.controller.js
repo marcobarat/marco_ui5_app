@@ -117,7 +117,9 @@ sap.ui.define([
                            dataType: 'jsonp',
                            success: function(data) {
                                var yourControl =   that.getView().byId("tab1");
+                               var head =   that.getView().byId("head");
                                yourControl.setTitle(data[0].word);
+                               head.setText(data[0].word);
                                that._dialog.close();
                            },
                            type: 'GET'
@@ -131,6 +133,12 @@ sap.ui.define([
 			} else {
 				MessageToast.show("The operation has been completed");
 			}
+                        
+		},
+ 
+		asd: function (res) {
+                        MessageToast.show("ASD");
+			
                         
 		}
  
