@@ -75,23 +75,33 @@
                 "controlAggregation": "pages",
                 "viewType": "XML"
             },
-            "routes": [{
+            "routes": [
+                {
+                "name": "machine",
+                "pattern": "",
+                "target": "machine"
+            },{
                 "name": "main",
                 "pattern": "",
                 "target": "main"
             }, {
-                "name": "tmp",
-                "pattern": "tmp",
-                "target": "tmp"
+                "name": "folder",
+                "pattern": "folder",
+                "target": "folder"
             }],
             "targets": {
-                "main": {
-                    "viewName": "view.Main",
+    
+                    "machine": {
+                    "viewName": "view.Machine",
                     "viewLevel": 0
                 },
-                "tmp": {
-                    "viewName": "view.Tmp",
+                "main": {
+                    "viewName": "view.Main",
                     "viewLevel": 1
+                },
+                "folder": {
+                    "viewName": "view.",
+                    "viewLevel": 2
                 }
             }
         },

@@ -1,0 +1,31 @@
+{"tiles": [
+  {
+    "type" : "Monitor",
+    "text": "machine1",
+    "color": "#d3ffce"
+  },
+  {
+    "text": "machine2",
+    "color": "#d3ffce"
+  },
+  {
+    "text": "machine3",
+    "color": "#ff6f69"
+  },
+  {
+    "text": "machine4",
+    "color": "#ff6f69"
+  },
+  {
+    "text": "machine5",
+    "color": "#ff6f69"
+  },
+  {
+    "text": "machine6",
+    "color": "#ff6f69"
+  },
+  {
+    "text": "machine7",
+    "color": "#ff6f69"
+  }
+]}

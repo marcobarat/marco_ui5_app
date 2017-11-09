@@ -1,0 +1,443 @@
+[4mInitializing[24m
+Command-line options: [36m--verbose[39m
+
+Reading "Gruntfile.js" Gruntfile...[32mOK[39m
+
+[1mRegistering Gruntfile tasks.[22m
+Initializing config...[32mOK[39m
+
+[1mRegistering "grunt-contrib-jshint" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-jshint\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-jshint\package.json...[32mOK[39m
+Loading "jshint.js" tasks...[32mOK[39m
++ [36mjshint[39m
+
+[1mRegistering "grunt-jsvalidate" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-jsvalidate\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-jsvalidate\package.json...[32mOK[39m
+Loading "jsvalidate.js" tasks...[32mOK[39m
++ [36mjsvalidate[39m
+
+[1mRegistering "grunt-contrib-connect" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-connect\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-connect\package.json...[32mOK[39m
+Loading "connect.js" tasks...[32mOK[39m
++ [36mconnect[39m
+
+[1mRegistering "grunt-contrib-clean" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-clean\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-clean\package.json...[32mOK[39m
+Loading "clean.js" tasks...[32mOK[39m
++ [36mclean[39m
+
+[1mRegistering "grunt-contrib-copy" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-copy\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-copy\package.json...[32mOK[39m
+Loading "copy.js" tasks...[32mOK[39m
++ [36mcopy[39m
+
+[1mRegistering "grunt-openui5" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-openui5\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-openui5\package.json...[32mOK[39m
+Loading "connect.js" tasks...[32mOK[39m
++ [36mopenui5_connect[39m
+Loading "preload.js" tasks...[32mOK[39m
++ [36mopenui5_preload[39m
+Loading "theme.js" tasks...[32mOK[39m
++ [36mopenui5_theme[39m
+
+[1mRegistering "grunt-eslint" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-eslint\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-eslint\package.json...[32mOK[39m
+Loading "eslint.js" tasks...[32mOK[39m
++ [36meslint[39m
+
+[1mRegistering "grunt-contrib-watch" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-watch\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-watch\package.json...[32mOK[39m
+Loading "watch.js" tasks...[32mOK[39m
++ [36mwatch[39m
+
+[1mRegistering "grunt-sync" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-sync\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-sync\package.json...[32mOK[39m
+Loading "sync.js" tasks...[32mOK[39m
++ [36msync[39m
+
+[1mRegistering "grunt-string-replace" local Npm module tasks.[22m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-string-replace\package.json...[32mOK[39m
+Parsing C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-string-replace\package.json...[32mOK[39m
+Loading "string-replace.js" tasks...[32mOK[39m
++ [36mstring-replace[39m
+Loading "Gruntfile.js" tasks...[32mOK[39m
++ [36mbuild[39m, [36mbuildSync[39m, [36mbuild_test[39m, [36mcompile[39m, [36mcopySync[39m, [36mdefault[39m, [36mhint[39m, [36mlint[39m, [36mmywatch[39m, [36mserve[39m
+
+No tasks specified, running default tasks.
+Running tasks: [36mdefault[39m
+
+[4mRunning "default" task[24m
+
+[4mRunning "build_test" task[24m
+
+[4mRunning "buildSync" task[24m
+
+[4mRunning "compile" task[24m
+
+[4mRunning "jsvalidate" task[24m
+
+[4mRunning "jsvalidate:targetName" (jsvalidate) task[24m
+Verifying property [36mjsvalidate.targetName[39m exists in config...[32mOK[39m
+Files: [36mGruntfile.js[39m, [36mapp/Component.js[39m, [36mapp/controller/App.controller.js[39m, [36mapp/controller/Machine.controller.js[39m, [36mapp/controller/Main.controller.js[39m, [36mapp/controller/TestFrag.controller.js[39m, [36mapp/controller/Tmp.controller.js[39m, [36mapp/controls/CustomTile.js[39m, [36mapp/controls/CustomTileRenderer.js[39m, [36mapp/localService/mockserver.js[39m, [36mapp/utils/OdataManager.js[39m, [36mapp/utils/ResConfigManager.js[39m -> [36msrc[39m
+Options: [36mglobals={}[39m, [36mesprimaOptions={}[39m, [36mverbose=false[39m
+jsvalidate Gruntfile.jsReading Gruntfile.js...[32mOK[39m
+jsvalidate app/Component.jsReading app/Component.js...[32mOK[39m
+jsvalidate app/controller/App.controller.jsReading app/controller/App.controller.js...[32mOK[39m
+jsvalidate app/controller/Machine.controller.jsReading app/controller/Machine.controller.js...[32mOK[39m
+jsvalidate app/controller/Main.controller.jsReading app/controller/Main.controller.js...[32mOK[39m
+jsvalidate app/controller/TestFrag.controller.jsReading app/controller/TestFrag.controller.js...[32mOK[39m
+jsvalidate app/controller/Tmp.controller.jsReading app/controller/Tmp.controller.js...[32mOK[39m
+jsvalidate app/controls/CustomTile.jsReading app/controls/CustomTile.js...[32mOK[39m
+jsvalidate app/controls/CustomTileRenderer.jsReading app/controls/CustomTileRenderer.js...[32mOK[39m
+jsvalidate app/localService/mockserver.jsReading app/localService/mockserver.js...[32mOK[39m
+jsvalidate app/utils/OdataManager.jsReading app/utils/OdataManager.js...[32mOK[39m
+jsvalidate app/utils/ResConfigManager.jsReading app/utils/ResConfigManager.js...[32mOK[39m
+12 files are valid.
+
+[4mRunning "jshint" task[24m
+
+[4mRunning "jshint:all" (jshint) task[24m
+Verifying property [36mjshint.all[39m exists in config...[32mOK[39m
+Files: [36mGruntfile.js[39m, [36mapp/Component.js[39m, [36mapp/controller/App.controller.js[39m, [36mapp/controller/Machine.controller.js[39m, [36mapp/controller/Main.controller.js[39m, [36mapp/controller/TestFrag.controller.js[39m, [36mapp/controller/Tmp.controller.js[39m, [36mapp/controls/CustomTile.js[39m, [36mapp/controls/CustomTileRenderer.js[39m, [36mapp/localService/mockserver.js[39m, [36mapp/utils/OdataManager.js[39m, [36mapp/utils/ResConfigManager.js[39m -> [36mall[39m
+Options: [36mforce=false[39m, [36mreporter=null[39m, [36mreporterOutputRelative[39m, [36mjshintrc=".jshintrc"[39m, [36mjshintignore=".jshintignore"[39m
+[32mOK[39m
+[32m>> [39m12 files lint free.
+
+[4mRunning "eslint" task[24m
+
+[4mRunning "eslint:webapp" (eslint) task[24m
+Verifying property [36meslint.webapp[39m exists in config...[32mOK[39m
+Files: [36mapp[39m -> [36mwebapp[39m
+Options: [36moutputFile=false[39m, [36mquiet=false[39m, [36mmaxWarnings=-1[39m
+
+C:\Users\Marco PC\Desktop\iguzpod\app\controller\Machine.controller.js
+  40:32  warning  'event' is defined but never used   no-unused-vars
+  54:17  warning  'params' is defined but never used  no-unused-vars
+
+C:\Users\Marco PC\Desktop\iguzpod\app\controller\Main.controller.js
+    9:13  warning  '_timeout' is defined but never used     no-unused-vars
+   27:25  warning  'yourControl' is defined but never used  no-unused-vars
+   28:25  warning  'columnIndex' is defined but never used  no-unused-vars
+   29:25  warning  'rowIndex' is defined but never used     no-unused-vars
+   89:27  warning  'oEvent' is defined but never used       no-unused-vars
+  105:25  warning  'q' is defined but never used            no-unused-vars
+  107:8   warning  'name' is defined but never used         no-unused-vars
+  130:29  warning  'that' is defined but never used         no-unused-vars
+  139:18  warning  'res' is defined but never used          no-unused-vars
+
+C:\Users\Marco PC\Desktop\iguzpod\app\controller\TestFrag.controller.js
+  6:29  warning  'evt' is defined but never used  no-unused-vars
+  9:29  warning  'evt' is defined but never used  no-unused-vars
+
+C:\Users\Marco PC\Desktop\iguzpod\app\controller\Tmp.controller.js
+  42:41  warning  'response' is defined but never used  no-unused-vars
+  62:27  warning  'oEvent' is defined but never used    no-unused-vars
+
+C:\Users\Marco PC\Desktop\iguzpod\app\controls\CustomTileRenderer.js
+  16:2  warning  Expected JSDoc for 'rm' but found 'oRm'  valid-jsdoc
+
+✖ 16 problems (0 errors, 16 warnings)
+
+
+[4mRunning "copySync" task[24m
+
+[4mRunning "sync" task[24m
+
+[4mRunning "sync:main" (sync) task[24m
+Verifying property [36msync.main[39m exists in config...[32mOK[39m
+Files: [36mapp[39m -> [36mWebContent[39m
+Files: [36mapp/Component.js[39m -> [36mWebContent/Component.js[39m
+Files: [36mapp/controller[39m -> [36mWebContent/controller[39m
+Files: [36mapp/controller/App.controller.js[39m -> [36mWebContent/controller/App.controller.js[39m
+Files: [36mapp/controller/Machine.controller.js[39m -> [36mWebContent/controller/Machine.controller.js[39m
+Files: [36mapp/controller/Main.controller.js[39m -> [36mWebContent/controller/Main.controller.js[39m
+Files: [36mapp/controller/TestFrag.controller.js[39m -> [36mWebContent/controller/TestFrag.controller.js[39m
+Files: [36mapp/controller/Tmp.controller.js[39m -> [36mWebContent/controller/Tmp.controller.js[39m
+Files: [36mapp/controls[39m -> [36mWebContent/controls[39m
+Files: [36mapp/controls/CustomTile.js[39m -> [36mWebContent/controls/CustomTile.js[39m
+Files: [36mapp/controls/CustomTileRenderer.js[39m -> [36mWebContent/controls/CustomTileRenderer.js[39m
+Files: [36mapp/css[39m -> [36mWebContent/css[39m
+Files: [36mapp/css/style.css[39m -> [36mWebContent/css/style.css[39m
+Files: [36mapp/css/style_1.css[39m -> [36mWebContent/css/style_1.css[39m
+Files: [36mapp/index.html[39m -> [36mWebContent/index.html[39m
+Files: [36mapp/localService[39m -> [36mWebContent/localService[39m
+Files: [36mapp/localService/metadata.xml[39m -> [36mWebContent/localService/metadata.xml[39m
+Files: [36mapp/localService/mockdata[39m -> [36mWebContent/localService/mockdata[39m
+Files: [36mapp/localService/mockdata/Invoices.json[39m -> [36mWebContent/localService/mockdata/Invoices.json[39m
+Files: [36mapp/localService/mockserver.js[39m -> [36mWebContent/localService/mockserver.js[39m
+Files: [36mapp/locales[39m -> [36mWebContent/locales[39m
+Files: [36mapp/locales/locale.properties[39m -> [36mWebContent/locales/locale.properties[39m
+Files: [36mapp/locales/locale_en.properties[39m -> [36mWebContent/locales/locale_en.properties[39m
+Files: [36mapp/locales/locale_en_US.properties[39m -> [36mWebContent/locales/locale_en_US.properties[39m
+Files: [36mapp/locales/locale_it.properties[39m -> [36mWebContent/locales/locale_it.properties[39m
+Files: [36mapp/locales/locale_it_IT.properties[39m -> [36mWebContent/locales/locale_it_IT.properties[39m
+Files: [36mapp/manifest.json[39m -> [36mWebContent/manifest.json[39m
+Files: [36mapp/model[39m -> [36mWebContent/model[39m
+Files: [36mapp/model/name.json[39m -> [36mWebContent/model/name.json[39m
+Files: [36mapp/model/products.json[39m -> [36mWebContent/model/products.json[39m
+Files: [36mapp/model/products_1.json[39m -> [36mWebContent/model/products_1.json[39m
+Files: [36mapp/model/tiles.json[39m -> [36mWebContent/model/tiles.json[39m
+Files: [36mapp/test[39m -> [36mWebContent/test[39m
+Files: [36mapp/test/index_test.html[39m -> [36mWebContent/test/index_test.html[39m
+Files: [36mapp/utils[39m -> [36mWebContent/utils[39m
+Files: [36mapp/utils/OdataManager.js[39m -> [36mWebContent/utils/OdataManager.js[39m
+Files: [36mapp/utils/ResConfigManager.js[39m -> [36mWebContent/utils/ResConfigManager.js[39m
+Files: [36mapp/view[39m -> [36mWebContent/view[39m
+Files: [36mapp/view/App.view.xml[39m -> [36mWebContent/view/App.view.xml[39m
+Files: [36mapp/view/BusyDialog.fragment.xml[39m -> [36mWebContent/view/BusyDialog.fragment.xml[39m
+Files: [36mapp/view/Machine.view.xml[39m -> [36mWebContent/view/Machine.view.xml[39m
+Files: [36mapp/view/Main.view.xml[39m -> [36mWebContent/view/Main.view.xml[39m
+Files: [36mapp/view/TestFrag.fragment.xml[39m -> [36mWebContent/view/TestFrag.fragment.xml[39m
+Files: [36mapp/view/Tmp.view.xml[39m -> [36mWebContent/view/Tmp.view.xml[39m
+Updating file [36mWebContent\controller\Machine.controller.js[39m
+Reading app\controller\Machine.controller.js...[32mOK[39m
+Writing WebContent\controller\Machine.controller.js...[32mOK[39m
+
+[4mRunning "copy:test" (copy) task[24m
+Verifying property [36mcopy.test[39m exists in config...[32mOK[39m
+Files: [36mapp[39m -> [36mWebContent[39m
+Files: [36mapp/Component.js[39m -> [36mWebContent/Component.js[39m
+Files: [36mapp/controller[39m -> [36mWebContent/controller[39m
+Files: [36mapp/controller/App.controller.js[39m -> [36mWebContent/controller/App.controller.js[39m
+Files: [36mapp/controller/Machine.controller.js[39m -> [36mWebContent/controller/Machine.controller.js[39m
+Files: [36mapp/controller/Main.controller.js[39m -> [36mWebContent/controller/Main.controller.js[39m
+Files: [36mapp/controller/TestFrag.controller.js[39m -> [36mWebContent/controller/TestFrag.controller.js[39m
+Files: [36mapp/controller/Tmp.controller.js[39m -> [36mWebContent/controller/Tmp.controller.js[39m
+Files: [36mapp/controls[39m -> [36mWebContent/controls[39m
+Files: [36mapp/controls/CustomTile.js[39m -> [36mWebContent/controls/CustomTile.js[39m
+Files: [36mapp/controls/CustomTileRenderer.js[39m -> [36mWebContent/controls/CustomTileRenderer.js[39m
+Files: [36mapp/css[39m -> [36mWebContent/css[39m
+Files: [36mapp/css/style.css[39m -> [36mWebContent/css/style.css[39m
+Files: [36mapp/css/style_1.css[39m -> [36mWebContent/css/style_1.css[39m
+Files: [36mapp/index.html[39m -> [36mWebContent/index.html[39m
+Files: [36mapp/localService[39m -> [36mWebContent/localService[39m
+Files: [36mapp/localService/metadata.xml[39m -> [36mWebContent/localService/metadata.xml[39m
+Files: [36mapp/localService/mockdata[39m -> [36mWebContent/localService/mockdata[39m
+Files: [36mapp/localService/mockdata/Invoices.json[39m -> [36mWebContent/localService/mockdata/Invoices.json[39m
+Files: [36mapp/localService/mockserver.js[39m -> [36mWebContent/localService/mockserver.js[39m
+Files: [36mapp/locales[39m -> [36mWebContent/locales[39m
+Files: [36mapp/locales/locale.properties[39m -> [36mWebContent/locales/locale.properties[39m
+Files: [36mapp/locales/locale_en.properties[39m -> [36mWebContent/locales/locale_en.properties[39m
+Files: [36mapp/locales/locale_en_US.properties[39m -> [36mWebContent/locales/locale_en_US.properties[39m
+Files: [36mapp/locales/locale_it.properties[39m -> [36mWebContent/locales/locale_it.properties[39m
+Files: [36mapp/locales/locale_it_IT.properties[39m -> [36mWebContent/locales/locale_it_IT.properties[39m
+Files: [36mapp/manifest.json[39m -> [36mWebContent/manifest.json[39m
+Files: [36mapp/model[39m -> [36mWebContent/model[39m
+Files: [36mapp/model/name.json[39m -> [36mWebContent/model/name.json[39m
+Files: [36mapp/model/products.json[39m -> [36mWebContent/model/products.json[39m
+Files: [36mapp/model/products_1.json[39m -> [36mWebContent/model/products_1.json[39m
+Files: [36mapp/model/tiles.json[39m -> [36mWebContent/model/tiles.json[39m
+Files: [36mapp/test[39m -> [36mWebContent/test[39m
+Files: [36mapp/test/index_test.html[39m -> [36mWebContent/test/index_test.html[39m
+Files: [36mapp/utils[39m -> [36mWebContent/utils[39m
+Files: [36mapp/utils/OdataManager.js[39m -> [36mWebContent/utils/OdataManager.js[39m
+Files: [36mapp/utils/ResConfigManager.js[39m -> [36mWebContent/utils/ResConfigManager.js[39m
+Files: [36mapp/view[39m -> [36mWebContent/view[39m
+Files: [36mapp/view/App.view.xml[39m -> [36mWebContent/view/App.view.xml[39m
+Files: [36mapp/view/BusyDialog.fragment.xml[39m -> [36mWebContent/view/BusyDialog.fragment.xml[39m
+Files: [36mapp/view/Machine.view.xml[39m -> [36mWebContent/view/Machine.view.xml[39m
+Files: [36mapp/view/Main.view.xml[39m -> [36mWebContent/view/Main.view.xml[39m
+Files: [36mapp/view/TestFrag.fragment.xml[39m -> [36mWebContent/view/TestFrag.fragment.xml[39m
+Files: [36mapp/view/Tmp.view.xml[39m -> [36mWebContent/view/Tmp.view.xml[39m
+Files: [36m.Ui5RepositoryIgnore[39m -> [36mWebContent/.Ui5RepositoryIgnore[39m
+Files: [36mbower_components/sprintf/dist/sprintf.min.js[39m -> [36mWebContent/ext_lib/sprintf.min.js[39m
+Options: [36mencoding="utf8"[39m, [36mprocessContent=false[39m, [36mprocessContentExclude=[][39m, [36mtimestamp=false[39m, [36mmode=false[39m
+Creating WebContent
+Copying app/Component.js -> WebContent/Component.js
+Reading app/Component.js...[32mOK[39m
+Writing WebContent/Component.js...[32mOK[39m
+Creating WebContent/controller
+Copying app/controller/App.controller.js -> WebContent/controller/App.controller.js
+Reading app/controller/App.controller.js...[32mOK[39m
+Writing WebContent/controller/App.controller.js...[32mOK[39m
+Copying app/controller/Machine.controller.js -> WebContent/controller/Machine.controller.js
+Reading app/controller/Machine.controller.js...[32mOK[39m
+Writing WebContent/controller/Machine.controller.js...[32mOK[39m
+Copying app/controller/Main.controller.js -> WebContent/controller/Main.controller.js
+Reading app/controller/Main.controller.js...[32mOK[39m
+Writing WebContent/controller/Main.controller.js...[32mOK[39m
+Copying app/controller/TestFrag.controller.js -> WebContent/controller/TestFrag.controller.js
+Reading app/controller/TestFrag.controller.js...[32mOK[39m
+Writing WebContent/controller/TestFrag.controller.js...[32mOK[39m
+Copying app/controller/Tmp.controller.js -> WebContent/controller/Tmp.controller.js
+Reading app/controller/Tmp.controller.js...[32mOK[39m
+Writing WebContent/controller/Tmp.controller.js...[32mOK[39m
+Creating WebContent/controls
+Copying app/controls/CustomTile.js -> WebContent/controls/CustomTile.js
+Reading app/controls/CustomTile.js...[32mOK[39m
+Writing WebContent/controls/CustomTile.js...[32mOK[39m
+Copying app/controls/CustomTileRenderer.js -> WebContent/controls/CustomTileRenderer.js
+Reading app/controls/CustomTileRenderer.js...[32mOK[39m
+Writing WebContent/controls/CustomTileRenderer.js...[32mOK[39m
+Creating WebContent/css
+Copying app/css/style.css -> WebContent/css/style.css
+Reading app/css/style.css...[32mOK[39m
+Writing WebContent/css/style.css...[32mOK[39m
+Copying app/css/style_1.css -> WebContent/css/style_1.css
+Reading app/css/style_1.css...[32mOK[39m
+Writing WebContent/css/style_1.css...[32mOK[39m
+Copying app/index.html -> WebContent/index.html
+Reading app/index.html...[32mOK[39m
+Writing WebContent/index.html...[32mOK[39m
+Creating WebContent/localService
+Copying app/localService/metadata.xml -> WebContent/localService/metadata.xml
+Reading app/localService/metadata.xml...[32mOK[39m
+Writing WebContent/localService/metadata.xml...[32mOK[39m
+Creating WebContent/localService/mockdata
+Copying app/localService/mockdata/Invoices.json -> WebContent/localService/mockdata/Invoices.json
+Reading app/localService/mockdata/Invoices.json...[32mOK[39m
+Writing WebContent/localService/mockdata/Invoices.json...[32mOK[39m
+Copying app/localService/mockserver.js -> WebContent/localService/mockserver.js
+Reading app/localService/mockserver.js...[32mOK[39m
+Writing WebContent/localService/mockserver.js...[32mOK[39m
+Creating WebContent/locales
+Copying app/locales/locale.properties -> WebContent/locales/locale.properties
+Reading app/locales/locale.properties...[32mOK[39m
+Writing WebContent/locales/locale.properties...[32mOK[39m
+Copying app/locales/locale_en.properties -> WebContent/locales/locale_en.properties
+Reading app/locales/locale_en.properties...[32mOK[39m
+Writing WebContent/locales/locale_en.properties...[32mOK[39m
+Copying app/locales/locale_en_US.properties -> WebContent/locales/locale_en_US.properties
+Reading app/locales/locale_en_US.properties...[32mOK[39m
+Writing WebContent/locales/locale_en_US.properties...[32mOK[39m
+Copying app/locales/locale_it.properties -> WebContent/locales/locale_it.properties
+Reading app/locales/locale_it.properties...[32mOK[39m
+Writing WebContent/locales/locale_it.properties...[32mOK[39m
+Copying app/locales/locale_it_IT.properties -> WebContent/locales/locale_it_IT.properties
+Reading app/locales/locale_it_IT.properties...[32mOK[39m
+Writing WebContent/locales/locale_it_IT.properties...[32mOK[39m
+Copying app/manifest.json -> WebContent/manifest.json
+Reading app/manifest.json...[32mOK[39m
+Writing WebContent/manifest.json...[32mOK[39m
+Creating WebContent/model
+Copying app/model/name.json -> WebContent/model/name.json
+Reading app/model/name.json...[32mOK[39m
+Writing WebContent/model/name.json...[32mOK[39m
+Copying app/model/products.json -> WebContent/model/products.json
+Reading app/model/products.json...[32mOK[39m
+Writing WebContent/model/products.json...[32mOK[39m
+Copying app/model/products_1.json -> WebContent/model/products_1.json
+Reading app/model/products_1.json...[32mOK[39m
+Writing WebContent/model/products_1.json...[32mOK[39m
+Copying app/model/tiles.json -> WebContent/model/tiles.json
+Reading app/model/tiles.json...[32mOK[39m
+Writing WebContent/model/tiles.json...[32mOK[39m
+Creating WebContent/test
+Copying app/test/index_test.html -> WebContent/test/index_test.html
+Reading app/test/index_test.html...[32mOK[39m
+Writing WebContent/test/index_test.html...[32mOK[39m
+Creating WebContent/utils
+Copying app/utils/OdataManager.js -> WebContent/utils/OdataManager.js
+Reading app/utils/OdataManager.js...[32mOK[39m
+Writing WebContent/utils/OdataManager.js...[32mOK[39m
+Copying app/utils/ResConfigManager.js -> WebContent/utils/ResConfigManager.js
+Reading app/utils/ResConfigManager.js...[32mOK[39m
+Writing WebContent/utils/ResConfigManager.js...[32mOK[39m
+Creating WebContent/view
+Copying app/view/App.view.xml -> WebContent/view/App.view.xml
+Reading app/view/App.view.xml...[32mOK[39m
+Writing WebContent/view/App.view.xml...[32mOK[39m
+Copying app/view/BusyDialog.fragment.xml -> WebContent/view/BusyDialog.fragment.xml
+Reading app/view/BusyDialog.fragment.xml...[32mOK[39m
+Writing WebContent/view/BusyDialog.fragment.xml...[32mOK[39m
+Copying app/view/Machine.view.xml -> WebContent/view/Machine.view.xml
+Reading app/view/Machine.view.xml...[32mOK[39m
+Writing WebContent/view/Machine.view.xml...[32mOK[39m
+Copying app/view/Main.view.xml -> WebContent/view/Main.view.xml
+Reading app/view/Main.view.xml...[32mOK[39m
+Writing WebContent/view/Main.view.xml...[32mOK[39m
+Copying app/view/TestFrag.fragment.xml -> WebContent/view/TestFrag.fragment.xml
+Reading app/view/TestFrag.fragment.xml...[32mOK[39m
+Writing WebContent/view/TestFrag.fragment.xml...[32mOK[39m
+Copying app/view/Tmp.view.xml -> WebContent/view/Tmp.view.xml
+Reading app/view/Tmp.view.xml...[32mOK[39m
+Writing WebContent/view/Tmp.view.xml...[32mOK[39m
+Copying .Ui5RepositoryIgnore -> WebContent/.Ui5RepositoryIgnore
+Reading .Ui5RepositoryIgnore...[32mOK[39m
+Writing WebContent/.Ui5RepositoryIgnore...[32mOK[39m
+Copying bower_components/sprintf/dist/sprintf.min.js -> WebContent/ext_lib/sprintf.min.js
+Reading bower_components/sprintf/dist/sprintf.min.js...[32mOK[39m
+Writing WebContent/ext_lib/sprintf.min.js...[32mOK[39m
+Created 11 directories, copied 35 files
+
+[4mRunning "serve:dist" (serve) task[24m
+
+[4mRunning "openui5_connect:dist" (openui5_connect) task[24m
+Verifying property [36mopenui5_connect.dist[39m exists in config...[32mOK[39m
+File: [33m[no files][39m
+Options: [36mcontextpath="/"[39m, [36mappresources="WebContent"[39m, [36mresources=["bower_components/openui5-sap.ui.core/resources","bower_components/openui5-sap.m/resources","bower_components/openui5-sap.ui.layout/resources","bower_components/openui5-sap.ui.commons/resources","bower_components/openui5-themelib_sap_bluecrystal/resources","bower_components/openui5-sap.ui.unified/resources","bower_components/openui5-sap.ui.table/resources"][39m, [36mtestresources=[][39m, [36mcors=null[39m, [36mproxypath=null[39m, [36mproxyOptions=null[39m
+Verifying property [36mconnect.dist[39m exists in config...[32mOK[39m
+
+[4mRunning "connect:dist" (connect) task[24m
+Verifying property [36mconnect.dist[39m exists in config...[32mOK[39m
+File: [33m[no files][39m
+Options: [36mprotocol="http"[39m, [36mport=9876[39m, [36mhostname="*"[39m, [36mbase="."[39m, [36mdirectory=null[39m, [36mkeepalive=false[39m, [36mdebug=false[39m, [36mlivereload=false[39m, [36mopen=false[39m, [36museAvailablePort=false[39m, [36monCreateServer=null[39m, [36mmiddleware=undefined[39m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-connect\tasks\certs\server.key...[32mOK[39m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-connect\tasks\certs\server.crt...[32mOK[39m
+Reading C:\Users\Marco PC\Desktop\iguzpod\node_modules\grunt-contrib-connect\tasks\certs\ca.crt...[32mOK[39m
+Started connect web server on http://localhost:9876
+
+[4mRunning "watch" task[24m
+Waiting...
+Verifying property [36mwatch[39m exists in config...[32mOK[39m
+Live reload server started on *:35729
+Watching Gruntfile.js for changes.
+Watching .git for changes.
+Watching app for changes.
+Watching bower_components for changes.
+Watching nbproject for changes.
+Watching node_modules for changes.
+Watching WebContent for changes.
+Watching app\Component.js for changes.
+Watching app\controller for changes.
+Watching app\controls for changes.
+Watching app\css for changes.
+Watching app\locales for changes.
+Watching app\localService for changes.
+Watching app\model for changes.
+Watching app\test for changes.
+Watching app\utils for changes.
+Watching app\view for changes.
+Watching app\index.html for changes.
+Watching app\manifest.json for changes.
+Watching app\controller\App.controller.js for changes.
+Watching app\controller\Machine.controller.js for changes.
+Watching app\controller\Main.controller.js for changes.
+Watching app\controller\TestFrag.controller.js for changes.
+Watching app\controller\Tmp.controller.js for changes.
+Watching app\controls\CustomTile.js for changes.
+Watching app\controls\CustomTileRenderer.js for changes.
+Watching app\localService\mockserver.js for changes.
+Watching app\localService\mockdata for changes.
+Watching app\localService\metadata.xml for changes.
+Watching app\utils\OdataManager.js for changes.
+Watching app\utils\ResConfigManager.js for changes.
+Watching app\view\App.view.xml for changes.
+Watching app\view\BusyDialog.fragment.xml for changes.
+Watching app\view\Machine.view.xml for changes.
+Watching app\view\Main.view.xml for changes.
+Watching app\view\TestFrag.fragment.xml for changes.
+Watching app\view\Tmp.view.xml for changes.
+Watching app\test\index_test.html for changes.
+Watching app\css\style_1.css for changes.
+Watching app\css\style.css for changes.
+Watching app\localService\mockdata\Invoices.json for changes.
+Watching app\model\name.json for changes.
+Watching app\model\products_1.json for changes.
+Watching app\model\products.json for changes.
+Watching app\model\tiles.json for changes.
+Watching app\locales\locale_en_US.properties for changes.
+Watching app\locales\locale_en.properties for changes.
+Watching app\locales\locale_it_IT.properties for changes.
+Watching app\locales\locale_it.properties for changes.
+Watching app\locales\locale.properties for changes.
+[WS] Catching upgrade event...

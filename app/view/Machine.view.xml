@@ -1,0 +1,23 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m"
+          xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
+          controllerName="myapp.controller.Machine"
+          xmlns:ct="myapp.controls."  >
+    <Page title="{locale>myapp.view.main.title}"
+          showHeader="false"
+          enableScrolling="false"
+          class="centopercento"    >
+        
+        <TileContainer
+            id="container"
+            tileDelete="handleTileDelete"
+            tiles="{/tiles}">   
+            <ct:CustomTile backgroundColor="{color}" class="margine" press="ciao" type="{type}">
+                <ct:content >
+                    <HBox >
+                        <Text text="{text}"></Text>
+                    </HBox>
+                </ct:content>
+            </ct:CustomTile>
+        </TileContainer>
+    </Page>
+</mvc:View>

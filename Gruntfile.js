@@ -35,16 +35,38 @@
                         }
                     }
                 },
-
-                connect: {
-                    options: {
-                        port: 9876,
-                        hostname: '*'
-                    },
-                    src: {},
-                    dist: {}
+            connect: {
+                options: {
+                    port: 9876,
+                    hostname: '*',
+                    middleware: function (connect, options, defaultMiddleware) {
+						var proxy;
+                        proxy = require('grunt-connect-proxy/lib/utils').proxyRequest; // jshint ignore:line
+                        return [
+                            // Include the proxy first
+                            proxy
+                        ].concat(defaultMiddleware);
+                    }
                 },
-
+                src: {},
+                dist: {},
+				proxies: [
+                    {
+                        context: "/XMII", // When the url contains this...
+                        host: "http://172.16.20.231", // Proxy to this host
+                        port: 50000,
+                        changeOrigin: true,
+						headers: {
+                            "Authorization": "Basic bWJhcmF0ZWxsYTpJbml0MTIzNA=="
+                        },
+                    }, {
+                        context: "/flp", // When the url contains this...
+                        host: "10.51.7.67", // Proxy to this host
+                        port: 8000,
+                        changeOrigin: true
+                    }
+                ]
+            },
                 openui5_connect: {
                     options: {
                         resources: [
