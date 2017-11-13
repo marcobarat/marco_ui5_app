@@ -9,7 +9,7 @@
   "scripts": {
     "compile": "grunt compile",
     "build": "grunt build",
-    "start": "grunt -v > suka.log",
+    "start": "grunt",
     "clean": "grunt clean",
     "dist": "grunt dist"
   },

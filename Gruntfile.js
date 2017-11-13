@@ -53,17 +53,12 @@
 				proxies: [
                     {
                         context: "/XMII", // When the url contains this...
-                        host: "http://172.16.20.231", // Proxy to this host
+                        host: "172.16.20.231", // Proxy to this host
                         port: 50000,
                         changeOrigin: true,
 						headers: {
                             "Authorization": "Basic bWJhcmF0ZWxsYTpJbml0MTIzNA=="
                         },
-                    }, {
-                        context: "/flp", // When the url contains this...
-                        host: "10.51.7.67", // Proxy to this host
-                        port: 8000,
-                        changeOrigin: true
                     }
                 ]
             },
@@ -88,19 +83,6 @@
                         options: {
                             appresources: '<%= dir.dist %>'
                         }
-                    }
-                },
-
-                openui5_preload: {
-                    component: {
-                        options: {
-                            resources: {
-                                cwd: '<%= dir.webapp %>',
-                                prefix: 'myapp'
-                            },
-                            dest: '<%= dir.dist %>'
-                        },
-                        components: true
                     }
                 },
 
@@ -221,6 +203,7 @@
             grunt.loadNpmTasks('grunt-contrib-watch');
             grunt.loadNpmTasks('grunt-sync');
             grunt.loadNpmTasks('grunt-string-replace');
+			grunt.loadNpmTasks('grunt-connect-proxy');
 
             // Server task
             grunt.registerTask('serve', function(target) {
@@ -238,7 +221,7 @@
 
             // Build task
             //grunt.registerTask('build', ['compile', 'openui5_preload', 'copy:dist', 'string-replace']);
-            grunt.registerTask('build', ['compile', 'openui5_preload', 'copy:dist']);
+            grunt.registerTask('build', ['compile', 'copy:dist']);
 
             // Copy sync mode
             grunt.registerTask('copySync', 'sync');
@@ -253,11 +236,12 @@
             grunt.registerTask('mywatch', ['watch']);
 
             // Default task
-            grunt.registerTask('default', [
-                'build_test',
-                'serve:dist',
-                'watch'
-            ]);
+			 grunt.registerTask('default', [
+					   'build_test',
+			'configureProxies:server',
+					   'serve:dist',
+					   'watch'
+				   ]);
         };
 
     }

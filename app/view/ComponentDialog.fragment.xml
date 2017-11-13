@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        id="helloDialog"
+        title="Phases List">
+        <l:VerticalLayout
+            class="sapUiContentPadding"
+            width="100%">
+            <l:content>
+                <List
+                    items="{/}"
+                    headerText="Lista fasi">
+                    <items>
+                        <ObjectListItem
+                            title="{stepid}"
+                            type="Active"
+                            press="goToPod">
+
+                        </ObjectListItem>
+                    </items>
+                </List>
+            </l:content>
+
+	<OverflowToolbar id="otb1">
+		<ToolbarSpacer/>
+		<Button text="Close" type="Transparent" press="onExit"/>
+
+	</OverflowToolbar>
+        </l:VerticalLayout>
+    </Dialog>
+</core:FragmentDefinition>

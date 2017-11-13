@@ -373,7 +373,7 @@ Writing WebContent/ext_lib/sprintf.min.js...[32mOK[39m
 Created 11 directories, copied 35 files
 
 [4mRunning "configureProxies:server" (configureProxies) task[24m
-Proxy created for: /XMII to http://172.16.20.231:50000
+Proxy created for: /XMII to 172.16.20.231:50000
 
 [4mRunning "serve:dist" (serve) task[24m
 
@@ -446,3 +446,42 @@ Watching app\locales\locale_en.properties for changes.
 Watching app\locales\locale_it_IT.properties for changes.
 Watching app\locales\locale_it.properties for changes.
 Watching app\locales\locale.properties for changes.
+[WS] Catching upgrade event...
+Proxied request: /XMII/Runner?Transaction=iGuzzini/Transaction/GetAllWorkcenterByTypeAndUsername&Content-Type=text/xml -> http://172.16.20.231:50000/XMII/Runner?Transaction=iGuzzini/Transaction/GetAllWorkcenterByTypeAndUsername&Content-Type=text/xml
+{
+  "host": "localhost:9876",
+  "connection": "keep-alive",
+  "accept": "application/xml, text/xml, */*; q=0.01",
+  "x-requested-with": "XMLHttpRequest",
+  "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+  "referer": "http://localhost:9876/",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.8,it-IT;q=0.6,it;q=0.4",
+  "Authorization": "Basic bWJhcmF0ZWxsYTpJbml0MTIzNA=="
+}
+Proxied request: /XMII/Runner?Transaction=iGuzzini/Transaction/GetAllWorkcenterByTypeAndUsername&Content-Type=text/xml -> http://172.16.20.231:50000/XMII/Runner?Transaction=iGuzzini/Transaction/GetAllWorkcenterByTypeAndUsername&Content-Type=text/xml
+{
+  "host": "localhost:9876",
+  "connection": "keep-alive",
+  "accept": "application/xml, text/xml, */*; q=0.01",
+  "x-requested-with": "XMLHttpRequest",
+  "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+  "referer": "http://localhost:9876/",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.8,it-IT;q=0.6,it;q=0.4",
+  "cookie": "MYSAPSSO2=AjExMDAgABFwb3J0YWw6TUJBUkFURUxMQYgAB2RlZmF1bHQBAApNQkFSQVRFTExBAgADMDAwAwADTUlYBAAMMjAxNzExMDkxMjA5BQAEAAAACAoACk1CQVJBVEVMTEH%2FAQQwggEABgkqhkiG9w0BBwKggfIwge8CAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGBzzCBzAIBATAiMB0xDDAKBgNVBAMTA01JWDENMAsGA1UECxMESjJFRQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTcxMTA5MTIwOTI0WjAjBgkqhkiG9w0BCQQxFgQUtrRptJ8XpJ13XoaOVcQylmVyWdkwCQYHKoZIzjgEAwQuMCwCFAmahG09PPK8WgZT%2F5t6cry60EB4AhQz49XUjE7OivkyBIArHsuuRoqL3A%3D%3D; saplb_*=(J2EE3172220)3172250; JSESSIONID=KGoPxs3GBBIs0zYcl05_YiQ4UK-gXwGaZzAA_SAPsezHbI4NqUGG1rVNmap5dCP7; JSESSIONMARKID=30S_hgYGN0DLDn9fBgSKwZZs1Cz1J_msIHmppnMAA",
+  "Authorization": "Basic bWJhcmF0ZWxsYTpJbml0MTIzNA=="
+}
+Proxied request: /XMII/Runner?Transaction=iGuzzini/Transaction/GetAllWorkcenterByTypeAndUsername&Content-Type=text/xml -> http://172.16.20.231:50000/XMII/Runner?Transaction=iGuzzini/Transaction/GetAllWorkcenterByTypeAndUsername&Content-Type=text/xml
+{
+  "host": "localhost:9876",
+  "connection": "keep-alive",
+  "accept": "application/xml, text/xml, */*; q=0.01",
+  "x-requested-with": "XMLHttpRequest",
+  "user-agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+  "referer": "http://localhost:9876/",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.8,it-IT;q=0.6,it;q=0.4",
+  "cookie": "MYSAPSSO2=AjExMDAgABFwb3J0YWw6TUJBUkFURUxMQYgAB2RlZmF1bHQBAApNQkFSQVRFTExBAgADMDAwAwADTUlYBAAMMjAxNzExMDkxMjA5BQAEAAAACAoACk1CQVJBVEVMTEH%2FAQQwggEABgkqhkiG9w0BBwKggfIwge8CAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGBzzCBzAIBATAiMB0xDDAKBgNVBAMTA01JWDENMAsGA1UECxMESjJFRQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTcxMTA5MTIwOTI0WjAjBgkqhkiG9w0BCQQxFgQUtrRptJ8XpJ13XoaOVcQylmVyWdkwCQYHKoZIzjgEAwQuMCwCFAmahG09PPK8WgZT%2F5t6cry60EB4AhQz49XUjE7OivkyBIArHsuuRoqL3A%3D%3D; saplb_*=(J2EE3172220)3172250; JSESSIONID=KGoPxs3GBBIs0zYcl05_YiQ4UK-gXwGaZzAA_SAPsezHbI4NqUGG1rVNmap5dCP7; JSESSIONMARKID=30S_hgYGN0DLDn9fBgSKwZZs1Cz1J_msIHmppnMAA",
+  "Authorization": "Basic bWJhcmF0ZWxsYTpJbml0MTIzNA=="
+}

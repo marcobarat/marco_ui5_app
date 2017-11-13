@@ -2,75 +2,138 @@ sap.ui.define([
     'jquery.sap.global',
     'sap/m/MessageToast',
     'sap/ui/core/mvc/Controller',
-    'sap/ui/model/json/JSONModel'
-
-], function (jQuery, MessageToast, Controller, JSONModel) {
+    'sap/ui/model/json/JSONModel',
+    'myapp/utils/ModelManager'
+], function(jQuery, MessageToast, Controller, JSONModel, ModelManager) {
     "use strict";
 
     var MachineController = Controller.extend("myapp.controller.Machine", {
+        mainModel: null,
+        myModel: null,
+        user: null,
+        plant: null,
+        onInit: function() {
+            this.mainModel = ModelManager.getModel(ModelManager.NAMES.machineModel);
+            this.getView().setModel(this.mainModel, "main");
 
-        onInit: function () {
+            this.router = sap.ui.core.UIComponent.getRouterFor(this);
+            this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
 
             var params = jQuery.sap.getUriParameters(window.location.href);
             console.log(params);
-            var oModel = this.initTiles();
-            this.getView().setModel(oModel);
+            this.myModel = this.initTiles();
+            this.getView().setModel(this.myModel);
+            //this.mainModel.setProperty("/user", {"user": "", "id": ""});
+            this.user = "mbaratella";
+            this.plant = 1;
+
 
         },
-        initTiles: function () {
-            var oModel = new JSONModel();
-            jQuery.ajax(jQuery.sap.getModulePath("myapp", "./model/tiles.json"), {
-                dataType: "json",
-                success: function (oData) {
+        handleRouteMatched: function(oEvent) {
+            if (!this._checkRoute(oEvent, "machine")) {
+                return;
+            }
 
-                    oModel.setData(oData);
-                }.bind(this),
-                error: function () {
-                    jQuery.sap.log.error("failed to load json");
+            this.update();
+        },
+        _checkRoute: function(evt, pattern) {
+            if (evt.getParameter("name") !== pattern) {
+                return false;
+            }
+
+            return true;
+        },
+        update: function() {
+            this.myModel = this.initTiles();
+            this.getView().setModel(this.myModel);
+        },
+        initTiles: function() {
+            var oModel = new JSONModel();
+
+
+            var transactionName = "XAC_GetAllWorkcenterByTypeAndUsername";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&plant=1&type=M&user=mbaratella";
+            var transactionCall = site + "/XACQuery" + "/" + transactionName;
+            /*var params = {
+                "QueryTemplate": transactionCall,
+                "plant":"1",
+                "type":"A",
+                "user":"mbaratella",
+            };
+            
+            try {
+                var req = jQuery.ajax({
+                    url: "/XMII/Illuminator?QueryTemplate="+transactionCall+input+"&Content-Type=text/json",
+                    method: "GET",
+                    async: true
+                });
+                req.fail(jQuery.proxy(that.error, that));
+                req.done(jQuery.proxy(that.done, that));
+            } catch (err) {
+                jQuery.sap.log.debug(err.stack);
+            } */
+
+
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: true,
+                success: function(oData) {
+
+                    oModel.setData(oData.Rowsets.Rowset[0].Row);
+                    var a;
+                }.bind(),
+                error: function(oData) {
+                    that.error(oData);
                 }
             });
 
             return oModel;
         },
-        onAfterRendering: function () {
+        onAfterRendering: function() {
 
 
         },
 
-        onToTmpPage: function (event) {
+        onToTmpPage: function(event) {
 
             this.getOwnerComponent().getRouter().navTo("tmp");
 
         },
-        ciao: function () {
-            var transactionName = "GetAllWorkcenterByTypeAndUsername";
+        navToShoporder: function(event) {
+            this.myModel = new JSONModel();
 
-            var that = this;
+            var str = event.mParameters.id;
+            if (str.length > 0) {
+                var veryl = str.length;
+                var cont = "container-";
+                var num = str.search("container-");
+                var len = cont.length;
+                var res = str.substring(len + num, veryl);
 
-            var transactionCall ="iGuzzini/" + "Transaction" + "/" + transactionName;
 
-
-
-            var params = {
-                "Transaction": transactionCall,
-                "plant":"1",
-                "type":"A",
-                "user":"mbaratella",
-                "OutputParameter": "output"
-            };
-
-            try {
-                var req = jQuery.ajax({
-                    url: "/XMII/Runner?Transaction=iGuzzini/Transaction/GetAllWorkcenterByTypeAndUsername&Content-Type=text/xml",
-                    method: "GET",
-                    dataType: "xml",
-                    async: true
+                this.myModel.setProperty("/workcenter", {
+                    "workcenter": this.getView().getModel().getData()[res].workcenter,
+                    "id": this.getView().getModel().getData()[res].id,
+                    "description": this.getView().getModel().getData()[res].description,
+                    "user": this.user,
+                    "plant": this.plant
                 });
-                req.done(jQuery.proxy(that.done, that));
-                req.fail(jQuery.proxy(that.error, that));
-            } catch (err) {
-                jQuery.sap.log.debug(err.stack);
-            }
+                sap.ui.getCore().setModel(this.myModel);
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("shoporder", true);
+            } else
+                alert("errore");
+        },
+        error: function(data) {
+
+            alert("error" + data);
+        },
+        done: function(data) {
+            var result = data.Rowsets.Rowset[0].Row;
+            alert(data);
         }
 
     });

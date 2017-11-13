@@ -85,23 +85,23 @@
                 "pattern": "",
                 "target": "main"
             }, {
-                "name": "folder",
-                "pattern": "folder",
-                "target": "folder"
+                "name": "shoporder",
+                "pattern": "shoporder",
+                "target": "shoporder"
             }],
             "targets": {
     
-                    "machine": {
+                "machine": {
                     "viewName": "view.Machine",
                     "viewLevel": 0
                 },
                 "main": {
                     "viewName": "view.Main",
-                    "viewLevel": 1
+                    "viewLevel": 3
                 },
-                "folder": {
-                    "viewName": "view.",
-                    "viewLevel": 2
+                "shoporder": {
+                    "viewName": "view.Shoporder",
+                    "viewLevel": 1
                 }
             }
         },
