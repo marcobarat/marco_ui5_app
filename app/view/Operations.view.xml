@@ -1,0 +1,96 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m"
+          xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:f="sap.ui.layout.form" xmlns:comp="myapp.component"
+          controllerName="myapp.controller.Operations">
+    <VBox height="100%">
+        <ScrollContainer
+            id="opsScroll"
+            height="550px"
+            width="100%"
+            horizontal="false"
+            vertical="true"
+            focusable="true">
+            <Table id="tab1"
+                   class="sapUiSmallMarginTop ops"
+                   inset="false"
+                   items="{path: '/'}">
+                <columns>
+                    <Column minScreenWidth="Tablet"
+                            demandPopin="true" hAlign="Center" vAlign="Middle">
+                        <Text text="Operation" width="100%"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" width="35%"
+                            demandPopin="true" hAlign="Center" vAlign="Middle">
+                        <Text text="Description" width="100%"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet"
+                            demandPopin="true" hAlign="Center" vAlign="Middle">
+                        <Text text="Status" width="100%"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet"
+                            demandPopin="true" hAlign="Center" vAlign="Middle">
+                        <Text text="Info" width="100%"/>
+                    </Column>
+                    <!--<Column minScreenWidth="Tablet" width="20%"
+                            demandPopin="true" hAlign="Center" vAlign="Middle">
+                        <Text text="{locale>myapp.view.operations.results.actions}" width="100%"/>
+                    </Column>-->
+                </columns>
+                <items>
+                    <ColumnListItem press="rowOpSelected" type="Active">
+                        <cells>
+                            <Text
+                                text="{operation}" class="rt1OpText"/>
+                            <Text
+                                text="{operation_description}"/>
+                            <Text
+                                text="{status}"/>
+                            <HBox alignItems="Center" justifyContent="Center">
+                                <VBox alignItems="Center" justifyContent="Center">
+                                    <HBox>
+
+                                        <core:Icon size="1.5rem" visible="{=${d} === 1}" class="sapUiSmallMarginEnd"
+                                                   src="sap-icon://sys-add" tooltip="{locale>myapp.view.operations.results.tooltip.datacollection}" color="{ops>dcColor}"/>
+                                        <core:Icon size="1.5rem" visible="{=${w} ===  1}"
+                                                   src="sap-icon://document-text" tooltip="{locale>myapp.view.operations.results.tooltip.workinstructions}" color="{ops>wisColor}"/>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+                            <!--
+                            <HBox alignItems="Center" justifyContent="Center">
+
+                                <comp:PodButton press="okPress" text="{locale>myapp.view.operations.results.ok}" sizeType="compact"
+                                                width="60px" color="#223A79" fontWeight="900"
+                                                height="30px" enabled="{=${ops>status} !== 'InQueue' &amp;&amp; ${ops>hstatus} === '' &amp;&amp; ('Y' === ${ops>started} || ${ops>started} === undefined)}"
+                                                visible="{=${ops>type} === 'M' &amp;&amp; ${ops>hstatus} !== 'O'}"
+                                                iconSize="1.5rem" class="sapUiMediumMarginEnd"/>
+                                <comp:PodButton press="undoOpAct" text="{locale>myapp.view.operations.results.ok}" sizeType="compact"
+                                                width="60px" color="black" fontWeight="900"
+                                                height="30px" backgroundColor="green"
+                                                enabled="{=${ops>status} !== 'InQueue' &amp;&amp; ${ops>disabled} === false &amp;&amp; ('Y' === ${ops>started} || ${ops>started} === undefined)}"
+                                                visible="{=${ops>type} === 'M' &amp;&amp; ${ops>hstatus} === 'O'}"
+                                                iconSize="1.5rem" class="sapUiMediumMarginEnd"/>
+
+                                <comp:PodButton press="notOkPress" text="{locale>myapp.view.operations.results.notok}" sizeType="compact"
+                                                width="60px" color="#E04552" fontWeight="900"
+                                                height="30px" enabled="{=${ops>status} !== 'InQueue' &amp;&amp; ${ops>hstatus} === '' &amp;&amp; ('Y' === ${ops>started} || ${ops>started} === undefined)}"
+                                                visible="{=${ops>type} === 'M' &amp;&amp; ${ops>hstatus} !== 'N'}"
+                                                iconSize="1.5rem" class="sapUiSmallMarginEnd"/>
+                                <comp:PodButton press="" text="{locale>myapp.view.operations.results.notok}" sizeType="compact"
+                                                width="60px" color="black" fontWeight="900"
+                                                height="30px" backgroundColor="red"
+                                                enabled="{=${ops>status} !== 'InQueue' &amp;&amp; ${ops>disabled} === false &amp;&amp; ('Y' === ${ops>started} || ${ops>started} === undefined)}"
+                                                visible="{=${ops>type} === 'M' &amp;&amp; ${ops>hstatus} === 'N'}"
+                                                iconSize="1.5rem" class="sapUiSmallMarginEnd"/>
+
+                                <comp:ScrewBoxes conf="{ops>}" rowMax="6"/>
+
+                            </HBox>
+                            -->
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </ScrollContainer>
+    </VBox>
+</mvc:View>

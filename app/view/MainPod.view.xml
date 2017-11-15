@@ -1,0 +1,125 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m"
+          xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
+          xmlns:f="sap.ui.layout.form" xmlns:comp="myapp.component"
+          controllerName="myapp.controller.MainPod">
+    <Page title="POD" class="myPage"
+          showHeader="false"
+          enableScrolling="false">
+        <content>
+            <VBox width="100%" height="100%">
+                <FlexBox height="10%"
+                         alignItems="Center"
+                         justifyContent="SpaceBetween"
+                         class="podHeader">
+                    <FlexBox
+                        alignItems="Center"
+                        justifyContent="Start">
+                        <Image id="lambLogo" class="tecLogo"
+                               src="images/iguzlogo.png"
+                               densityAware="false"
+                               width="225px" />
+                    </FlexBox>
+                    <FlexBox
+                        alignItems="Center"
+                        justifyContent="SpaceBetween">
+                        <Label text="Machine:" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/workcenter}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="Sfc" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/sfc}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="User:" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/user}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="Shop Order:" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/shoporder}" class="sapUiMediumMarginEnd whiteText"/>
+                        <!--<Label text="{locale>myapp.generic.kenn.label}:" class="sapUiTinyMarginEnd"/>-->
+                        <!--<Label text="{sel>/vin/kenn}" class="sapUiMediumMarginEnd whiteText"/>-->
+                    </FlexBox>
+                    <FlexBox
+                        alignItems="Center"
+                        justifyContent="Start">
+                        <Image id="tecLogo" class="tecLogo"
+                               src=""
+                               densityAware="false"
+                               width="45px" />
+                        
+                        <!--<comp:PodButton width="40px" id="backButton" press="toBackPage" iconSize="1.8rem"
+                        icon="sap-icon://nav-back"/>
+        <comp:PodButton width="40px" press="logOff" iconSize="1.8rem"
+                        icon="sap-icon://log" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"/>-->
+                    </FlexBox>
+                </FlexBox>
+                <HBox id="mainContent" width="100%" height="90%" class="tmpBorder">
+                    <VBox width="88%" height="100%">
+                        <IconTabBar
+                            id="mainIconTabBar"
+                            select="handleIconTabBarSelect"
+                            class="sapUiResponsiveContentPadding"
+                            applyContentPadding="true"
+                            expandable="false"
+                            selectedKey="OP">
+                            <items>
+                                <IconTabFilter
+                                    icon="sap-icon://home"
+                                    text="Operations"
+                                    count=""
+                                    key="OP">
+                                    <mvc:XMLView viewName="myapp.view.Operations"/>
+                                </IconTabFilter>
+                                <IconTabSeparator />
+                                <IconTabFilter
+                                    icon="sap-icon://document-text"
+                                    text="Workinstruction"
+                                    key="WRK">
+                                    <mvc:XMLView viewName="myapp.view.Workinstructions"/>
+                                </IconTabFilter>
+                                <IconTabFilter
+                                    icon="sap-icon://sys-add"
+                                    text="Data Collection"
+                                    key="DC">
+                                    <mvc:XMLView viewName="myapp.view.DataCollection"/>
+                                </IconTabFilter>
+   
+                                <!--<IconTabFilter
+                                    id="sendToTab"
+                                    icon="sap-icon://journey-depart"
+                                    text="{locale>myapp.rework.tab.sendTo}"
+                                    key="ST">
+                                    <mvc:XMLView viewName="myapp.rework.view.SendTo"/>
+                                </IconTabFilter>-->
+                                <!--<IconTabFilter
+                                    id="mainDefectTab"
+                                    icon="sap-icon://quality-issue"
+                                    text="Non conformance"
+                                    key="DEF">
+                                    <mvc:XMLView viewName="myapp.view.Defect"/>
+                                </IconTabFilter>-->
+                            </items>
+                        </IconTabBar>
+                    </VBox>
+                    <FlexBox width="12%" height="100%" class="toolBar"
+                             direction="Column"
+                             alignItems="Center"
+                             justifyContent="Start">
+                        <comp:Timer
+                            showSeconds="false"
+                            showDate="true"
+                            width="130px"
+                            height="30px"
+                            class="sapUiSmallMarginEnd"/>
+                        <comp:PodButton width="120px" press="startOperations"
+                                        icon="sap-icon://begin" iconSize="3.5rem"
+                                        text="Start" class="sapUiSmallMarginTop"/>
+                        <comp:PodButton width="120px" press="preStopOperations"
+                                        icon="sap-icon://complete" iconSize="3.5rem"
+                                        text="Complete" class="sapUiSmallMarginTop"/>
+                        <comp:PodButton width="120px" press="onOpenDefect"
+                                        icon="sap-icon://quality-issue" iconSize="3.5rem"
+                                        text="Open NC" class="sapUiSmallMarginTop"/>
+                        <!--<comp:PodButton width="120px" press="toRework"
+                                        icon="sap-icon://duplicate" iconSize="3.5rem"
+                                        text="{locale>myapp.action.rework}" class="sapUiSmallMarginTop"/>-->
+                    </FlexBox>
+                </HBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

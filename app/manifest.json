@@ -88,6 +88,10 @@
                 "name": "shoporder",
                 "pattern": "shoporder",
                 "target": "shoporder"
+            },{
+                "name": "mainpod",
+                "pattern": "mainpod",
+                "target": "mainpod"
             }],
             "targets": {
     
@@ -102,6 +106,10 @@
                 "shoporder": {
                     "viewName": "view.Shoporder",
                     "viewLevel": 1
+                },
+                "mainpod": {
+                    "viewName": "view.MainPod",
+                    "viewLevel": 2
                 }
             }
         },

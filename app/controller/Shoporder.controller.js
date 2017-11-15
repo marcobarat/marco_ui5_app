@@ -11,8 +11,14 @@ sap.ui.define([
     var ShoporderController = Controller.extend("myapp.controller.Shoporder", {
         _oDialog: null,
         shopOrderModel: null,
+        workcenterid: null,
+        workcenter: null,
         shoporderid: null,
+        sfc: null,
+        shoporder: null,
         plantid: null,
+        user: null,
+        transportModel: null,
         onInit: function () {
 
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
@@ -27,7 +33,10 @@ sap.ui.define([
 
         initShoporder: function () {
             var oModel = new JSONModel();
-
+            this.workcenter = sap.ui.getCore().getModel().getData().workcenter.workcenter;
+            this.workcenterid = sap.ui.getCore().getModel().getData().workcenter.id;
+            this.plantid = sap.ui.getCore().getModel().getData().workcenter.plant;
+            this.user = sap.ui.getCore().getModel().getData().workcenter.user;
             var transactionName = "XAC_GetAllShopOrderForAWorkcenterByUser";
             var that = this;
             var site = "iGuzzini";
@@ -121,6 +130,10 @@ sap.ui.define([
                 var site = "iGuzzini";
                 var input = "&plant=" + this.getView().getModel().getData()[res].PlantID + "&shoporderid=" + this.getView().getModel().getData()[res].ID;
                 var transactionCall = site + "/XACQuery" + "/" + transactionName;
+                this.shoporderid = this.getView().getModel().getData()[res].ID;
+                this.shoporder = this.getView().getModel().getData()[res].ShopOrder;
+                this.sfc = this.getView().getModel().getData()[res].Sfc;
+
 
                 jQuery.ajax({
                     url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
@@ -143,8 +156,22 @@ sap.ui.define([
             }
         },
         goToPod: function (oEvent) {
-            alert("siii");
-            var a = oEvent;
+            var phase = oEvent.oSource.mProperties.title;
+            this.transportModel = new JSONModel();
+            sap.ui.getCore().getModel().setProperty("/informations", {
+                "workcenter" : this.workcenter,
+                "workcenterid": this.workcenterid,
+                "user": this.user,
+                "shoporderid": this.shoporderid,
+                "plant": this.plantid,
+                "shoporder": this.shoporder,
+                "sfc": this.sfc,
+                "stepid": phase
+            });
+            //sap.ui.getCore().setModel(this.transportModel);
+
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("mainpod", true);
         }
     });
 

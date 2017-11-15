@@ -10,6 +10,8 @@
         "console" : false,
         "sprintf" : false,
         "accounting" : false,
-		"alert" : false
+		"alert" : false,
+		"document" : false,
+		"setInterval" : false
     }
 }

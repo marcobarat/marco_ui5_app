@@ -4,58 +4,58 @@
     background-color: red;
 }
 .navigationExamples h2 {
-	margin: 2em 5% 0;
+    margin: 2em 5% 0;
 }
 .navigationExamples .code {
-	margin: 0 5%;
-	font-family: Consolas, Courier, monospace;
+    margin: 0 5%;
+    font-family: Consolas, Courier, monospace;
 }
 .navigationExamples .ne-flexbox1 {
-	margin: 0.4em 5%;
-	padding: 1em 0;
-	width: auto;
-	min-height: 3em;
+    margin: 0.4em 5%;
+    padding: 1em 0;
+    width: auto;
+    min-height: 3em;
 }
 .navigationExamples .ne-flexbox1 li{
-	margin: 0.4em;
-	padding: 0.4em 1.3em;
-	list-style-type: none;
-	text-align: center;
-	background-color: #193441;
+    margin: 0.4em;
+    padding: 0.4em 1.3em;
+    list-style-type: none;
+    text-align: center;
+    background-color: #193441;
 }
 .navigationExamples .ne-flexbox1 li:hover {
-	background-color: orange;
+    background-color: orange;
 }
 .navigationExamples .ne-flexbox2 {
-	margin: 0.4em 5%;
-	padding: 1em 0;
-	width: auto;
-	min-height: 3em;
+    margin: 0.4em 5%;
+    padding: 1em 0;
+    width: auto;
+    min-height: 3em;
 }
 .navigationExamples .ne-flexbox2 li {
-	margin: 0.5em;
-	width: 25%;
-	min-width: 15%;
-	list-style-type: none;
-	text-align: center;
-	background-color: #193441;
-	padding: 0.4em;
-	-webkit-transition: width 0.5s ease-out, background-color 0.5s ease-out;
+    margin: 0.5em;
+    width: 25%;
+    min-width: 15%;
+    list-style-type: none;
+    text-align: center;
+    background-color: #193441;
+    padding: 0.4em;
+    -webkit-transition: width 0.5s ease-out, background-color 0.5s ease-out;
 }
 .navigationExamples .ne-flexbox2 li:hover {
-	width: 35%;
-	background-color: orange;
+    width: 35%;
+    background-color: orange;
 }
 .navigationExamples .ne-flexbox1 li a,
 .navigationExamples .ne-flexbox2 li a {
-	color: #fff;
-	text-decoration: none;
-	font-size: 0.7em;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.7em;
 }
 .auto{
-        width: 100%;
-        height: 100%;
-         
+    width: 100%;
+    height: 100%;
+
 }
 .daghespazio{
     margin-left:100px;
@@ -63,7 +63,7 @@
 }
 
 .sapUiSmallMarginEnd {
-  width:150px;
+    width:150px;
 }
 .margine
 {
@@ -76,3 +76,1001 @@
 .sapMStdTileTopRow{
     height: 5rem !important;
 }
+
+.boldt{
+    font-weight: bold;
+
+}
+/* --------NEW IMPORTED FROM TECHEDGEADF--------- */
+
+/* Custom Styles  */
+
+.sapMText {
+    font-family: "Arial";
+}
+.sapMLabel {
+    font-family: "Arial";
+}
+
+.lambBackground
+{
+    background-size: cover;
+    /*background-image: url('../images/background.png');*/
+}
+
+.myPage
+{
+
+}
+
+.myPage *
+{
+    -o-user-select:none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+}
+
+/*div[id$="mainDefectTab"]
+{
+    visibility: hidden;
+}*/
+
+div[id$="defectTab"]
+{
+    visibility: hidden;
+}
+
+.myPage .sapMBtnInner.sapMBtnActive {
+
+}
+
+.myPage .sapMPanelBGTranslucent {
+
+}
+
+.myPage .sapMListTbl th {
+
+}
+
+.myPage .myButton
+{
+
+}
+
+.myPage .podHeader
+{
+    height: 80px !important;
+}
+
+.myPage .tmpBorder
+{
+    border-width: 1px;
+
+}
+
+.myPage .toolBar
+{
+    box-shadow: 0 1rem 1rem 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.myPage .secondToolBar
+{
+    box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-bottom-width: thin;
+    border-bottom-style: inset;
+}
+
+.myPage .lambLogo
+{
+    display: inline-block;
+    margin-right: 38px;
+    margin-left: 38px;
+    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+    overflow: hidden;
+    position: relative;
+    border: none;
+}
+
+.myPage .tecLogo
+{
+    display: inline-block;
+    margin-right: 38px;
+    margin-left: 38px;
+    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+    overflow: hidden;
+    position: relative;
+    border: none;
+}
+
+.myPage .sapMLnk
+{
+    font-family: "Arial";
+}
+
+.myPage .sapUiFormResGrid.sapUiFormBackgrTranslucent > div {
+
+}
+
+.myPage .sapMTitle {
+    text-shadow: none;
+}
+
+.myPage .sapUiFormTitleH4
+{
+    font-family: "Arial";
+    font-size: 1.8rem;
+}
+
+.myPage .sapUiFormTitle {
+    text-shadow: none;
+
+}
+
+.myPage .sapMLabel
+{
+    font-family: "Arial";
+    font-size: 1.6rem;
+
+}
+
+.myPage .sapMLabel.whiteText
+{
+
+}
+
+.myPage .sapMLabel.blackText
+{
+
+}
+
+.myPage .sapMText
+{
+    font-family: "Arial";
+    font-size: 1.4rem;
+
+}
+
+.myPage .sapMText.blackText
+{
+
+}
+
+.myPage .sapMListTbl .sapMText
+{
+
+}
+
+.myPage .sapMTitleStyleAuto {
+    font-family: "Arial";
+    font-size: 2rem;
+}
+
+.myPage .sapMITBTab {
+    width: 7rem;
+}
+.myPage .sapMITBHead {
+    font-size: 1rem;
+    padding: 1px 1px 10px 1px;
+}
+
+.myPage .sapMTB-Transparent-CTX > .sapMTitleTB.sapMTitleStyleAuto
+{
+    font-family: "Arial";
+    font-size: 2rem;
+}
+
+.myPage .sapMInputBaseInner
+{
+    font-family: "Arial";
+    font-size: 1.7rem;
+}
+
+.myPage .sapMITBSelected .sapMITBFilterDefault {
+
+
+}
+
+.myPage .sapMITBFilterDefault {
+
+}
+.myPage .sapMITBFilterIcon {
+
+    border: 1px solid;
+}
+
+.myPage .sapMITBSelected > .sapMITBContentArrow {
+
+}
+
+.myPage .sapMITBFilter {
+    margin: 0 1.25rem;
+}
+
+.myPage .sapMITBFilter .sapMITBText {
+    line-height: 1.9375rem;
+    overflow: hidden;
+    padding: 0.575rem 0 0;
+    position: relative;
+    text-overflow: ellipsis;
+
+
+    text-shadow: 0 0.0625rem 0 rgba(255, 255, 255, 0.7);
+    width: 100%;
+}
+
+.myPage .sapMITBContainerContent {
+    border-bottom: none;
+}
+
+.myPage .sapMITBFilterIcon {
+    border-bottom-left-radius: 3.5rem;
+    border-bottom-right-radius: 3.5rem;
+    -moz-border-radius: 3.5rem;
+    border-top-left-radius: 3.5rem;
+    border-top-right-radius: 3.5rem;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 1.5rem;
+    height: 3.5rem;
+    line-height: 3.3rem;
+    overflow: hidden;
+    width: 3.5rem;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
+
+.myPage .sapMITBContent {
+
+    padding: 1rem 2rem;
+}
+
+@media (min-width: 1024px) {
+    .myPage .sapMSplitContainerHideMode >
+    .sapMSplitContainerDetail .sapMITB.sapUiResponsiveContentPadding >
+    .sapMITBContainerContent > .sapMITBContent, .sapMITB.sapUiResponsiveContentPadding >
+    .sapMITBContainerContent > .sapMITBContent
+    {
+        padding: 1rem 1rem;
+    }
+}
+
+.myPage .sapMITBFilter .sapMITBCount {
+
+    max-width: 2rem;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    text-shadow: 0 0.0625rem 0 rgba(255, 255, 255, 0.7);
+}
+
+.myPage .sapMListBGTranslucent .sapMLIB {
+
+}
+
+.myPage .sapMTB {
+
+}
+
+.myPage .graphicDefInsert .sapMTB {
+
+}
+
+.myPage .graphicDefInsert .sapMTitle {
+
+}
+
+.myPage .textualDefInsert .sapMTB {
+
+}
+
+.myPage .textualDefInsert .sapMTitle {
+
+}
+
+.myPage .sapMListBGSolid .sapMLIB {
+
+}
+
+.myPage
+.sapMComboBoxBasePressed .sapMComboBoxBaseArrow,
+html.sap-desktop .sapMComboBoxBasePressed
+.sapMComboBoxBaseArrow:hover {
+
+}
+
+.myPage .sapUiTable.podOffTable .sapMText {
+    font-size: 0.8rem;
+}
+
+.myDialog.sapMDialog
+{
+
+}
+
+.myDialog .sapMLabel
+{
+    font-family: "Arial";
+    font-size: 1.6rem;
+
+}
+
+.myDialog .sapMLabel.whiteText
+{
+
+}
+
+.myDialog .sapMLabel.blackText
+{
+
+}
+
+.myDialog .sapMListTbl {
+
+}
+
+.myDialog .sapMListTbl th{
+
+}
+
+.myDialog .sapMPanelBGTranslucent {
+
+}
+
+.myDialog .sapMPopup-CTX .sapMIBar.sapMHeader-CTX {
+
+}
+.myDialog .sapMPopup-CTX .sapMIBar.sapMHeader-CTX {
+
+}
+
+.myDialog .sapMBarContainer
+{
+
+}
+
+.myDialog .sapMListTblRow
+{
+
+}
+
+.myDialog .sapMTitleStyleAuto
+{
+    font-family: "Arial";
+    font-size: 2rem;
+}
+
+.myDialog .sapMBtnContent
+{
+    font-family: "Arial";
+}
+
+.myDialog .sapMText
+{
+    font-family: "Arial";
+}
+
+.myDialog .sapMText {
+    font-family: "Arial";
+    font-size: 1.0rem;
+
+}
+
+.myDialog .sapMLnk
+{
+    font-family: "Arial";
+}
+
+.myDialog .sapMFooter-CTX .sapMBtn .sapMBtnContent
+{
+    font-size: 2.0rem;
+}
+
+.dcView .sapMText
+{
+    font-family: "Arial";
+    font-size: 1.0rem;
+}
+
+.dcView .sapMTB
+{
+
+    height: 100%;
+    margin-top: -15px;
+}
+
+.dcView .sapMBtnInner
+{
+    font-family: "Arial";
+    font-size: 0.8rem;
+}
+
+.dcView .sapMInputBaseInner {
+    font-family: "Arial";
+    font-size: 0.8rem;
+}
+
+.wisView .sapMTB
+{
+
+    height: 100%;
+    margin-top: -15px;
+}
+
+.wisView .sapMText
+{
+    font-family: "Arial";
+    font-size: 1.0rem;
+}
+
+.wisView .sapMBtnInner
+{
+    font-family: "Arial";
+    font-size: 0.8rem;
+}
+
+.wisView .sapMLnk {
+    font-family: "Arial";
+    font-size: 1.0rem;
+}
+
+.baugruppenView .sapMTB
+{
+
+    height: 100%;
+    margin-top: -15px;
+}
+
+.baugruppenView .sapMText
+{
+    font-family: "Arial";
+    font-size: 1.0rem;
+}
+
+.baugruppenView th > .sapMText {
+
+    font-size: 1.4rem;
+}
+
+.baugruppenView .sapMInputBaseInner {
+    font-family: "Arial";
+    font-size: 0.8rem;
+}
+
+.baugruppenView .sapMBtnInner
+{
+    font-family: "Arial";
+    font-size: 0.8rem;
+}
+
+.baugruppenView .sapMLnk {
+    font-family: "Arial";
+    font-size: 1.0rem;
+}
+
+.commentsView .sapMTB
+{
+
+    height: 100%;
+    margin-top: -15px;
+}
+
+.commentsView .sapMText
+{
+    font-family: "Arial";
+    font-size: 1.0rem;
+}
+
+.commentsView .sapMBtnInner
+{
+    font-family: "Arial";
+    font-size: 0.8rem;
+}
+
+.commentsView .sapMLnk {
+    font-family: "Arial";
+    font-size: 1.0rem;
+}
+
+.myMessageDialog
+{
+    font-family: "Arial";
+    font-size: 1.7rem
+}
+
+.customClock1
+{
+    font-size: 65px;
+    text-align: center;
+    font-family: Arial;
+
+}
+
+.customClockDate1
+{
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: myTimerFont;
+
+}
+
+.myPage .sapMListBGTranslucent .sapMLIB.selectedRow
+{
+    background: #DFF2F3;
+}
+
+.myPage .sapMListBGTranslucent .sapMLIB.sapMLIBActive
+{
+
+}
+
+.sapVizKitViewport
+{
+    height: 400px !important;
+}
+
+div[id$="navCon"]
+{
+    height: 665px;
+}
+
+@media screen and (max-height: 870px) {
+    div[id$="navCon"]
+    {
+        height: 483px;
+    }
+}
+
+div[id$="navConWis"]
+{
+    height: 700px;
+}
+
+div[id$="tab1"] td[id$="cell1"] span
+{
+    text-align: left !important;
+    font-size: 1.0rem;
+}
+
+
+@media screen and (max-height: 970px) {
+    div[id$="navConWis"]
+    {
+        height: 553px;
+    }
+}
+
+
+embed[id$="wisPdfView"]
+{
+    height: 690px !important;
+}
+
+@media screen and (max-height: 970px) {
+    embed[id$="wisPdfView"]
+    {
+        height: 553px !important;
+    }
+}
+
+div[id$="mainIconTabBar-content"]
+{
+    width: 100%;
+}
+
+@media screen and (max-width: 1450px) {
+    div[id$="mainIconTabBar-content"]
+    {
+        width: 100%;
+    }
+}
+
+div[id$="navConDefect"]
+{
+    height: 665px;
+}
+
+@media screen and (max-height: 870px) {
+    div[id$="navConDefect"]
+    {
+        height: 483px;
+    }
+}
+
+div[id$="navConDefect2"]
+{
+    height: 665px;
+}
+
+@media screen and (max-height: 870px) {
+    div[id$="navConDefect2"]
+    {
+        height: 483px;
+    }
+}
+/*
+div[id$="mainIconTabBar-content"]
+{
+    height: 600px;
+}
+
+
+@media screen and (max-height: 800px) {
+    div[id$="mainIconTabBar-content"]
+    {
+        height: 500px;
+    }
+}*/
+
+
+div[id$="dcScroll"]
+{
+    height: 665px;
+}
+
+@media screen and (max-height: 870px) {
+    div[id$="dcScroll"]
+    {
+        height: 483px;
+    }
+}
+
+@media screen and (max-width: 1450px) {
+    .myPage .sapMText {
+        font-family: "Arial";
+        font-size: 0.8rem;
+
+    }
+}
+
+@media screen and (max-width: 1450px) {
+    .myPage .podHeader .sapMLabel {
+        font-family: "Arial";
+        font-size: 1.2rem;
+
+    }
+    .myPage .podHeader .sapMLabel.whiteText {
+
+    }
+    .myPage .sapUiMediumMarginEnd {
+        margin-right: 1rem !important;
+    }
+}
+
+.myDialog .sapMRbG .sapMLabel {
+
+    min-width: 100% !important;
+}
+
+.sapMSelectDialog .sapMBtnText
+{
+    font-size: 1.6rem;
+}
+
+
+/* table style */
+
+.myPage .sapUiTableColHdrScr {
+
+}
+
+.myPage .sapUiTableCtrl tr.sapUiTableRowSel:not(.sapUiTableGroupHeader) > td {
+
+}
+
+.myPage .sapUiTable .sapUiTableRowHdr.sapUiTableRowSel {
+
+    border-right: 1px solid #dddddd;
+}
+
+.myPage .sapUiTable .sapUiTableRowHvr {
+
+}
+
+.myPage .sapUiTable .sapMLabel {
+    font-size: 1.4rem;
+}
+
+.myPage .sapUiTable .sapMText {
+    font-size: 1.0rem;
+}
+
+.myPage .sapUiTable .sapUiTableCtrl .sapUiTableRowHvr > td {
+
+}
+
+.myPage .sapUiTableCol:hover, .sapUiTableColRowHdr:hover {
+
+}
+
+.myPage .sapUiTableCol:hover .sapMLabel, .sapUiTableColRowHdr:hover .sapMLabel {
+
+}
+
+.myPage .sapUiTableColSF::after {
+
+}
+
+.myPage .sapUiTableCol:hover .sapUiTableColSF::after {
+
+}
+
+.sapMSelectListItemBaseSelected {
+
+}
+
+.sapMSelectListItemBaseHoverable:hover {
+
+}
+
+
+.myDialog2 .sapMFooter-CTX .sapMBtn .sapMBtnContent {
+    font-size: 2.0rem;
+    font-family: "Arial";
+}
+
+.myDialog2 .sapMTitleStyleAuto {
+    font-family: "Arial";
+    font-size: 2rem;
+}
+
+.myDialog2 .sapMLabel.blackText
+{
+
+
+    .myDialog2 .sapUiFormTitle
+    {
+        height: 0px !important;
+    }
+
+    .myDialog .defectDialogError {
+
+        font-size: 2rem;
+    }
+
+    .myDialog .sapMCbBg {
+
+        position: absolute;
+        left: 0.8125rem;
+        top: 0.8125rem;
+        height: 2rem;
+        width: 2rem;
+        line-height: 1.6rem;
+        padding: 0;
+        text-align: center;
+        border: solid 0.125rem #bfbfbf;
+        border-top-left-radius: 0.125rem;
+        border-top-right-radius: 0.125rem;
+        border-bottom-right-radius: 0.125rem;
+        border-bottom-left-radius: 0.125rem;
+
+    }
+
+    .myDialog .sapMCbBg.sapMCbMarkChecked:before {
+        content: "\e05b";
+        font-family: "SAP-icons";
+
+        font-size: 2.5rem;
+    }
+
+    .myDialog .veryEndInfo
+    {
+        font-size: 2.0rem;
+        margin-top: 5rem;
+    }
+
+    .myPage .multiComboLabel
+    {
+
+        font-size: 0.9rem;
+    }
+
+    .myPage .sapMToggleBtnPressed, .sapMIBar-CTX .sapMToggleBtnPressed, .sapMTB-Transparent-CTX .sapMBtnInner.sapMToggleBtnPressed {
+
+    }
+
+    .myPage .sapMBtn:hover .sapMBtnHoverable.sapMToggleBtnPressed, .sapMBtn .sapMBtnHoverable.sapMToggleBtnPressed:hover, .sapMTB-Transparent-CTX .sapMBtnHoverable.sapMToggleBtnPressed:hover {
+
+    }
+
+    .myPage .sapMPanelHdr
+    {
+        font-family: "Arial";
+        font-size: 1.6rem;
+
+        text-shadow: none;
+    }
+
+    .myPage .sapMPanelExpandableIcon {
+        font-size: 3rem;
+    }
+
+
+    /* screw boxes*/
+
+    .screwBoxContainer
+    {
+        display: table;
+        border-spacing: 6px;
+    }
+
+    .screwBoxes
+    {
+        display: table-row;
+    }
+
+    .screwGreenBox
+    {
+        width: 25px;
+        height: 25px;
+        background-color: green;
+        display: table-cell;
+        border: 1px solid black;
+        font-weight: bold;
+        font-size: 21px;
+        color: black !important;
+    }
+
+    .screwRedBox
+    {
+        width: 25px;
+        height: 25px;
+        background-color: red;
+        display: table-cell;
+        border: 1px solid black;
+        font-weight: bold;
+        font-size: 21px;
+        color: black !important;
+    }
+    .screwGreyBox
+    {
+        width: 25px;
+        height: 25px;
+        background-color: grey;
+        display: table-cell;
+        border: 1px solid black;
+        font-weight: bold;
+        font-size: 21px;
+        color: black !important;
+    }
+
+    .screwGreenBox:before
+        {
+        content: 'O';
+    }
+
+    .screwRedBox:before
+        {
+        content: 'X';
+    }
+    .screwGreyBox:before
+        {
+        content: ' ';
+    }
+
+    .screwMAGreenBox
+    {
+        width: 170px;
+        height: 160px;
+        line-height: 160px;
+        background-color: transparent;
+        display: table-cell;
+        border: 16px solid green;
+    }
+
+    .screwMARedBox
+    {
+        width: 170px;
+        height: 160px;
+        line-height: 160px;
+        background-color: transparent;
+        display: table-cell;
+        border: 16px solid red;
+    }
+    .screwMAGreyBox
+    {
+        width: 170px;
+        height: 160px;
+        line-height: 160px;
+        background-color: transparent;
+        display: table-cell;
+        border: 16px solid gray;
+    }
+
+    .screwMABoxContent
+    {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        font-size: 8rem;
+        font-weight: bolder;
+        width: 170px;
+    }
+
+    /* pdf view*/
+    .customIFrameComp{
+        height: calc(100% - 8px);
+    }
+
+    .defectInfoBox
+    {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+
+    }
+
+    .defectInfoBigBox .sapMLabel
+    {
+        font-size: 1.6rem;
+    }
+
+    .defectInfoBigBox .sapMText
+    {
+        font-size: 1.6rem;
+    }
+
+    .defectInfoBox .legend
+    {
+        font-size: 1.1rem;
+    }
+
+    .myPage .preassemblyInput .sapMInputBaseInner
+    {
+        font-size: 0.6rem;
+    }
+
+    .reworkCompleteRadioButton .sapMLabel
+    {
+        font-size: 1.2rem;
+    }
+
+    .iframeWagen
+    {
+        width: 100%;
+        height: 600px;
+    }
+
+    @media screen and (max-height: 870px) 
+        {
+        .iframeWagen
+        {
+            width: 100%;
+            height: 500px;
+        }
+    }
+
+    .ops .sapMListTblCell:first-child, .sapMListTblNone:first-child + .sapMListTblCell 
+        {
+        padding-left: 0rem;
+    }
+
+    .ops .rt1OpText
+    {
+        font-size: 1.1rem;
+    }
+
+    @media screen and (max-width: 1450px) {
+        .ops .rt1OpText
+        {
+            font-size: 0.8rem;
+        }
+    }
+
+    /*
+    div[id$="opsScroll"]
+    {
+        height: 550px !important;
+    }
+    */
+
+    @media screen and (min-height: 870px) 
+        {
+        div[id$="opsScroll"]
+        {
+            height: 750px !important;
+        }
+    }

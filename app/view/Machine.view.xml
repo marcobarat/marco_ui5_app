@@ -46,7 +46,7 @@
 		<footer>
 			<Toolbar>
 				<ToolbarSpacer/>
-					<Button text="Settings" press="handleEditPress" />
+					<Button text="Welcome {/0/user}!" press="handleEditPress" />
 				<ToolbarSpacer/>
 			</Toolbar>
 		</footer>

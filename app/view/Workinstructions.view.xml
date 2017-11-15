@@ -1,0 +1,122 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m"
+          xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:f="sap.ui.layout.form" xmlns:comp="myapp.component"
+          controllerName="myapp.controller.Workinstructions">
+    <VBox class="wisView">
+        <items>
+            <!--<HBox
+                alignItems="Start"
+                justifyContent="Begin">
+                <comp:PodButton id="toWisListButton"
+                                press="toWisList" text="{locale>myapp.action.back}"
+                                sizeType="compact"
+                                width="70px" color="#223A79" fontWeight="900"
+                                height="30px" enabled="{editable}"
+                                iconSize="1.5rem"/>
+                <HBox id="wcwisctlrs">
+                    <Label text="Windchill Work Instructions" class="sapUiSmallMarginEnd"/>
+                    <Input id="rt1WcInputSearch" value="" class="sapUiSmallMarginEnd"/>
+                    <comp:PodButton id="rt1WcSrcButton"
+                                    press="wcSearch" text="Cerca"
+                                    sizeType="compact"
+                                    width="70px" color="#223A79" fontWeight="900"
+                                    height="30px" enabled="{editable}"
+                                    iconSize="1.5rem" class="sapUiSmallMarginBegin"/>
+                </HBox>
+            </HBox>-->
+            <NavContainer
+                id="navConWis"
+                width="100%"
+                class="navContainerControl sapUiSmallMarginBottom">
+                <Page
+                    showHeader="false"
+                    id="wisPage">
+                    <!--<Panel expandable="true" expanded="false" headerText="{locale>myapp.view.wis.rt1w}"
+                           width="auto" class="sapUiResponsiveMargin">
+                        <Table inset="false"
+                               items="{path: 'rt1WisW>/'}">
+                            <columns>
+                                <Column minScreenWidth="Tablet"
+                                        demandPopin="true">
+                                    <Text text="RT1" />
+                                </Column>
+                                <Column minScreenWidth="Tablet"
+                                        demandPopin="true"  width="70%">
+                                    <Text text="Nome" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem press="selectRT1" type="Active">
+                                    <cells>
+                                        <Text text="{rt1WisW>RT1}" />
+                                        <Text text="{rt1WisW>NAME}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </Panel>
+                    <Panel expandable="true" expanded="false" headerText="{locale>myapp.view.wis.rt1s}"
+                           width="auto" class="sapUiResponsiveMargin">
+                        <Table inset="false"
+                               items="{path: 'rt1WisS>/'}">
+                            <columns>
+                                <Column minScreenWidth="Tablet"
+                                        demandPopin="true">
+                                    <Text text="RT1" />
+                                </Column>
+                                <Column minScreenWidth="Tablet"
+                                        demandPopin="true"  width="70%">
+                                    <Text text="Nome" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem press="selectRT1" type="Active">
+                                    <cells>
+                                        <Text text="{rt1WisS>RT1}" />
+                                        <Text text="{rt1WisS>NAME}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </Panel>-->
+                    <Panel>
+                        <Table inset="false"
+                               items="{path: 'wis>/wis/W'}">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Title text="Workinstructions" level="H2"/>
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column minScreenWidth="Tablet"
+                                        demandPopin="true">
+                                    <Text text="Nome" />
+                                </Column>
+                                <Column minScreenWidth="Tablet"
+                                        demandPopin="true"  width="70%">
+                                    <Text text="Link" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Active">
+                                    <cells>
+                                        <Text text="{wis>work_instruction}" />
+                                        <Link text="{wis>fileName}"
+                                              emphasized="true"
+                                              press="openPdf"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </Panel>
+                </Page>
+                <!--<Page
+                    enableScrolling="true"
+                    showHeader="false"
+                    id="pdfPage">
+                    <comp:IFrame id="wisPdfView" src="{pdf>/url}" width="100%" visible="{renderWis>/visible}"/>
+                </Page>-->
+            </NavContainer>
+        </items>
+    </VBox>
+</mvc:View>

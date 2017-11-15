@@ -1,0 +1,66 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m"
+          xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:f="sap.ui.layout.form" xmlns:comp="myapp.component"
+          controllerName="myapp.controller.DataCollection">
+    <VBox class="dcView">
+        <ScrollContainer
+            id="dcScroll"
+            height="600px"
+            width="100%"
+            horizontal="true"
+            vertical="true"
+            focusable="true">
+            <List items="{path: '/'}" >
+                <CustomListItem>
+                    <Table class="sapUiSmallMarginTop"
+                           items="{path: 'dcparameterlist', templateShareable: false}">
+                        <headerToolbar>
+                            <Toolbar>
+                                <Title text="{dcgroup}" level="H3" class="sapUiSmallMarginEnd"/>
+                                <comp:PodButton press="saveDc" text="Save"
+                                                sizeType="compact"
+                                                width="70px" color="#223A79" fontWeight="900"
+                                                height="28px" enabled="{editable}"
+                                                iconSize="1.5rem" />
+                            </Toolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column minScreenWidth="Tablet"
+                                    demandPopin="true" hAlign="Left" vAlign="Middle">
+                                <Text text="Parameter" />
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                    demandPopin="true" hAlign="Left" vAlign="Middle">
+                                <Text text="Description" />
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                    demandPopin="true" hAlign="Left" vAlign="Middle">
+                                <Text text="Unif of measure" />
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                    demandPopin="true" hAlign="Left" vAlign="Middle">
+                                <Text text="Value" />
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                    demandPopin="true" hAlign="Left" vAlign="Middle">
+                                <Text text="Comment" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{dcparameter}"/>
+                                    <Text text="{dcparameter_description}"/>
+                                    <Text text="{unitofmeasure}"/>
+                                    <Input type="{type}" value="{value}" editable="{editable}"
+                                           valueLiveUpdate="true" liveChange="handleLiveChange"/>
+                                    <TextArea value="{comments}" rows="2" enabled="{editable}" valueLiveUpdate="true"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </CustomListItem>
+            </List>
+        </ScrollContainer>
+    </VBox>
+</mvc:View>

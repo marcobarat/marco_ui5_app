@@ -13,8 +13,7 @@ sap.ui.define([
         user: null,
         plant: null,
         onInit: function() {
-            this.mainModel = ModelManager.getModel(ModelManager.NAMES.machineModel);
-            this.getView().setModel(this.mainModel, "main");
+
 
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
             this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
