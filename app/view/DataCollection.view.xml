@@ -16,7 +16,7 @@
                            items="{path: 'dcparameterlist', templateShareable: false}">
                         <headerToolbar>
                             <Toolbar>
-                                <Title text="{dcgroup}" level="H3" class="sapUiSmallMarginEnd"/>
+                                <Title text="{dcgroup}" level="H4" class="sapUiSmallMarginEnd"/>
                                 <comp:PodButton press="saveDc" text="Save"
                                                 sizeType="compact"
                                                 width="70px" color="#223A79" fontWeight="900"
