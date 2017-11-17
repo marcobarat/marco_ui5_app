@@ -16,6 +16,8 @@ sap.ui.define([
         shoporderid: null,
         sfc: null,
         shoporder: null,
+        resource: null,
+        resourceid: null,
         plantid: null,
         user: null,
         transportModel: null,
@@ -132,6 +134,8 @@ sap.ui.define([
                 var transactionCall = site + "/XACQuery" + "/" + transactionName;
                 this.shoporderid = this.getView().getModel().getData()[res].ID;
                 this.shoporder = this.getView().getModel().getData()[res].ShopOrder;
+                this.resourceid = this.getView().getModel().getData()[res].Resid;
+                this.resource = this.getView().getModel().getData()[res].Resource;
                 this.sfc = this.getView().getModel().getData()[res].Sfc;
 
 
@@ -165,6 +169,8 @@ sap.ui.define([
                 "shoporderid": this.shoporderid,
                 "plant": this.plantid,
                 "shoporder": this.shoporder,
+                "resourceid": this.resourceid,
+                "resource": this.resource,
                 "sfc": this.sfc,
                 "stepid": phase
             });

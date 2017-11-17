@@ -24,8 +24,12 @@
                         justifyContent="SpaceBetween">
                         <Label text="Machine:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/workcenter}" class="sapUiMediumMarginEnd whiteText"/>
-                        <Label text="Sfc" class="sapUiTinyMarginEnd boldt"/>
-                        <Label text="{/sfc}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="Resource" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/resource}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="Phase" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/stepid}" class="sapUiMediumMarginEnd whiteText"/>
+                        <!--<Label text="Sfc" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/sfc}" class="sapUiMediumMarginEnd whiteText"/> -->
                         <Label text="User:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/user}" class="sapUiMediumMarginEnd whiteText"/>
                         <Label text="Shop Order:" class="sapUiTinyMarginEnd boldt"/>
@@ -41,10 +45,10 @@
                                densityAware="false"
                                width="45px" />
                         
-                        <!--<comp:PodButton width="40px" id="backButton" press="toBackPage" iconSize="1.8rem"
+                        <comp:PodButton width="40px" id="backButton" press="navToBackPage" iconSize="1.8rem"
                         icon="sap-icon://nav-back"/>
         <comp:PodButton width="40px" press="logOff" iconSize="1.8rem"
-                        icon="sap-icon://log" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"/>-->
+                        icon="sap-icon://log" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"/>
                     </FlexBox>
                 </FlexBox>
                 <HBox id="mainContent" width="100%" height="90%" class="tmpBorder">
@@ -105,10 +109,10 @@
                             width="130px"
                             height="30px"
                             class="sapUiSmallMarginEnd"/>
-                        <comp:PodButton width="120px" press="startOperations"
+                        <comp:PodButton width="120px" press="startOperation"
                                         icon="sap-icon://begin" iconSize="3.5rem"
                                         text="Start" class="sapUiSmallMarginTop"/>
-                        <comp:PodButton width="120px" press="preStopOperations"
+                        <comp:PodButton width="120px" press="stopOperation"
                                         icon="sap-icon://complete" iconSize="3.5rem"
                                         text="Complete" class="sapUiSmallMarginTop"/>
                         <comp:PodButton width="120px" press="onOpenDefect"

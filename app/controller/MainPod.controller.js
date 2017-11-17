@@ -10,6 +10,8 @@ sap.ui.define([
     var MainPodController = Controller.extend("myapp.controller.MainPod", {
         workcenterid: null,
         shoporderid: null,
+        resourceid: null,
+        resource: null,
         plantid: null,
         user: null,
         stepid: null,
@@ -25,6 +27,8 @@ sap.ui.define([
             this.user = sap.ui.getCore().getModel().getData().informations.user;
             this.workcenter = sap.ui.getCore().getModel().getData().informations.workcenter;
             this.workcenterid = sap.ui.getCore().getModel().getData().informations.workcenterid;
+            this.resourceid = sap.ui.getCore().getModel().getData().informations.resourceid;
+            this.resource = sap.ui.getCore().getModel().getData().informations.resource;
             this.plantid = sap.ui.getCore().getModel().getData().informations.plant;
             this.stepid = sap.ui.getCore().getModel().getData().informations.stepid;
             this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
@@ -58,7 +62,7 @@ sap.ui.define([
                 alert("error");
             }
         },
-        startOperations: function (event) {
+        startOperation: function (event) {
             var opselected = sap.ui.getCore().getModel().getData().operationselected;
             if (typeof opselected === "undefined") {
                 MessageToast.show("Select an operation first!");
@@ -74,7 +78,7 @@ sap.ui.define([
             var transactionName = "StartOperation";
             var that = this;
             var site = "iGuzzini";
-            var input = "&plant=" + this.plantid + "&operationid=" + rowSelected.operation_id + "&shoporderid=" + this.shoporderid + "&sfc=" + this.sfc + "&user=" + this.user + "&workcenterid=" + this.workcenterid + "&resourceid=";
+            var input = "&plant=" + this.plantid + "&operationid=" + rowSelected.operation_id + "&sfcstepid=" + rowSelected.sfcstepid + "&stepid=" + this.stepid + "&shoporderid=" + this.shoporderid + "&sfc=" + this.sfc + "&user=" + this.user + "&workcenterid=" + this.workcenterid + "&resourceid=" + this.resourceid;
             var transactionCall = site + "/Transaction" + "/" + transactionName;
             jQuery.ajax({
                 url: "/XMII/Runner?Transaction=" + transactionCall + input + "&OutputParameter=JSON&Content-Type=text/xml",
@@ -87,14 +91,51 @@ sap.ui.define([
                         oEventBus.publish("MainPod", "updateOperation");
 
                     } else {
-                        MessageToast.show("Errore! " + result.errorMessage);
+                        MessageToast.show("Error! " + result.errorMessage);
                     }
                 },
                 error: function (oData) {
                     alert("errore");
                 }
             });
-        }
+        },
+        stopOperation: function (event) {
+            var opselected = sap.ui.getCore().getModel().getData().operationselected;
+            if (typeof opselected === "undefined") {
+                MessageToast.show("Select an operation first!");
+            } else {
+                if (opselected.status === "In work") {
+                    this.performStop(opselected);
+                } else {
+                    MessageToast.show("Select an operation in work!");
+                }
+            }
+        },
+        performStop: function (rowSelected) {
+            var transactionName = "CompleteOperation";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&plant=" + this.plantid + "&operationid=" + rowSelected.operation_id + "&stepid=" + this.stepid + "&shoporderid=" + this.shoporderid + "&sfc=" + this.sfc + "&user=" + this.user + "&workcenterid=" + this.workcenterid + "&resourceid=";
+            var transactionCall = site + "/Transaction" + "/" + transactionName;
+            jQuery.ajax({
+                url: "/XMII/Runner?Transaction=" + transactionCall + input + "&OutputParameter=JSON&Content-Type=text/xml",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    var result = JSON.parse(oData.documentElement.textContent);
+                    if (result.error == "0" || result.error == 0) {
+                        var oEventBus = sap.ui.getCore().getEventBus();
+                        oEventBus.publish("MainPod", "updateOperation");
+
+                    } else {
+                        MessageToast.show("Error! " + result.errorMessage);
+                    }
+                },
+                error: function (oData) {
+                    alert("errore");
+                }
+            });
+        },
 
     });
     return MainPodController;

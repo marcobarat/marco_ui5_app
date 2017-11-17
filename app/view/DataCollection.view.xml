@@ -16,7 +16,7 @@
                            items="{path: 'dcparameterlist', templateShareable: false}">
                         <headerToolbar>
                             <Toolbar>
-                                <Title text="{dcgroup}" level="H4" class="sapUiSmallMarginEnd"/>
+                                <Title text="{dcgroup}" level="H1" class="sapUiSmallMarginEnd"/>
                                 <comp:PodButton press="saveDc" text="Save"
                                                 sizeType="compact"
                                                 width="70px" color="#223A79" fontWeight="900"
@@ -39,6 +39,14 @@
                             </Column>
                             <Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
+                                <Text text="Min value" />
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                    demandPopin="true" hAlign="Left" vAlign="Middle">
+                                <Text text="Max value" />
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                    demandPopin="true" hAlign="Left" vAlign="Middle">
                                 <Text text="Value" />
                             </Column>
                             <Column minScreenWidth="Tablet"
@@ -52,6 +60,8 @@
                                     <Text text="{dcparameter}"/>
                                     <Text text="{dcparameter_description}"/>
                                     <Text text="{unitofmeasure}"/>
+                                    <Text text="{min_value}"/>
+                                    <Text text="{max_value}"/>
                                     <Input type="{type}" value="{value}" editable="{editable}"
                                            valueLiveUpdate="true" liveChange="handleLiveChange"/>
                                     <TextArea value="{comments}" rows="2" enabled="{editable}" valueLiveUpdate="true"/>

@@ -35,10 +35,21 @@
     "sap.ui5": {
         "_version": "1.1.0",
         "resources": {
-            "css": [{
-                "uri": "css/style.css",
-                "id": "customstyle"
-            }]
+            "css": [
+                {
+                    "uri": "css/style.css",
+                    "id": "customstyle"
+                }, {
+                    "uri": "css/materialize.css",
+                    "id": "materialize"
+                }, {
+                    "uri": "css/normalize.css",
+                    "id": "normalize"
+                }, {
+                    "uri": "css/Roboto/roboto-fontface.css",
+                    "id": "roboto"
+                }
+            ]
         },
         "contentDensities": {
             "compact": true,
