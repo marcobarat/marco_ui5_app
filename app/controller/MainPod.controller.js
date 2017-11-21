@@ -87,8 +87,10 @@ sap.ui.define([
                 success: function (oData) {
                     var result = JSON.parse(oData.documentElement.textContent);
                     if (result.error == "0" || result.error == 0) {
-                        var oEventBus = sap.ui.getCore().getEventBus();
+                        var oEventBus = sap.ui.getCore().getEventBus(); 
                         oEventBus.publish("MainPod", "updateOperation");
+                        oEventBus.publish("MainPod", "updateRowSel");
+
 
                     } else {
                         MessageToast.show("Error! " + result.errorMessage);
@@ -104,18 +106,19 @@ sap.ui.define([
             if (typeof opselected === "undefined") {
                 MessageToast.show("Select an operation first!");
             } else {
-                if (opselected.status === "In work") {
+                //if (opselected.status === "In work") { 
+                /*
+                 * Bug nell'aggiornamento dell'operazione selezionata: dopo aver fatto lo start
+                 * l'operazione selezionata ha ancora status in queue e non in work!
+                 */
                     this.performStop(opselected);
-                } else {
-                    MessageToast.show("Select an operation in work!");
-                }
             }
         },
         performStop: function (rowSelected) {
             var transactionName = "CompleteOperation";
             var that = this;
             var site = "iGuzzini";
-            var input = "&plant=" + this.plantid + "&operationid=" + rowSelected.operation_id + "&stepid=" + this.stepid + "&shoporderid=" + this.shoporderid + "&sfc=" + this.sfc + "&user=" + this.user + "&workcenterid=" + this.workcenterid + "&resourceid=";
+            var input = "&plant=" + this.plantid + "&operationid=" + rowSelected.operation_id + "&stepid=" + this.stepid + "&shoporderid=" + this.shoporderid + "&sfc=" + this.sfc + "&user=" + this.user + "&workcenterid=" + this.workcenterid + "&resourceid=" + this.resourceid;
             var transactionCall = site + "/Transaction" + "/" + transactionName;
             jQuery.ajax({
                 url: "/XMII/Runner?Transaction=" + transactionCall + input + "&OutputParameter=JSON&Content-Type=text/xml",
@@ -126,6 +129,8 @@ sap.ui.define([
                     if (result.error == "0" || result.error == 0) {
                         var oEventBus = sap.ui.getCore().getEventBus();
                         oEventBus.publish("MainPod", "updateOperation");
+                        //oEventBus.publish("MainPod", "updateRowSel");
+
 
                     } else {
                         MessageToast.show("Error! " + result.errorMessage);

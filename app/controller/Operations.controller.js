@@ -13,13 +13,15 @@ sap.ui.define([
         plantid: null,
         user: null,
         stepid: null,
-
+        selectedOp: null,
+        clickEvent: null,
         onInit: function () {
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
             this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
 
             var oEventBus = sap.ui.getCore().getEventBus();
             oEventBus.subscribe("MainPod", "updateOperation", this.initOperationsB, this);
+            oEventBus.subscribe("MainPod", "updateRowSel", this.updateRowSel, this);
 
             this.initOperations();
         },
@@ -64,7 +66,7 @@ sap.ui.define([
             return oModel;
         },
         initOperationsB: function () {
-            var oView = this.getView(); 
+            var oView = this.getView();
             this.user = sap.ui.getCore().getModel().getData().informations.user;
             this.workcenterid = sap.ui.getCore().getModel().getData().informations.workcenterid;
             this.plantid = sap.ui.getCore().getModel().getData().informations.plant;
@@ -101,7 +103,11 @@ sap.ui.define([
             var obj = event.getSource();
             var empty = {d: false, w: false};
 
+
             var tmpSelectedOp = obj.getBindingContext().getObject();
+            sap.ui.getCore().getModel().setProperty("/clickevent",
+                    tmpSelectedOp);
+
             if (tmpSelectedOp === undefined) {
                 tmpSelectedOp.isSelected = false;
             }
@@ -139,7 +145,14 @@ sap.ui.define([
             }
 
             this.getView().getModel().refresh(true);
-
+        },
+        updateRowSel: function () {
+            var oView = this.getView();
+            this.clickEvent = sap.ui.getCore().getModel().getData().clickevent;
+           
+        },
+        getSelectedOp: function () {
+            return this.selectedOp;
         },
         refreshSelection: function () {
 
