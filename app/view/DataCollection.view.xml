@@ -64,7 +64,7 @@
                                     <Text text="{max_value}"/>
                                     <Input type="{type}" value="{value}" editable="{editable}"
                                            valueLiveUpdate="true" liveChange="handleLiveChange"/>
-                                    <TextArea value="{comments}" rows="2" enabled="{editable}" valueLiveUpdate="true"/>
+                                    <TextArea value="{dccomment}" rows="2" enabled="{editable}" valueLiveUpdate="true"/>
                                 </cells>
                             </ColumnListItem>
                         </items>

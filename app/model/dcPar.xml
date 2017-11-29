@@ -1,0 +1,12 @@
+<valueList>
+    <dcparameterid>${dcparameterid}</dcparameterid>
+    <dcvalue>${dcvalue}</dcvalue>
+    <dcmaxvalue>${dcmaxvalue}</dcmaxvalue>
+    <dcminvalue>${dcminvalue}</dcminvalue>
+    <dccheckvalue>${dccheckvalue}</dccheckvalue>
+    <dcisinteger>${dcisinteger}</dcisinteger>
+    <dcComment>${dcComment}</dcComment>  
+</valueList>
+
+
+	

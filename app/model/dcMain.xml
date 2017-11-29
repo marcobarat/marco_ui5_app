@@ -1,0 +1,7 @@
+<dclog>
+    <dcgroupid>${dcGroupId}</dcgroupid>
+    <operationid>${operationId}</operationid>
+    <resourceid>${resourceId}</resourceid>
+    <user>${user}</user>
+    <dcparameterlist>${valueList}</dcparameterlist>
+</dclog>

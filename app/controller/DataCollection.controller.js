@@ -13,10 +13,33 @@ sap.ui.define([
         plantid: null,
         user: null,
         stepid: null,
+        dcMain: "",
+        dcPar: "",
+
         onInit: function () {
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
             this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
             this.getView().setModel(this.initDC());
+
+            var that = this;
+
+            jQuery.ajax({
+                dataType: "text",
+                url: "model/dcMain.xml",
+                success: function (data) {
+                    that.dcMain = data;
+                },
+                async: false
+            });
+            jQuery.ajax({
+                dataType: "text",
+                url: "model/dcPar.xml",
+                success: function (data) {
+                    that.dcPar = data;
+                },
+                async: false
+            });
+
         },
         onAfterRendering: function () {
 
@@ -84,6 +107,31 @@ sap.ui.define([
         },
         saveDc: function (oEv) {
             var a = 12;
+            var dcGroups = this.getView().getModel().getData();
+            var parXml = "", dc;
+            for (var idc in dcGroups) {
+                dc = dcGroups[idc];
+                parXml = parXml + this.dcMain.replace("${dcGroupId}", dc.dcgroupid).replace("${operationId}", dc.operationid)
+                        .replace("${user}", sap.ui.getCore().getModel().getData().informations.user)
+                        .replace("${sfc}", sap.ui.getCore().getModel().getData().informations.sfc).replace("${workCenterId}", sap.ui.getCore().getModel().getData().informations.workcenterid);
+                var valueList = "", par, parameters = dc.dcparameterlist;
+                for (var index in parameters) {
+                    par = parameters[index];
+                    valueList = valueList + this.dcPar.replace("${dcparameterid}", par.dcparameterid)
+                            .replace("${dcvalue}", par.value)
+                            .replace("${dcmaxvalue}", par.max_value)
+                            .replace("${dcminvalue}", par.min_value)
+                            .replace("${dccheckvalue}", '0')
+                            .replace("${dcisinteger}", par.isinteger)
+                            .replace("${dcComment}", par.comments.replace(/("|&|\n|\r|\\)/g, ' '));
+                }
+
+                parXml = parXml.replace("${valueList}", valueList);
+            }
+            var save = "<dcGroups>" + parXml + "</dcGroups>";
+            console.log(save);
+
+
         },
         update: function () {
             if (typeof sap.ui.getCore().getModel().getData().informations != null) {
@@ -94,6 +142,12 @@ sap.ui.define([
                 alert("error");
             }
         },
+        handleLiveChange: function (event) {
+            var newValue = event.getParameter("value");
+            var src = event.getSource();
+            src.setValue(newValue);
+            jQuery.sap.log.debug(">>>" + newValue);
+        }
     });
 
     return DataCollectionController;

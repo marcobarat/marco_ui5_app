@@ -16,6 +16,7 @@
                         <ObjectListItem
                             title="{stepid}"
                             type="Active"
+                            number="{Description}"
                             press="goToPod">
 
                         </ObjectListItem>
@@ -23,11 +24,11 @@
                 </List>
             </l:content>
 
-	<OverflowToolbar id="otb1">
-		<ToolbarSpacer/>
-		<Button text="Close" type="Transparent" press="onExit"/>
+            <OverflowToolbar id="otb1">
+                <ToolbarSpacer/>
+                <Button text="Close" type="Transparent" press="onExit"/>
 
-	</OverflowToolbar>
+            </OverflowToolbar>
         </l:VerticalLayout>
     </Dialog>
 </core:FragmentDefinition>
