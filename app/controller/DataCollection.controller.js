@@ -109,8 +109,13 @@ sap.ui.define([
             var a = 12;
             var dcGroups = this.getView().getModel().getData();
             var parXml = "", dc;
+            var operationid;
+            var resourceid;
+            var sfc = sap.ui.getCore().getModel().getData().informations.sfc;
+
             for (var idc in dcGroups) {
                 dc = dcGroups[idc];
+                operationid = dc.operationid;
                 parXml = parXml + this.dcMain.replace("${dcGroupId}", dc.dcgroupid).replace("${operationId}", dc.operationid)
                         .replace("${user}", sap.ui.getCore().getModel().getData().informations.user)
                         .replace("${sfc}", sap.ui.getCore().getModel().getData().informations.sfc).replace("${workCenterId}", sap.ui.getCore().getModel().getData().informations.workcenterid);
@@ -122,14 +127,54 @@ sap.ui.define([
                             .replace("${dcmaxvalue}", par.max_value)
                             .replace("${dcminvalue}", par.min_value)
                             .replace("${dccheckvalue}", '0')
-                            .replace("${dcisinteger}", par.isinteger)
-                            .replace("${dcComment}", par.comments.replace(/("|&|\n|\r|\\)/g, ' '));
+                            .replace("${dcisinteger}", par.isinteger);
+                    //.replace("${dcComment}", par.comments.replace(/("|&|\n|\r|\\)/g, ' '));
                 }
 
                 parXml = parXml.replace("${valueList}", valueList);
             }
-            var save = "<dcGroups>" + parXml + "</dcGroups>";
-            console.log(save);
+            var logdc = "<dcGroups>" + parXml + "</dcGroups>";
+
+
+
+            var transactionName = "LogDC";
+            var that = this;
+            var site = "iGuzzini";
+            var transactionCall = site + "/Transaction" + "/" + transactionName;
+
+
+            var params = {
+                "TRANSACTION": transactionCall,
+                "plant": this.plantid,
+                "shoporderid": this.shoporderid,
+                "operationid": operationid,
+                "resourceid": resourceid,
+                "sfc": sfc,
+                "workcenterid": this.workcenterid,
+                "stepid": this.stepid,
+                "user": this.user,
+                "dclist": logdc,
+                "OutputParameter": "JSON"
+            };
+
+
+            jQuery.ajax({
+                url: "/XMII/Runner",
+                data: params,
+                method: "POST",
+                dataType: "xml",
+                async: true,
+                success: function (oData) {
+                    MessageToast.show("Saved!");
+                },
+                error: function (oData) {
+                    MessageToast.show("Error while saving!");
+
+                }
+            });
+
+
+            console.log(logdc);
 
 
         },
