@@ -118,9 +118,9 @@
                         <comp:PodButton width="120px" press="onOpenDefect"
                                         icon="sap-icon://quality-issue" iconSize="3.5rem"
                                         text="Open NC" class="sapUiSmallMarginTop"/>
-                        <!--<comp:PodButton width="120px" press="toRework"
-                                        icon="sap-icon://duplicate" iconSize="3.5rem"
-                                        text="{locale>myapp.action.rework}" class="sapUiSmallMarginTop"/>-->
+                        <comp:PodButton width="120px" press="loggedDC"
+                                        icon="sap-icon://sys-add" iconSize="3.5rem"
+                                        text="Logged Data Collection" class="sapUiSmallMarginTop"/>
                     </FlexBox>
                 </HBox>
             </VBox>

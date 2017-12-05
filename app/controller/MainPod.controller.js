@@ -18,6 +18,8 @@ sap.ui.define([
         shoporder: null,
         sfc: null,
         test: null,
+        _oDialog: null,
+
         onInit: function () {
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
             this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
@@ -87,7 +89,7 @@ sap.ui.define([
                 success: function (oData) {
                     var result = JSON.parse(oData.documentElement.textContent);
                     if (result.error == "0" || result.error == 0) {
-                        var oEventBus = sap.ui.getCore().getEventBus(); 
+                        var oEventBus = sap.ui.getCore().getEventBus();
                         oEventBus.publish("MainPod", "updateOperation");
                         oEventBus.publish("MainPod", "updateRowSel");
 
@@ -111,7 +113,7 @@ sap.ui.define([
                  * Bug nell'aggiornamento dell'operazione selezionata: dopo aver fatto lo start
                  * l'operazione selezionata ha ancora status in queue e non in work!
                  */
-                    this.performStop(opselected);
+                this.performStop(opselected);
             }
         },
         performStop: function (rowSelected) {
@@ -141,6 +143,51 @@ sap.ui.define([
                 }
             });
         },
+        onExit: function () {
+            if (this._oDialog) {
+                this._oDialog.close();
+            }
+        },
+        loggedDC: function (oEvent) {
+            if (!this._oDialog) {
+                this._oDialog = sap.ui.xmlfragment("myapp.view.LoggedDC", this);
+            }
+            // toggle compact style
+            jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+
+
+            //this.getView().setModel(this.getPhase(oEvent), 'phase');
+            this._oDialog.setModel(this.getLoggedDC(oEvent));
+            this._oDialog.open();
+        },
+
+        getLoggedDC: function (oEvent) {
+            var oModel = new JSONModel();
+
+
+
+            var transactionName = "XAC_GetLoggedDC";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&plant=" + this.plantid + "&sfc=" + this.sfc;
+            var transactionCall = site + "/XACQuery" + "/" + transactionName;
+
+
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    oModel.setData(oData.Rowsets.Rowset[0].Row);
+                },
+                error: function (oData) {
+                    that.error(oData);
+                }
+            });
+
+            return oModel;
+
+        }
 
     });
     return MainPodController;

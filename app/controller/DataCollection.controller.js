@@ -165,7 +165,12 @@ sap.ui.define([
                 dataType: "xml",
                 async: true,
                 success: function (oData) {
-                    MessageToast.show("Saved!");
+                    var result = JSON.parse(oData.documentElement.textContent);
+                    if (result.error == "0" || result.error == 0) {
+                        MessageToast.show("Saved!");
+                    } else {
+                        MessageToast.show("Error! " + result.errorMessage);
+                    }
                 },
                 error: function (oData) {
                     MessageToast.show("Error while saving!");
