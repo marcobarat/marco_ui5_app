@@ -56,6 +56,18 @@
                             minScreenWidth="Tablet"
                             demandPopin="true"
                             hAlign="Center">
+                            <Text text="Max Value" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="Center">
+                            <Text text="Min Value" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="Center">
                             <Text text="Value" />
                         </Column>
                         <Column
@@ -73,6 +85,10 @@
                                     text="{ParameterName}" />
                                 <Text
                                     text="{UnitOfMeasure}" />
+                                <Text
+                                    text="{MaxValue}" />
+                                <Text
+                                    text="{MinValue}" />
                                 <ObjectNumber
                                     number="{Value}"
                                     unit="{UnitOfMeasure}"
