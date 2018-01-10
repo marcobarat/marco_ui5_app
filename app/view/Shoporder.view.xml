@@ -33,7 +33,7 @@
         class="sfondotiles"        >
         <VBox  alignItems="Center"
               justifyContent="Start">            
-            <Text text="Select a ShopOrder" class="cent"/> 
+            <Text text="Select a ShopOrder:" class="cent"/> 
         </VBox>   
         <TileContainer
             id="container"

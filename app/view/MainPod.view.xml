@@ -115,9 +115,9 @@
                         <comp:PodButton width="120px" press="stopOperation"
                                         icon="sap-icon://complete" iconSize="3.5rem"
                                         text="Complete" class="sapUiSmallMarginTop"/>
-                        <comp:PodButton width="120px" press="onOpenDefect"
+                        <!-- <comp:PodButton width="120px" press="onOpenDefect"
                                         icon="sap-icon://quality-issue" iconSize="3.5rem"
-                                        text="Open NC" class="sapUiSmallMarginTop"/>
+                                        text="Open NC" class="sapUiSmallMarginTop"/> -->
                         <comp:PodButton width="120px" press="loggedDC"
                                         icon="sap-icon://sys-add" iconSize="3.5rem"
                                         text="Logged Data Collection" class="sapUiSmallMarginTop"/>

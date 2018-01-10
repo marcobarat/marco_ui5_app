@@ -33,6 +33,11 @@ sap.ui.define([
 
 
         },
+        onBack: function () {
+            this.exit();
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("mainpod", true);
+        },
         onAfterRendering: function () {
 
             this.search();
@@ -255,9 +260,6 @@ sap.ui.define([
                     });*/
                 }
             });
-        },
-        onBack: function (event) {
-
         },
         toDate: function (seconds) {
 

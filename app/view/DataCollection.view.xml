@@ -49,10 +49,10 @@
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
                                 <Text text="Value" />
                             </Column>
-                            <Column minScreenWidth="Tablet"
+                            <!--<Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
                                 <Text text="Date" />
-                            </Column>
+                            </Column> -->
                         </columns>
                         <items>
                             <ColumnListItem>
@@ -64,7 +64,7 @@
                                     <Text text="{max_value}"/>
                                     <Input type="{type}" value="{value}" editable="{editable}"
                                            valueLiveUpdate="true" liveChange="handleLiveChange"/>
-                                    <TextArea value="{dccomment}" rows="2" enabled="{editable}" valueLiveUpdate="true"/>
+                                    <!--<TextArea value="{dccomment}" rows="2" enabled="{editable}" valueLiveUpdate="true"/>-->
                                 </cells>
                             </ColumnListItem>
                         </items>

@@ -4,7 +4,7 @@
           controllerName="myapp.controller.Main">
     <Page
         showHeader="true"
-        showNavButton="false" navButtonPress="onBack"
+        showNavButton="true" navButtonPress="onBack"
         enableScrolling="false"
         class="myapp">
         <headerContent>
@@ -28,8 +28,7 @@
                     <HBox>
                         <!-- <Label text="Andon:" class="sapUiSmallMarginBegin sapUiSmallMarginEnd labelAndon"/>
                         <Text text="{gingo>/shift}" class="sapUiSmallMarginEnd textAndon"/> -->
-                        <Label text="Temperature Monitor for Workcenter 1 >  " class="cent2"/>
-                        <Text text=" {gingo>/datetime}" class="cent2"/>
+                        <Text text="Temperature Monitor for Engel at {gingo>/datetime}" class="cent2"/>
                     </HBox>
                     <html:div id="chartBox" class="opacity" />
                 </VBox>
