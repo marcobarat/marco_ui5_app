@@ -3,6 +3,72 @@
 {
     background-color: red;
 }
+.sapMITBSelected .sapMITBFilterDefault {
+    background: #ff282d;
+
+}
+.sapMITBFilterDefault {
+    color: #ff282d;
+}
+.sapMITBFilterIcon {
+    background: #ffffff;
+    border: 1px solid #ff282d;
+}
+.sfondotiles {
+
+    background-color: #f0f0f0 !important;
+
+}
+.sapMTile.sapMTileActive {
+    background: #ff282d;
+}
+
+.sapMLIB.sapMLIBActive {
+    color: #ffffff;
+    background: #ff282d;
+}
+
+.cent {
+    font-family: "Arial";
+
+    text-align: center;
+    color: #7d7d7d;
+    font-size: 50px;
+    height: 50px;
+    margin-top:20px;
+    text-shadow: 1px 1px black;
+
+
+}
+.centerimage {
+    align-content: center;
+}
+.cent2 {
+    font-family: "Arial";
+
+    text-align: center;
+    color: #7d7d7d;
+    font-size: 35px;
+    height: 50px;
+    margin-top:20px;
+    text-shadow: 1px 1px black;
+
+
+}
+
+.myapp{
+        background-color: #f0f0f0 !important;
+
+}
+    .sapMPageHeader::before{
+        content: "";
+    position: absolute;
+    width: 100%;
+    top: 0;
+    border-top: 0.25rem solid white;
+    z-index: 7;
+    }
+/* new part ^^^ */
 .navigationExamples h2 {
     margin: 2em 5% 0;
 }
@@ -600,7 +666,7 @@ html.sap-desktop .sapMComboBoxBasePressed
 
 .myPage .sapMListBGTranslucent .sapMLIB.selectedRow
 {
-    background: #DFF2F3;
+    background: #f0f0f0;
 }
 
 .myPage .sapMListBGTranslucent .sapMLIB.sapMLIBActive
@@ -1074,6 +1140,5 @@ div[id$="dcScroll"]
             height: 750px !important;
         }
     }
-    
-    
-    
+
+

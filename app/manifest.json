@@ -93,7 +93,7 @@
                 "target": "machine"
             },{
                 "name": "main",
-                "pattern": "",
+                "pattern": "main",
                 "target": "main"
             }, {
                 "name": "shoporder",
@@ -122,6 +122,7 @@
                     "viewName": "view.MainPod",
                     "viewLevel": 2
                 }
+                
             }
         },
         "config": {

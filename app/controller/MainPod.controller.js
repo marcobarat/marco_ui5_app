@@ -160,7 +160,22 @@ sap.ui.define([
             this._oDialog.setModel(this.getLoggedDC(oEvent));
             this._oDialog.open();
         },
+        openGraph: function (oEvent) {
+            /*if (!this._oDialog) {
+                this._oDialog = sap.ui.xmlfragment("myapp.view.Main", this);
+            }
+            // toggle compact style
+            jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
 
+
+            //this.getView().setModel(this.getPhase(oEvent), 'phase');
+            //this._oDialog.setModel(this.getLoggedDC(oEvent));
+            this._oDialog.open();
+            */
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("main", true);
+         
+        },
         getLoggedDC: function (oEvent) {
             var oModel = new JSONModel();
 

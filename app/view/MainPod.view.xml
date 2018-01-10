@@ -2,7 +2,7 @@
           xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
           xmlns:f="sap.ui.layout.form" xmlns:comp="myapp.component"
           controllerName="myapp.controller.MainPod">
-    <Page title="POD" class="myPage"
+    <Page title="POD" class="myPage sfondotiles"
           showHeader="false"
           enableScrolling="false">
         <content>
@@ -121,6 +121,9 @@
                         <comp:PodButton width="120px" press="loggedDC"
                                         icon="sap-icon://sys-add" iconSize="3.5rem"
                                         text="Logged Data Collection" class="sapUiSmallMarginTop"/>
+                        <comp:PodButton width="120px" press="openGraph"
+                                        icon="sap-icon://column-chart-dual-axis" iconSize="3.5rem"
+                                        text="Graph" class="sapUiSmallMarginTop"/>
                     </FlexBox>
                 </HBox>
             </VBox>

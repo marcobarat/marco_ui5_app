@@ -11,7 +11,7 @@
             <l:content>
                 <List
                     items="{/}"
-                    headerText="Lista fasi">
+>
                     <items>
                         <ObjectListItem
                             title="{stepid}"

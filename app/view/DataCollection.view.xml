@@ -16,7 +16,7 @@
                            items="{path: 'dcparameterlist', templateShareable: false}">
                         <headerToolbar>
                             <Toolbar>
-                                <Title text="{dcgroup}" level="H1" class="sapUiSmallMarginEnd"/>
+                                <Title text="{dcgroup}" level="H1" class="sapUiSmallMarginEnd" width="10%"/>
                                 <comp:PodButton press="saveDc" text="Save"
                                                 sizeType="compact"
                                                 width="70px" color="#223A79" fontWeight="900"
@@ -51,7 +51,7 @@
                             </Column>
                             <Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
-                                <Text text="Comment" />
+                                <Text text="Date" />
                             </Column>
                         </columns>
                         <items>

@@ -93,8 +93,8 @@
                                     number="{Value}"
                                     unit="{UnitOfMeasure}"
                                 />
-                                <Text
-                                    text="{Comment}" />
+                                <Text text="{Date}"/>
+
                             </cells>
                         </ColumnListItem>
                     </items>

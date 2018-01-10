@@ -1,147 +1,293 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageToast",
-	'sap/ui/core/Fragment',
-	"sap/ui/core/format/DateFormat"
-], function(Controller, JSONModel, MessageToast, Fragment, DateFormat) {
-	"use strict";
-        var _timeout;
+    'jquery.sap.global',
+    'sap/ui/model/Filter',
+    'sap/ui/model/json/JSONModel',
+    'myapp/utils/ResConfigManager',
+    'sap/m/MessageBox',
+    'sap/m/MessageToast',
+    'sap/ui/core/routing/History',
+    'myapp/utils/ModelManager',
+    'sap/ui/core/mvc/Controller'
+], function (jQuery, Filter, JSONModel, ResConfigManager, MessageBox, MessageToast, History, ModelManager, Controller) {
+    "use strict";
 
-	return Controller.extend("myapp.controller.Main", {
-		onInit : function () {
-			// set explored app's demo model on this sample
-			var oJSONModel = this.initSampleDataModel();
-			this.getView().setModel(oJSONModel);
-		},
-                /*onAfterRendering: function(){
-                        var yourControl =  sap.ui.getCore().byId("__xmlview1--tab1");
-                        alert(yourControl);
-                        var f = function(evt) {
-                            alert("click");
-                        };
-                        yourControl.cellClick(f);
-                },*/
-                
-                clickCell : function(oControlEvent){
-                    var yourControl =   this.getView().byId("tab1");
-                    var columnIndex = oControlEvent.mParameters.columnIndex;
-                    var rowIndex = oControlEvent.mParameters.rowIndex;
-                    alert("click on "+oControlEvent.getParameters().cellControl.mProperties.text);
+    var MainController = Controller.extend("myapp.controller.Main", {
+        resConfigManager: new ResConfigManager(),
+        svgChart: null,
+        timer: null,
+        sfc: null,
+        wc: null,
+        res: null,
+        gingo: new JSONModel({shift: "", datetime: ""}),
+        onInit: function () {
 
+            var model = new JSONModel();
+            this.info = model;
+            this.getView().setModel(model, "info");
+
+            this.getView().setModel(this.gingo, "gingo");
+
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.getRoute("main").attachPatternMatched(this.exit, this);
+
+
+
+        },
+        onAfterRendering: function () {
+
+            this.search();
+
+            this.timer = setInterval(jQuery.proxy(this.search, this), 30 * 1000);
+
+        },
+        exit: function () {
+
+            clearInterval(this.timer);
+            this.timer = null;
+
+        },
+        search: function (event) {
+            clearInterval(this.timer);
+            this.timer = null;
+            this.getData();
+
+        },
+        createChart: function (obj) {
+            var time1 = [];
+            var qta1 = [];
+            var max = [];
+            var min = [];
+
+            time1.push("t1");
+            qta1.push("Temperature");
+
+            var qta2 = [];
+            max.push("Max");
+            min.push("Min");
+
+            var i = 0;
+            for (var time, cobj, len = obj.length; i < len; i++) {
+                cobj = obj[i];
+                time = new Date(cobj.HOUR + ".000Z").getTime();
+                time1.push(Math.round(time / 1000));
+                max.push(cobj.MAX);
+                min.push(cobj.MIN);
+                qta1.push(cobj.STANDARD);
+            }
+
+            var shift = obj[0].SHIFT;
+            this.gingo.setProperty("/shift", shift);
+
+
+            this.getChart(time1,max,min, qta1, shift);
+        },
+        _onObjectMatched: function (event) {
+
+        },
+        getData: function () {
+
+            try {
+                var datetime = this.getFormattedTime();
+                this.gingo.setProperty("/datetime", datetime);
+            } catch (err) {
+                jQuery.sap.log.error(err);
+            }
+
+
+            var site = window.site;
+
+            var that = this;
+
+
+            var transactionName = "SimulateGraph";
+            var transactionCall = 'iGuzzini' + "/" + "Transaction" + "/" + transactionName;
+            //var userId = this.info.getProperty("/user/id");
+            var params = {
+                "TRANSACTION": transactionCall,
+                "OutputParameter": "JSON"
+            };
+            try {
+                var req = jQuery.ajax({
+                    url: "/XMII/Runner",
+                    data: params,
+                    method: "POST",
+                    dataType: "xml",
+                    async: true
+                });
+                req.done(jQuery.proxy(that.getDataSuccess, that));
+                req.fail(jQuery.proxy(that.getDataError, that));
+            } catch (err) {
+                jQuery.sap.log.debug(err.stack);
+            }
+        },
+        getDataSuccess: function (data, response) {
+
+            try {
+                sap.ui.core.BusyIndicator.hide();
+                var jsonObjStr = jQuery(data).find("Row").text();
+                var jsonObj = JSON.parse(jsonObjStr.trim());
+                if (jsonObj.lenth && jsonObj.lenth === 0) {
+                    jQuery.sap.log.error("cannot retrieve resource and sfc");
+                }
+                this.adjustLocations(jsonObj);
+
+                this.createChart(jsonObj);
+            } catch (err) {
+                jQuery.sap.log.error(err);
+            } finally {
+                if (this.timer && this.timer !== null) {
+                    clearInterval(this.timer);
+                }
+                this.timer = setInterval(jQuery.proxy(this.search, this), 3000);
+            }
+
+        },
+        getDataError: function (error) {
+            sap.ui.core.BusyIndicator.hide();
+            MessageBox.error(error);
+        },
+        adjustLocations: function (objects) {
+
+
+        },
+        getChart: function (xdata1,max,min,
+                ydata1, shift) {
+
+            var that = this;
+
+            if (null !== this.svgChart) {
+                this.svgChart.destroy();
+            }
+            this.svgChart = window.c3.generate({
+                bindto: "div[id$='chartBox']",
+                padding: {
+                    top: 20,
+                    right: 100,
+                    bottom: 90,
+                    left: 100
                 },
-		initSampleDataModel : function() {
-			var oModel = new JSONModel();
- 
-			var oDateFormat = DateFormat.getDateInstance({source: {pattern: "timestamp"}, pattern: "dd/MM/yyyy"});
- 
-			jQuery.ajax(jQuery.sap.getModulePath("myapp", "model/products.json"), {
-				dataType: "json",
-				success: function (oData) {
-					var aTemp1 = [];
-					var aTemp2 = [];
-					var aSuppliersData = [];
-					var aCategoryData = [];
-					for (var i=0; i<oData.ProductCollection.length; i++) {
-						var oProduct = oData.ProductCollection[i];
-						if (oProduct.SupplierName && jQuery.inArray(oProduct.SupplierName, aTemp1) < 0) {
-							aTemp1.push(oProduct.SupplierName);
-							aSuppliersData.push({Name: oProduct.SupplierName});
-						}
-						if (oProduct.Category && jQuery.inArray(oProduct.Category, aTemp2) < 0) {
-							aTemp2.push(oProduct.Category);
-							aCategoryData.push({Name: oProduct.Category});
-						}
-						oProduct.DeliveryDate = (new Date()).getTime() - (i%10 * 4 * 24 * 60 * 60 * 1000);
-						oProduct.DeliveryDateStr = oDateFormat.format(new Date(oProduct.DeliveryDate));
-						oProduct.Heavy = oProduct.WeightMeasure > 1000 ? "true" : "false";
-						oProduct.Available = oProduct.Status == "Available" ? true : false;
-					}
- 
-					oData.Suppliers = aSuppliersData;
-					oData.Categories = aCategoryData;
- 
-					oModel.setData(oData);
-				}.bind(this),
-				error: function () {
-					jQuery.sap.log.error("failed to load json");
-				}
-			});
- 
-			return oModel;
-		},
- 
-		formatAvailableToObjectState : function (bAvailable) {
-			return bAvailable ? "Success" : "Error";
-		},
- 
-		formatAvailableToIcon : function(bAvailable) {
-			return bAvailable ? "sap-icon://accept" : "sap-icon://decline";
-		},
- 
-		handleDetailsPress : function(oEvent) {
-			MessageToast.show("Details for product with id " + this.getView().getModel().getProperty("ProductId", oEvent.getSource().getBindingContext()));
-		},
-                understand : function(oEvent) {
-                    alert("ciao anche a te "+sap.ui.getCore().byId(oEvent.getParameters().id).getProperty("text"));
-                    console.log(oEvent);
+                size: {
+                    height: 600
                 },
-		onOpenDialog: function (oEvent) {
-                        var that = this;
-			// instantiate dialog
-			if (!this._dialog) {
-                            this._dialog = sap.ui.xmlfragment("myapp.view.BusyDialog", this);
-                            this.getView().addDependent(this._dialog);
-			}
- 
-			// open dialog
-			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._dialog);
-			this._dialog.open();
-                        this.returnName(that);
-			// simulate end of operation
-			
-		},
-                
-		returnName: function (q) {
-                        var that = this;
-			var name;
-                        $.ajax({
-                           url: 'http://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&minLength=5&maxLength=15&limit=1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
-                           data: {
-                              format: 'json'
-                           },
-                           error: function() {
-                               var yourControl =   that.getView().byId("tab1");
-                               yourControl.setTitle("errore");
-                           },
-                           dataType: 'jsonp',
-                           success: function(data) {
-                               var yourControl =   that.getView().byId("tab1");
-                               var head =   that.getView().byId("head");
-                               yourControl.setTitle(data[0].word);
-                               head.setText(data[0].word);
-                               that._dialog.close();
-                           },
-                           type: 'GET'
-                        });
-		},
- 
-		onDialogClosed: function (res) {
-                        var that = this;
-			if (res == "errore") {
-				MessageToast.show("The operation has been cancelled");
-			} else {
-				MessageToast.show("The operation has been completed");
-			}
-                        
-		},
- 
-		asd: function (res) {
-                        MessageToast.show("ASD");
-			
-                        
-		}
- 
-	});
- 
+                data: {
+                    x: 't1',
+                    columns: [
+                        xdata1,
+                        max,
+                        ydata1,
+                        min
+                    ],
+          
+                    colors: {
+                        Temperature: 'rgb(0, 194, 0)',
+                        Max: 'red',
+                        Min: 'red'
+                    },
+                    types: {
+                        Temperature: 'line',
+                        Max: 'line',
+                        Min: 'line'
+                    }
+                },
+                legend: {
+                    show: true,
+                    position: 'bottom',
+                    inset: {
+                        anchor: 'top-right',
+                        x: 20,
+                        y: 40,
+                        step: 2
+                    }
+                },
+                axis: {
+                    x: {
+                        label: {
+                            text: "Time",
+                            position: 'inner-right'
+
+                        },
+                        tick: {
+                            format: function (d) {
+                                return that.toDate(d);
+                            },
+                            rotate: -10,
+                            multiline: true,
+                            fit: true,
+                            outer: false
+                        }
+                    },
+                    y: {
+                        label: {
+                            text: 'Qt\u00e0',
+                            position: 'outer-top'
+                        }
+                    }
+                },
+                grid: {
+                    x: {
+                        show: true
+                    },
+                    y: {
+                        show: true
+                    }
+                },
+                onrendered: function () {
+                    /*d3.selectAll(".c3-texts text").each(function (v) { // jshint ignore:line
+                        var label = d3.select(this); // jshint ignore:line
+                        if ("Standard" === v.id) {
+                            if (ydata1[v.index + 1] > ydata2[v.index + 1]) {
+                                label.attr("transform", "translate(-20, -10)");
+                            } else if (ydata1[v.index + 1] < ydata2[v.index + 1]) {
+                                label.attr("transform", "translate(-10, +30)");
+                            } else {
+                                label.attr("transform", "translate(-10, -10)");
+                            }
+                        }
+                        if ("Effettivo" === v.id) {
+                            if (ydata1[v.index + 1] > ydata2[v.index + 1]) {
+                                label.attr("transform", "translate(-10, +30)");
+                            } else if (ydata1[v.index + 1] < ydata2[v.index + 1]) {
+                                label.attr("transform", "translate(-10, -10)");
+                            } else {
+                                label.attr("transform", "translate(-10, +30)");
+                            }
+                        }
+                    });*/
+                }
+            });
+        },
+        onBack: function (event) {
+
+        },
+        toDate: function (seconds) {
+
+            var date = new Date(seconds * 1000);
+
+            var str = this.getFormattedTime(date);
+
+            return str;
+        },
+        getFormattedTime: function (date) {
+            if (!date) {
+                date = new Date();
+            }
+            var currentdate = date;
+            var datetime = +(currentdate.getDate() < 10) ? "0" + currentdate.getDate() : currentdate.getDate();
+            datetime += "-";
+            datetime += ((currentdate.getMonth() + 1) < 10) ? "0" + (currentdate.getMonth() + 1) : (currentdate.getMonth() + 1);
+            datetime += "-";
+            datetime += currentdate.getFullYear();
+            datetime += " ";
+            datetime += (currentdate.getHours() < 10) ? "0" + currentdate.getHours() : currentdate.getHours();
+            datetime += ":";
+            datetime += (currentdate.getMinutes() < 10) ? "0" + currentdate.getMinutes() : currentdate.getMinutes();
+            datetime += ":";
+            datetime += (currentdate.getSeconds() < 10) ? "0" + currentdate.getSeconds() : currentdate.getSeconds();
+            return datetime;
+        }
+
+    });
+
+    return MainController;
+
 });
