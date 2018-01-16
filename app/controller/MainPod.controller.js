@@ -160,21 +160,32 @@ sap.ui.define([
             this._oDialog.setModel(this.getLoggedDC(oEvent));
             this._oDialog.open();
         },
+        openStatusMachine: function (oEvent) {
+            var typemachine = sap.ui.getCore().getModel().getData().workcenter.typemachine;
+            if (typemachine == 'S') {
+                if (!this._oDialog) {
+                    this._oDialog = sap.ui.xmlfragment("myapp.view.StatusMachineSil", this);
+                }
+                jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+                this._oDialog.setModel(this.getStatusMachineSil(oEvent));
+                this._oDialog.open();
+            }
+        },
         openGraph: function (oEvent) {
             /*if (!this._oDialog) {
-                this._oDialog = sap.ui.xmlfragment("myapp.view.Main", this);
-            }
-            // toggle compact style
-            jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-
-
-            //this.getView().setModel(this.getPhase(oEvent), 'phase');
-            //this._oDialog.setModel(this.getLoggedDC(oEvent));
-            this._oDialog.open();
-            */
+             this._oDialog = sap.ui.xmlfragment("myapp.view.Main", this);
+             }
+             // toggle compact style
+             jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+             
+             
+             //this.getView().setModel(this.getPhase(oEvent), 'phase');
+             //this._oDialog.setModel(this.getLoggedDC(oEvent));
+             this._oDialog.open();
+             */
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("main", true);
-         
+
         },
         getLoggedDC: function (oEvent) {
             var oModel = new JSONModel();
@@ -186,6 +197,30 @@ sap.ui.define([
             var site = "iGuzzini";
             var input = "&plant=" + this.plantid + "&sfc=" + this.sfc;
             var transactionCall = site + "/XACQuery" + "/" + transactionName;
+
+
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    oModel.setData(oData.Rowsets.Rowset[0].Row);
+                },
+                error: function (oData) {
+                    that.error(oData);
+                }
+            });
+
+            return oModel;
+
+        },
+        getStatusMachineSil: function (oEvent) {
+            var oModel = new JSONModel();
+            var transactionName = "XAC_GetCurrentCommessaForSiliconatrice";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&workcenterid=" + this.workcenterid;
+            var transactionCall = site + "/XACQuery" + "/siliconatrice/" + transactionName;
 
 
             jQuery.ajax({

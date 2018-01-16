@@ -49,7 +49,6 @@ sap.ui.define([
         initTiles: function() {
             var oModel = new JSONModel();
 
-
             var transactionName = "XAC_GetAllWorkcenterByTypeAndUsername";
             var that = this;
             var site = "iGuzzini";
@@ -112,10 +111,10 @@ sap.ui.define([
                 var len = cont.length;
                 var res = str.substring(len + num, veryl);
 
-
                 this.myModel.setProperty("/workcenter", {
                     "workcenter": this.getView().getModel().getData()[res].workcenter,
                     "id": this.getView().getModel().getData()[res].id,
+                    "typemachine": this.getView().getModel().getData()[res].typemachine,
                     "description": this.getView().getModel().getData()[res].description,
                     "user": this.user,
                     "plant": this.plant

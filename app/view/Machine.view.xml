@@ -45,11 +45,12 @@
             <StandardTile
                 icon="{icon}"
                 type="Monitor"
-                number="{id}"
+                number="{machinetypedescription}" 
                 title="{workcenter}"
                 info="{info}"
                 infoState="{status}"
                 press="navToShoporder"
+                numberUnit="Machine"
             />
         </TileContainer>
   

@@ -124,6 +124,9 @@
                         <comp:PodButton width="120px" press="openGraph"
                                         icon="sap-icon://column-chart-dual-axis" iconSize="3.5rem"
                                         text="Graph" class="sapUiSmallMarginTop"/>
+                        <comp:PodButton width="120px" press="openStatusMachine"
+                                        icon="sap-icon://connected" iconSize="3.5rem"
+                                        text="Status Machine" class="sapUiSmallMarginTop"/>
                     </FlexBox>
                 </HBox>
             </VBox>
