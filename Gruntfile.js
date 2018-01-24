@@ -193,6 +193,7 @@
             });
 
             // These plugins provide necessary tasks.
+			grunt.loadNpmTasks('grunt-connect-proxy');
             grunt.loadNpmTasks('grunt-contrib-jshint');
             grunt.loadNpmTasks('grunt-jsvalidate');
             grunt.loadNpmTasks('grunt-contrib-connect');
@@ -203,7 +204,6 @@
             grunt.loadNpmTasks('grunt-contrib-watch');
             grunt.loadNpmTasks('grunt-sync');
             grunt.loadNpmTasks('grunt-string-replace');
-			grunt.loadNpmTasks('grunt-connect-proxy');
 
             // Server task
             grunt.registerTask('serve', function(target) {

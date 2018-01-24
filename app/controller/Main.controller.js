@@ -23,20 +23,32 @@ sap.ui.define([
 
             var model = new JSONModel();
             this.info = model;
+            this.info.setProperty("/", {
+                "machine": sap.ui.getCore().getModel().getData().workcenter.description
+            });
             this.getView().setModel(model, "info");
-
             this.getView().setModel(this.gingo, "gingo");
-
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.getRoute("main").attachPatternMatched(this.exit, this);
-
-
-
+            oRouter.getRoute("main").attachPatternMatched(this.handleRouteMatched, this);
         },
         onBack: function () {
             this.exit();
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("mainpod", true);
+        },
+        handleRouteMatched: function (oEvent) {
+            if (!this._checkRoute(oEvent, "main")) {
+                return;
+            }
+
+            this.getData();
+        },
+        _checkRoute: function (evt, pattern) {
+            if (evt.getParameter("name") !== pattern) {
+                return false;
+            }
+
+            return true;
         },
         onAfterRendering: function () {
 
@@ -84,7 +96,7 @@ sap.ui.define([
             this.gingo.setProperty("/shift", shift);
 
 
-            this.getChart(time1,max,min, qta1, shift);
+            this.getChart(time1, max, min, qta1, shift);
         },
         _onObjectMatched: function (event) {
 
@@ -94,6 +106,14 @@ sap.ui.define([
             try {
                 var datetime = this.getFormattedTime();
                 this.gingo.setProperty("/datetime", datetime);
+                var model = new JSONModel();
+                this.info = model;
+                this.info.setProperty("/", {
+                    "machine": sap.ui.getCore().getModel().getData().workcenter.description
+                });
+
+                this.getView().setModel(model, "info");
+
             } catch (err) {
                 jQuery.sap.log.error(err);
             }
@@ -103,12 +123,12 @@ sap.ui.define([
 
             var that = this;
 
-
             var transactionName = "SimulateGraph";
             var transactionCall = 'iGuzzini' + "/" + "Transaction" + "/" + transactionName;
             //var userId = this.info.getProperty("/user/id");
             var params = {
                 "TRANSACTION": transactionCall,
+                "workcenterid": sap.ui.getCore().getModel().getData().workcenter.id,
                 "OutputParameter": "JSON"
             };
             try {
@@ -155,7 +175,7 @@ sap.ui.define([
 
 
         },
-        getChart: function (xdata1,max,min,
+        getChart: function (xdata1, max, min,
                 ydata1, shift) {
 
             var that = this;
@@ -182,7 +202,7 @@ sap.ui.define([
                         ydata1,
                         min
                     ],
-          
+
                     colors: {
                         Temperature: 'rgb(0, 194, 0)',
                         Max: 'red',
@@ -238,26 +258,26 @@ sap.ui.define([
                 },
                 onrendered: function () {
                     /*d3.selectAll(".c3-texts text").each(function (v) { // jshint ignore:line
-                        var label = d3.select(this); // jshint ignore:line
-                        if ("Standard" === v.id) {
-                            if (ydata1[v.index + 1] > ydata2[v.index + 1]) {
-                                label.attr("transform", "translate(-20, -10)");
-                            } else if (ydata1[v.index + 1] < ydata2[v.index + 1]) {
-                                label.attr("transform", "translate(-10, +30)");
-                            } else {
-                                label.attr("transform", "translate(-10, -10)");
-                            }
-                        }
-                        if ("Effettivo" === v.id) {
-                            if (ydata1[v.index + 1] > ydata2[v.index + 1]) {
-                                label.attr("transform", "translate(-10, +30)");
-                            } else if (ydata1[v.index + 1] < ydata2[v.index + 1]) {
-                                label.attr("transform", "translate(-10, -10)");
-                            } else {
-                                label.attr("transform", "translate(-10, +30)");
-                            }
-                        }
-                    });*/
+                     var label = d3.select(this); // jshint ignore:line
+                     if ("Standard" === v.id) {
+                     if (ydata1[v.index + 1] > ydata2[v.index + 1]) {
+                     label.attr("transform", "translate(-20, -10)");
+                     } else if (ydata1[v.index + 1] < ydata2[v.index + 1]) {
+                     label.attr("transform", "translate(-10, +30)");
+                     } else {
+                     label.attr("transform", "translate(-10, -10)");
+                     }
+                     }
+                     if ("Effettivo" === v.id) {
+                     if (ydata1[v.index + 1] > ydata2[v.index + 1]) {
+                     label.attr("transform", "translate(-10, +30)");
+                     } else if (ydata1[v.index + 1] < ydata2[v.index + 1]) {
+                     label.attr("transform", "translate(-10, -10)");
+                     } else {
+                     label.attr("transform", "translate(-10, +30)");
+                     }
+                     }
+                     });*/
                 }
             });
         },

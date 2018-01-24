@@ -116,12 +116,15 @@
                         <Label text="{/0/qtaprodotta}" class="sapUiMediumMarginEnd whiteText"/>
                         <Label text="Quantity rejected" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/0/qtascartata}" class="sapUiMediumMarginEnd whiteText"/>
-                
+                        <Label text="Status" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/status/status}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="Status description" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/status/status_description}" class="sapUiMediumMarginEnd whiteText"/>              
             </l:content>
 
             <OverflowToolbar id="otb3">
                 <ToolbarSpacer/>
-                <Button text="Close" type="Transparent" press="onExit"/>
+                <Button text="Close" type="Transparent" press="onExitSil"/>
 
             </OverflowToolbar>
         </l:VerticalLayout>

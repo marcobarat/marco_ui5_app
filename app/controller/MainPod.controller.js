@@ -19,6 +19,9 @@ sap.ui.define([
         sfc: null,
         test: null,
         _oDialog: null,
+        _oDialogSil: null,
+        _oDialogEdit: null,
+        _oDialogDC: null,
 
         onInit: function () {
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
@@ -38,6 +41,34 @@ sap.ui.define([
             this.test = new JSONModel();
             this.test.setData(sap.ui.getCore().getModel().getData().informations);
             this.getView().setModel(this.test);
+        },
+        changeEnelValue: function (oEvent) {
+            var transactionName = "WriteEngelParameter";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&in_job_name=" + this._oDialogEdit.getModel().getData().parameter + "&in_parameter=" + this._oDialogEdit.getModel().getData().parameter + "&in_value=" + oEvent.oSource.mProperties.value;
+            var transactionCall = site + "/Shopfloor/XacuteQ" + "/" + transactionName;
+
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    if (oData.Rowsets.Rowset[0].Row[0].CODE == "OK") {
+
+                        MessageToast.show("Success.");
+                        that.onExitPara();
+                    } else {
+                        MessageToast.show("Error. " + oData.Rowsets.Rowset[0].Row[0].DESCRIPTION);
+                    }
+                },
+                error: function (oData) {
+                    MessageToast.show("Error. ");
+                }
+            });
+
+
+
         },
         navToBackPage: function () {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -148,26 +179,68 @@ sap.ui.define([
                 this._oDialog.close();
             }
         },
+        onExitDC: function () {
+            if (this._oDialogDC) {
+                this._oDialogDC.close();
+            }
+        },
+        onExitSil: function () {
+            if (this._oDialogSil) {
+                this._oDialogSil.close();
+            }
+        },
+        onExitPara: function () {
+            if (this._oDialogEdit) {
+                this._oDialogEdit.close();
+            }
+        },
+
         loggedDC: function (oEvent) {
-            if (!this._oDialog) {
-                this._oDialog = sap.ui.xmlfragment("myapp.view.LoggedDC", this);
+            if (!this._oDialogDC) {
+                this._oDialogDC = sap.ui.xmlfragment("myapp.view.LoggedDC", this);
             }
             // toggle compact style
-            jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+            jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialogDC);
 
 
             //this.getView().setModel(this.getPhase(oEvent), 'phase');
-            this._oDialog.setModel(this.getLoggedDC(oEvent));
-            this._oDialog.open();
+            this._oDialogDC.setModel(this.getLoggedDC(oEvent));
+            this._oDialogDC.open();
+        },
+
+        openChangeDialog: function (oEvent) {
+            if (!this._oDialogEdit) {
+                this._oDialogEdit = sap.ui.xmlfragment("myapp.view.EditEngParaDialog", this);
+            }
+            // toggle compact style
+            jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialogEdit);
+
+
+            //this.getView().setModel(this.getPhase(oEvent), 'phase');
+            //this._oDialog.setModel(this.getLoggedDC(oEvent));
+            var modelz = new JSONModel();
+            modelz.setProperty("/", {
+                "oldValue": oEvent.oSource.mProperties.number,
+                "parameter": oEvent.oSource.mProperties.title
+            });
+            this._oDialogEdit.setModel(modelz);
+            this._oDialogEdit.open();
         },
         openStatusMachine: function (oEvent) {
             var typemachine = sap.ui.getCore().getModel().getData().workcenter.typemachine;
             if (typemachine == 'S') {
+                if (!this._oDialogSil) {
+                    this._oDialogSil = sap.ui.xmlfragment("myapp.view.StatusMachineSil", this);
+                }
+                jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialogSil);
+                this._oDialogSil.setModel(this.getStatusMachineSil(oEvent));
+                this._oDialogSil.open();
+            } else {
                 if (!this._oDialog) {
-                    this._oDialog = sap.ui.xmlfragment("myapp.view.StatusMachineSil", this);
+                    this._oDialog = sap.ui.xmlfragment("myapp.view.StatusMachineEng", this);
                 }
                 jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-                this._oDialog.setModel(this.getStatusMachineSil(oEvent));
+                this._oDialog.setModel(this.getStatusMachineEng(oEvent));
                 this._oDialog.open();
             }
         },
@@ -235,10 +308,59 @@ sap.ui.define([
                 }
             });
 
+            transactionName = "XAC_GetSiliconatriceMachineStatus";
+            site = "iGuzzini";
+            input = "&workcenterid=" + this.workcenterid + "&plantid=" + this.plantid;
+            transactionCall = site + "/XACQuery" + "/siliconatrice/" + transactionName;
+
+
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    oModel.setProperty("/status", {
+                        "status": oData.Rowsets.Rowset[0].Row[0].Status,
+                        "status_description": oData.Rowsets.Rowset[0].Row[0].Description
+
+                    });
+
+                },
+                error: function (oData) {
+                    that.error(oData);
+                }
+            });
+
+            return oModel;
+
+        },
+        getStatusMachineEng: function (oEvent) {
+            var oModel = new JSONModel();
+            var transactionName = "XAC_GetEngelMachineStatus";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&workcenterid=" + this.workcenterid;
+            var transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    oModel.setProperty("/", {
+                        "para": JSON.parse(oData.Rowsets.Rowset[0].Row[0].Parameters_json),
+                        "workcenter": oData.Rowsets.Rowset[0].Row[0].Workcenter,
+                        "status": oData.Rowsets.Rowset[0].Row[0].SDescription
+                    });
+                    //oModel.setData(oModel);
+                },
+                error: function (oData) {
+                    that.error(oData);
+                }
+            });
+
             return oModel;
 
         }
-
     });
     return MainPodController;
 });

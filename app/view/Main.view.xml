@@ -28,7 +28,7 @@
                     <HBox>
                         <!-- <Label text="Andon:" class="sapUiSmallMarginBegin sapUiSmallMarginEnd labelAndon"/>
                         <Text text="{gingo>/shift}" class="sapUiSmallMarginEnd textAndon"/> -->
-                        <Text text="Temperature Monitor for Engel at {gingo>/datetime}" class="cent2"/>
+                        <Text text="Temperature Monitor for {info>/machine} at {gingo>/datetime}" class="cent2"/>
                     </HBox>
                     <html:div id="chartBox" class="opacity" />
                 </VBox>
