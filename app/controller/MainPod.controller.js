@@ -107,6 +107,59 @@ sap.ui.define([
                 }
             }
         },
+        pauseOperation: function (event) {
+            var opselected = sap.ui.getCore().getModel().getData().operationselected;
+            if (typeof opselected === "undefined") {
+                MessageToast.show("Select an operation first!");
+            } else {
+                //if (opselected.status === "In work") { 
+                /*
+                 * Bug nell'aggiornamento dell'operazione selezionata: dopo aver fatto lo start
+                 * l'operazione selezionata ha ancora status in queue e non in work!
+                 */
+                this.performPause(opselected);
+            }
+        },
+        stopOperation: function (event) {
+            var opselected = sap.ui.getCore().getModel().getData().operationselected;
+            if (typeof opselected === "undefined") {
+                MessageToast.show("Select an operation first!");
+            } else {
+                //if (opselected.status === "In work") { 
+                /*
+                 * Bug nell'aggiornamento dell'operazione selezionata: dopo aver fatto lo start
+                 * l'operazione selezionata ha ancora status in queue e non in work!
+                 */
+                this.performStop(opselected);
+            }
+        },
+        performPause: function (rowSelected) {
+            var transactionName = "PauseOperation";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&plant=" + this.plantid + "&operationid=" + rowSelected.operation_id + "&stepid=" + this.stepid + "&shoporderid=" + this.shoporderid + "&sfc=" + this.sfc + "&user=" + this.user + "&workcenterid=" + this.workcenterid + "&resourceid=" + this.resourceid;
+            var transactionCall = site + "/Transaction" + "/" + transactionName;
+            jQuery.ajax({
+                url: "/XMII/Runner?Transaction=" + transactionCall + input + "&OutputParameter=JSON&Content-Type=text/xml",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    var result = JSON.parse(oData.documentElement.textContent);
+                    if (result.error == "0" || result.error == 0) {
+                        var oEventBus = sap.ui.getCore().getEventBus();
+                        oEventBus.publish("MainPod", "updateOperation");
+                        //oEventBus.publish("MainPod", "updateRowSel");
+
+
+                    } else {
+                        MessageToast.show("Error! " + result.errorMessage);
+                    }
+                },
+                error: function (oData) {
+                    alert("errore");
+                }
+            });
+        },
         performStart: function (rowSelected) {
             var transactionName = "StartOperation";
             var that = this;
@@ -133,19 +186,6 @@ sap.ui.define([
                     alert("errore");
                 }
             });
-        },
-        stopOperation: function (event) {
-            var opselected = sap.ui.getCore().getModel().getData().operationselected;
-            if (typeof opselected === "undefined") {
-                MessageToast.show("Select an operation first!");
-            } else {
-                //if (opselected.status === "In work") { 
-                /*
-                 * Bug nell'aggiornamento dell'operazione selezionata: dopo aver fatto lo start
-                 * l'operazione selezionata ha ancora status in queue e non in work!
-                 */
-                this.performStop(opselected);
-            }
         },
         performStop: function (rowSelected) {
             var transactionName = "CompleteOperation";
@@ -321,8 +361,11 @@ sap.ui.define([
                 success: function (oData) {
                     oModel.setProperty("/status", {
                         "status": oData.Rowsets.Rowset[0].Row[0].Status,
-                        "status_description": oData.Rowsets.Rowset[0].Row[0].Description
-
+                        "status_description": oData.Rowsets.Rowset[0].Row[0].Status_description,
+                        "_TempoCicloProg": oData.Rowsets.Rowset[0].Row[0]._TempoCicloProg,
+                        "TempoCicloUltimo": oData.Rowsets.Rowset[0].Row[0].TempoCicloUltimo,
+                        "um_cabina": oData.Rowsets.Rowset[0].Row[0].um_cabina,
+                        "temp_cabina": oData.Rowsets.Rowset[0].Row[0].temp_cabina 
                     });
 
                 },

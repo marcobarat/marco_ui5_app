@@ -110,8 +110,13 @@
                         <Label text="{/0/dataora}" class="sapUiMediumMarginEnd whiteText"/>
                         <!--<Label text="Sfc" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/sfc}" class="sapUiMediumMarginEnd whiteText"/> -->
+                        
+                        
+                        
                         <Label text="Working time" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/0/duratalavorazione}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="Quantity to build" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/0/_QtaLotto}" class="sapUiMediumMarginEnd whiteText"/>
                         <Label text="Quantity produced" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/0/qtaprodotta}" class="sapUiMediumMarginEnd whiteText"/>
                         <Label text="Quantity rejected" class="sapUiTinyMarginEnd boldt"/>
@@ -119,7 +124,18 @@
                         <Label text="Status" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/status/status}" class="sapUiMediumMarginEnd whiteText"/>
                         <Label text="Status description" class="sapUiTinyMarginEnd boldt"/>
-                        <Label text="{/status/status_description}" class="sapUiMediumMarginEnd whiteText"/>              
+                        <Label text="{/status/status_description}" class="sapUiMediumMarginEnd whiteText"/>   
+                        <Label text="Time last cycle" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/status/TempoCicloUltimo}" class="sapUiMediumMarginEnd whiteText"/> 
+                        <Label text="Time cycle prorammed" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/status/_TempoCicloProg}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="Humidity on cabine [%]" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/status/um_cabina}%" class="sapUiMediumMarginEnd whiteText"/>           
+                        <Label text="Temperature on cabine [C°]" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/status/temp_cabina}C°" class="sapUiMediumMarginEnd whiteText"/>           
+                        
+                        
+                                   
             </l:content>
 
             <OverflowToolbar id="otb3">

@@ -15,7 +15,8 @@
                     densityAware="false"
                 class="centerimage">
                 </Image>
-            </HBox>		
+            </HBox>
+            		
         </headerContent>
 
 	

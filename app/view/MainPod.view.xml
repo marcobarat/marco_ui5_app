@@ -46,9 +46,9 @@
                                width="45px" />
                         
                         <comp:PodButton width="40px" id="backButton" press="navToBackPage" iconSize="1.8rem"
-                        icon="sap-icon://nav-back"/>
-        <comp:PodButton width="40px" press="logOff" iconSize="1.8rem"
-                        icon="sap-icon://log" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"/>
+                                        icon="sap-icon://nav-back"/>
+                        <comp:PodButton width="40px" press="logOff" iconSize="1.8rem"
+                                        icon="sap-icon://log" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"/>
                     </FlexBox>
                 </FlexBox>
                 <HBox id="mainContent" width="100%" height="90%" class="tmpBorder">
@@ -112,12 +112,15 @@
                         <comp:PodButton width="120px" press="startOperation"
                                         icon="sap-icon://begin" iconSize="3.5rem"
                                         text="Start" class="sapUiSmallMarginTop"/>
+                        <comp:PodButton width="120px" press="pauseOperation"
+                                        icon="sap-icon://pause" iconSize="3.5rem"
+                                        text="Pause" class="sapUiSmallMarginTop"/>
                         <comp:PodButton width="120px" press="stopOperation"
                                         icon="sap-icon://complete" iconSize="3.5rem"
                                         text="Complete" class="sapUiSmallMarginTop"/>
                         <!-- <comp:PodButton width="120px" press="onOpenDefect"
-                                        icon="sap-icon://quality-issue" iconSize="3.5rem"
-                                        text="Open NC" class="sapUiSmallMarginTop"/> -->
+                        icon="sap-icon://quality-issue" iconSize="3.5rem"
+                        text="Open NC" class="sapUiSmallMarginTop"/> -->
                         <comp:PodButton width="120px" press="loggedDC"
                                         icon="sap-icon://sys-add" iconSize="3.5rem"
                                         text="Logged Data Collection" class="sapUiSmallMarginTop"/>
