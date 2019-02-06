@@ -17,7 +17,7 @@
                         <Image id="lambLogo" class="tecLogo"
                                src="images/iguzlogo.png"
                                densityAware="false"
-                               width="225px" />
+                               width="40%" />
                     </FlexBox>
                     <FlexBox
                         alignItems="Center"

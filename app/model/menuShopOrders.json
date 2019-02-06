@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Lavora",
+        "isActive": true,
+        "subMenu": [
+            {
+                "name": "10",
+                "isActive": true
+            },
+            {
+                "name": "20",
+                "isActive": true
+            },
+            {
+                "name": "30",
+                "isActive": false
+            }
+        ]
+    },
+    {
+        "name": "Invia Parametri Macchina",
+        "isActive": true
+    },
+    {
+        "name": "Informazioni",
+        "isActive": true
+    },
+    {
+        "name": "TBD",
+        "isActive": false
+    },
+    {
+        "name": "TBD",
+        "isActive": false
+    }
+]

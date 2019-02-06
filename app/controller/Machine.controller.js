@@ -3,13 +3,13 @@ sap.ui.define([
     'sap/m/MessageToast',
     'sap/ui/core/mvc/Controller',
     'sap/ui/model/json/JSONModel',
-    'myapp/utils/ModelManager'
-], function(jQuery, MessageToast, Controller, JSONModel, ModelManager) {
+    'myapp/controller/Library'
+], function(jQuery, MessageToast, Controller, JSONModel, Library) {
     "use strict";
 
     var MachineController = Controller.extend("myapp.controller.Machine", {
         mainModel: null,
-        myModel: null,
+        myModel: new JSONModel({}),
         user: null,
         plant: null,
         onInit: function() {
@@ -20,9 +20,6 @@ sap.ui.define([
 
             var params = jQuery.sap.getUriParameters(window.location.href);
             console.log(params);
-            this.myModel = this.initTiles();
-            this.getView().setModel(this.myModel);
-            //this.mainModel.setProperty("/user", {"user": "", "id": ""});
             this.user = "mbaratella";
             this.plant = 1;
 
@@ -32,7 +29,7 @@ sap.ui.define([
             if (!this._checkRoute(oEvent, "machine")) {
                 return;
             }
-
+            
             this.update();
         },
         _checkRoute: function(evt, pattern) {
@@ -43,62 +40,24 @@ sap.ui.define([
             return true;
         },
         update: function() {
-            this.myModel = this.initTiles();
-            this.getView().setModel(this.myModel);
+            this.initTiles();
         },
         initTiles: function() {
-            var oModel = new JSONModel();
 
             var transactionName = "XAC_GetAllWorkcenterByTypeAndUsername";
-            var that = this;
             var site = "iGuzzini";
             var input = "&plant=1&type=M&user=mbaratella";
             var transactionCall = site + "/XACQuery" + "/" + transactionName;
-            /*var params = {
-                "QueryTemplate": transactionCall,
-                "plant":"1",
-                "type":"A",
-                "user":"mbaratella",
-            };
+            var link = "XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
             
-            try {
-                var req = jQuery.ajax({
-                    url: "/XMII/Illuminator?QueryTemplate="+transactionCall+input+"&Content-Type=text/json",
-                    method: "GET",
-                    async: true
-                });
-                req.fail(jQuery.proxy(that.error, that));
-                req.done(jQuery.proxy(that.done, that));
-            } catch (err) {
-                jQuery.sap.log.debug(err.stack);
-            } */
-
-
-            jQuery.ajax({
-                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
-                method: "GET",
-                async: true,
-                success: function(oData) {
-
-                    oModel.setData(oData.Rowsets.Rowset[0].Row);
-                    var a;
-                }.bind(),
-                error: function(oData) {
-                    that.error(oData);
-                }
-            });
-
-            return oModel;
+            Library.AjaxCallerData(link, this.SUCCESSInitTiles.bind(this), this.FAILUREInitTiles.bind(this));
         },
-        onAfterRendering: function() {
-
-
+        SUCCESSInitTiles: function(Jdata) {
+            this.myModel.setData(Jdata.Rowsets.Rowset[0].Row);
+            this.getView().setModel(this.myModel);
         },
-
-        onToTmpPage: function(event) {
-
-            this.getOwnerComponent().getRouter().navTo("tmp");
-
+        FAILUREInitTiles: function() {
+            alert("error");
         },
         navToShoporder: function(event) {
             this.myModel = new JSONModel();
@@ -124,16 +83,7 @@ sap.ui.define([
                 oRouter.navTo("shoporder", true);
             } else
                 alert("errore");
-        },
-        error: function(data) {
-
-            alert("error" + data);
-        },
-        done: function(data) {
-            var result = data.Rowsets.Rowset[0].Row;
-            alert(data);
         }
-
     });
 
     return MachineController;

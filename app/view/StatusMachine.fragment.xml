@@ -1,0 +1,113 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        id="statusmachine"
+        title="Status Machine">
+        <l:VerticalLayout
+            class="sapUiContentPadding"
+            width="100%">
+            <l:content>
+                <!-- <List
+                    items="{/}"
+                    headerText="Lista fasi">
+                    <items>
+                        <ObjectListItem
+                            title="{stepid}"
+                            type="Active"
+                            number="{Description}"
+                            press="goToPod">
+
+                        </ObjectListItem>
+                    </items>
+                </List> -->
+                
+                <Table id="dataid"
+                       inset="false"
+                       items="{
+			path: '/',
+			sorter: {
+				path: '{DCGroup}'
+			}
+		}">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="Logged DataCollections" level="H2"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column
+                            width="12em">
+                            <Text text="DC Group" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                            <Text text="DC Parameter" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="End">
+                            <Text text="Unit Of Measure" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="Center">
+                            <Text text="Max Value" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="Center">
+                            <Text text="Min Value" />
+                        </Column>
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true"
+                            hAlign="Center">
+                            <Text text="Value" />
+                        </Column>
+                        <Column
+                            hAlign="End">
+                            <Text text="Comments" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <ObjectIdentifier
+                                    title="{DCGroup}"
+                                    text="{DCGroup}"/>
+                                <Text
+                                    text="{ParameterName}" />
+                                <Text
+                                    text="{UnitOfMeasure}" />
+                                <Text
+                                    text="{MaxValue}" />
+                                <Text
+                                    text="{MinValue}" />
+                                <ObjectNumber
+                                    number="{Value}"
+                                    unit="{UnitOfMeasure}"
+                                />
+                                <Text text="{Date}"/>
+
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                
+                
+            </l:content>
+
+            <OverflowToolbar id="otb2">
+                <ToolbarSpacer/>
+                <Button text="Close" type="Transparent" press="onExit"/>
+
+            </OverflowToolbar>
+        </l:VerticalLayout>
+    </Dialog>
+</core:FragmentDefinition>
