@@ -1,46 +1,46 @@
-(function() {
-        "use strict";
+(function () {
+    "use strict";
 
-        module.exports = function(grunt) {
+    module.exports = function (grunt) {
 
-            grunt.initConfig({
+        grunt.initConfig({
 
-                ui5: {
-                    version: '1.38.5'
+            ui5: {
+                version: '1.38.5'
+            },
+
+            dir: {
+                webapp: 'app',
+                dist: 'WebContent',
+                bower_components: 'bower_components'
+            },
+
+            jshint: {
+                all: ['Gruntfile.js', '<%= dir.webapp %>/**/*.js'],
+                options: {
+                    jshintrc: '.jshintrc',
+                    jshintignore: '.jshintignore'
+                }
+            },
+
+            jsvalidate: {
+                options: {
+                    globals: {},
+                    esprimaOptions: {},
+                    verbose: false
                 },
-
-                dir: {
-                    webapp: 'app',
-                    dist: 'WebContent',
-                    bower_components: 'bower_components'
-                },
-
-                jshint: {
-                    all: ['Gruntfile.js', '<%= dir.webapp %>/**/*.js'],
-                    options: {
-                        jshintrc: '.jshintrc',
-                        jshintignore: '.jshintignore'
+                targetName: {
+                    files: {
+                        src: ['<%=jshint.all%>']
                     }
-                },
-
-                jsvalidate: {
-                    options: {
-                        globals: {},
-                        esprimaOptions: {},
-                        verbose: false
-                    },
-                    targetName: {
-                        files: {
-                            src: ['<%=jshint.all%>']
-                        }
-                    }
-                },
+                }
+            },
             connect: {
                 options: {
                     port: 9876,
                     hostname: '*',
                     middleware: function (connect, options, defaultMiddleware) {
-						var proxy;
+                        var proxy;
                         proxy = require('grunt-connect-proxy/lib/utils').proxyRequest; // jshint ignore:line
                         return [
                             // Include the proxy first
@@ -50,51 +50,51 @@
                 },
                 src: {},
                 dist: {},
-				proxies: [
+                proxies: [
                     {
                         context: "/XMII", // When the url contains this...
-                        host: "sap-mii-ia1.techedge.corp", // Proxy to this host
-                        port: 53000,
+                        host: "ihqsdvmii01.iguzzini.local", // Proxy to this host
+                        port: 50000,
                         changeOrigin: true,
-						headers: {
-                            "Authorization": "Basic bWFyY29iYXJhdDpJbml0MTIzNA=="
-                        },
+                        headers: {
+                            "Authorization": "Basic bWJhcmF0ZWxsYTppbml0MTIzNA=="
+                        }
                     }
                 ]
             },
-                openui5_connect: {
+            openui5_connect: {
+                options: {
+                    resources: [
+                        '<%= dir.bower_components %>/openui5-sap.ui.core/resources',
+                        '<%= dir.bower_components %>/openui5-sap.m/resources',
+                        '<%= dir.bower_components %>/openui5-sap.ui.layout/resources',
+                        '<%= dir.bower_components %>/openui5-sap.ui.commons/resources',
+                        '<%= dir.bower_components %>/openui5-themelib_sap_bluecrystal/resources',
+                        '<%= dir.bower_components %>/openui5-sap.ui.unified/resources',
+                        '<%= dir.bower_components %>/openui5-sap.ui.table/resources'
+                    ]
+                },
+                src: {
                     options: {
-                        resources: [
-                            '<%= dir.bower_components %>/openui5-sap.ui.core/resources',
-                            '<%= dir.bower_components %>/openui5-sap.m/resources',
-                            '<%= dir.bower_components %>/openui5-sap.ui.layout/resources',
-                            '<%= dir.bower_components %>/openui5-sap.ui.commons/resources',
-                            '<%= dir.bower_components %>/openui5-themelib_sap_bluecrystal/resources',
-                            '<%= dir.bower_components %>/openui5-sap.ui.unified/resources',
-                            '<%= dir.bower_components %>/openui5-sap.ui.table/resources'
-                        ]
-                    },
-                    src: {
-                        options: {
-                            appresources: '<%= dir.webapp %>'
-                        }
-                    },
-                    dist: {
-                        options: {
-                            appresources: '<%= dir.dist %>'
-                        }
+                        appresources: '<%= dir.webapp %>'
                     }
                 },
-
-                clean: {
-                    dist: {
-                        src: ['<%= dir.dist %>/**']
+                dist: {
+                    options: {
+                        appresources: '<%= dir.dist %>'
                     }
-                },
+                }
+            },
 
-                copy: {
-                    dist: {
-                        files: [{
+            clean: {
+                dist: {
+                    src: ['<%= dir.dist %>/**']
+                }
+            },
+
+            copy: {
+                dist: {
+                    files: [{
                             expand: true,
                             cwd: '<%= dir.webapp %>',
                             src: [
@@ -119,9 +119,9 @@
                             src: 'sprintf.min.js',
                             dest: '<%= dir.dist %>/ext_lib/'
                         }]
-                    },
-                    test: {
-                        files: [{
+                },
+                test: {
+                    files: [{
                             expand: true,
                             cwd: '<%= dir.webapp %>',
                             src: [
@@ -144,29 +144,29 @@
                             src: 'sprintf.min.js',
                             dest: '<%= dir.dist %>/ext_lib/'
                         }]
-                    }
-                },
+                }
+            },
 
-                eslint: {
-                    webapp: ['<%= dir.webapp %>']
-                },
+            eslint: {
+                webapp: ['<%= dir.webapp %>']
+            },
 
-                'string-replace': {
-                    inline: {
-                        files: {
-                            '<%= dir.dist %>/index.html': '<%= dir.dist %>/index.html'
-                        },
-                        options: {
-                            replacements: [{
+            'string-replace': {
+                inline: {
+                    files: {
+                        '<%= dir.dist %>/index.html': '<%= dir.dist %>/index.html'
+                    },
+                    options: {
+                        replacements: [{
                                 pattern: 'src=\"resources/sap-ui-core.js\"',
                                 replacement: 'src=\"resources/sap-ui-core.js\"',
                             }]
-                        }
                     }
-                },
-                sync: {
-                    main: {
-                        files: [{
+                }
+            },
+            sync: {
+                main: {
+                    files: [{
                             expand: true,
                             cwd: '<%= dir.webapp %>',
                             src: [
@@ -177,72 +177,72 @@
                             ],
                             dest: '<%= dir.dist %>'
                         }],
-                        failOnError: true,
-                        verbose: true, // Display log messages when copying files 
-                        compareUsing: "md5" // compares via md5 hash of file contents, instead of file modification time. Default: "mtime" 
-                    }
-                },
-                watch: {
-                    files: ['Gruntfile.js', '<%= dir.webapp %>/**/*.js', '<%= dir.webapp %>/**/*.xml', '<%= dir.webapp %>/**/*.html', '<%= dir.webapp %>/**/*.css', '<%= dir.webapp %>/**/*.json', '<%= dir.webapp %>/**/*.properties'],
-                    tasks: ['buildSync'],
-                    options: {
-                        livereload: true
-                    }
+                    failOnError: true,
+                    verbose: true, // Display log messages when copying files 
+                    compareUsing: "md5" // compares via md5 hash of file contents, instead of file modification time. Default: "mtime" 
                 }
+            },
+            watch: {
+                files: ['Gruntfile.js', '<%= dir.webapp %>/**/*.js', '<%= dir.webapp %>/**/*.xml', '<%= dir.webapp %>/**/*.html', '<%= dir.webapp %>/**/*.css', '<%= dir.webapp %>/**/*.json', '<%= dir.webapp %>/**/*.properties'],
+                tasks: ['buildSync'],
+                options: {
+                    livereload: true
+                }
+            }
 
-            });
+        });
 
-            // These plugins provide necessary tasks.
-			grunt.loadNpmTasks('grunt-connect-proxy');
-            grunt.loadNpmTasks('grunt-contrib-jshint');
-            grunt.loadNpmTasks('grunt-jsvalidate');
-            grunt.loadNpmTasks('grunt-contrib-connect');
-            grunt.loadNpmTasks('grunt-contrib-clean');
-            grunt.loadNpmTasks('grunt-contrib-copy');
-            grunt.loadNpmTasks('grunt-openui5');
-            grunt.loadNpmTasks('grunt-eslint');
-            grunt.loadNpmTasks('grunt-contrib-watch');
-            grunt.loadNpmTasks('grunt-sync');
-            grunt.loadNpmTasks('grunt-string-replace');
+        // These plugins provide necessary tasks.
+        grunt.loadNpmTasks('grunt-connect-proxy');
+        grunt.loadNpmTasks('grunt-contrib-jshint');
+        grunt.loadNpmTasks('grunt-jsvalidate');
+        grunt.loadNpmTasks('grunt-contrib-connect');
+        grunt.loadNpmTasks('grunt-contrib-clean');
+        grunt.loadNpmTasks('grunt-contrib-copy');
+        grunt.loadNpmTasks('grunt-openui5');
+        grunt.loadNpmTasks('grunt-eslint');
+        grunt.loadNpmTasks('grunt-contrib-watch');
+        grunt.loadNpmTasks('grunt-sync');
+        grunt.loadNpmTasks('grunt-string-replace');
 
-            // Server task
-            grunt.registerTask('serve', function(target) {
-                grunt.task.run('openui5_connect:' + (target || 'src') + '');
-            });
+        // Server task
+        grunt.registerTask('serve', function (target) {
+            grunt.task.run('openui5_connect:' + (target || 'src') + '');
+        });
 
-            // Compile task
-            grunt.registerTask('compile', ['jsvalidate', 'jshint', 'eslint']);
+        // Compile task
+        grunt.registerTask('compile', ['jsvalidate', 'jshint', 'eslint']);
 
-            // JSHint task
-            grunt.registerTask('hint', ['jshint']);
+        // JSHint task
+        grunt.registerTask('hint', ['jshint']);
 
-            // Linting task
-            grunt.registerTask('lint', ['eslint']);
+        // Linting task
+        grunt.registerTask('lint', ['eslint']);
 
-            // Build task
-            //grunt.registerTask('build', ['compile', 'openui5_preload', 'copy:dist', 'string-replace']);
-            grunt.registerTask('build', ['compile', 'copy:dist']);
+        // Build task
+        //grunt.registerTask('build', ['compile', 'openui5_preload', 'copy:dist', 'string-replace']);
+        grunt.registerTask('build', ['compile', 'copy:dist']);
 
-            // Copy sync mode
-            grunt.registerTask('copySync', 'sync');
+        // Copy sync mode
+        grunt.registerTask('copySync', 'sync');
 
-            // Build sync
-            grunt.registerTask('buildSync', ['compile', 'copySync']);
+        // Build sync
+        grunt.registerTask('buildSync', ['compile', 'copySync']);
 
-            // Build test
-            grunt.registerTask('build_test', ['buildSync', 'copy:test']);
+        // Build test
+        grunt.registerTask('build_test', ['buildSync', 'copy:test']);
 
-            // Watch task
-            grunt.registerTask('mywatch', ['watch']);
+        // Watch task
+        grunt.registerTask('mywatch', ['watch']);
 
-            // Default task
-			 grunt.registerTask('default', [
-					   'build_test',
-			'configureProxies:server',
-					   'serve:dist',
-					   'watch'
-				   ]);
-        };
+        // Default task
+        grunt.registerTask('default', [
+            'build_test',
+            'configureProxies:server',
+            'serve:dist',
+            'watch'
+        ]);
+    };
 
-    }
-    ());
+}
+());

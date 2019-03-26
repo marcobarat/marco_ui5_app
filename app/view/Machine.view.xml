@@ -13,7 +13,8 @@
 
         <VBox  alignItems="Center"
               justifyContent="Start">            
-            <Text text="Select an available Machine:" class="cent"/> 
+            <Text text="Select an available Machine: Area {modelArea>/area}" class="cent"/> 
+            <Button icon="sap-icon://home" press="navToMain" class="homeButton"/>
         </VBox>            
         <TileContainer
             id="container"

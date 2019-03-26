@@ -1,0 +1,144 @@
+{
+    "Rowsets": { 
+        "DateCreated": "2019-03-22T16:05:11",
+        "Version": "15.1 SP5 Patch 7 (Oct 18, 2017)",
+        "StartDate": "2019-03-22T15:05:11+0100",
+        "EndDate": "2019-03-22T16:05:11+0100",
+        "CachedTime": "", 
+        "Rowset": [ 
+            {
+                "Columns": { 
+                    "Column": [ 
+                        {
+                            "Name": "id",
+                            "SourceColumn": "id",
+                            "Description": "id",
+                            "SQLDataType": 4,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }, 
+                        {
+                            "Name": "user",
+                            "SourceColumn": "user",
+                            "Description": "user",
+                            "SQLDataType": 12,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }, 
+                        {
+                            "Name": "workcenter",
+                            "SourceColumn": "workcenter",
+                            "Description": "workcenter",
+                            "SQLDataType": 12,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }, 
+                        {
+                            "Name": "type",
+                            "SourceColumn": "type",
+                            "Description": "type",
+                            "SQLDataType": 12,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }, 
+                        {
+                            "Name": "typemachine",
+                            "SourceColumn": "typemachine",
+                            "Description": "typemachine",
+                            "SQLDataType": 12,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }, 
+                        {
+                            "Name": "description",
+                            "SourceColumn": "description",
+                            "Description": "description",
+                            "SQLDataType": 12,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }, 
+                        {
+                            "Name": "status",
+                            "SourceColumn": "status",
+                            "Description": "status",
+                            "SQLDataType": 12,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }, 
+                        {
+                            "Name": "info",
+                            "SourceColumn": "info",
+                            "Description": "info",
+                            "SQLDataType": 12,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }, 
+                        {
+                            "Name": "icon",
+                            "SourceColumn": "icon",
+                            "Description": "icon",
+                            "SQLDataType": 12,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }, 
+                        {
+                            "Name": "machinetypedescription",
+                            "SourceColumn": "machinetypedescription",
+                            "Description": "machinetypedescription",
+                            "SQLDataType": 12,
+                            "MinRange": 1.0,
+                            "MaxRange": 1.0
+                        }]
+                }, 
+                "Row": [ 
+                    {
+                        "id": 2,
+                        "user": "Mbaratella",
+                        "workcenter": "Engel750T",
+                        "type": "M",
+                        "typemachine": "E",
+                        "description": "MACCHINA INIEZIONE ENGEL 750T",
+                        "status": "Warning",
+                        "info": "In Work, manual",
+                        "icon": "sap-icon://factory",
+                        "machinetypedescription": "Injection"
+                    }, 
+                    {
+                        "id": 8,
+                        "user": "Mbaratella",
+                        "workcenter": "8523",
+                        "type": "M",
+                        "typemachine": "S",
+                        "description": "Burattatrice 6238",
+                        "status": "Warning",
+                        "info": "Automatic Mode",
+                        "icon": "sap-icon://factory",
+                        "machinetypedescription": "Burattatrice"
+                    }, 
+                    {
+                        "id": 9,
+                        "user": "Mbaratella",
+                        "workcenter": "7574",
+                        "type": "M",
+                        "typemachine": "S",
+                        "description": "Pallettizzatore 1248",
+                        "status": "Warning",
+                        "info": "Automatic Mode",
+                        "icon": "sap-icon://factory",
+                        "machinetypedescription": "Pallettizzatore"
+                    }, 
+                    {
+                        "id": 9,
+                        "user": "Mbaratella",
+                        "workcenter": "1592",
+                        "type": "M",
+                        "typemachine": "S",
+                        "description": "Punzonatrice 12218",
+                        "status": "Warning",
+                        "info": "Automatic Mode",
+                        "icon": "sap-icon://factory",
+                        "machinetypedescription": "Punzonatrice"
+                    }]
+            }]
+    }
+}

@@ -26,6 +26,7 @@ sap.ui.define([
         shopOrderMenu: null,
         BusyDialog: new sap.m.BusyDialog(),
         button: null,
+        AREA: null,
 
         onInit: function () {
 
@@ -38,16 +39,23 @@ sap.ui.define([
 
         initShoporder: function () {
 
-            this.workcenter = sap.ui.getCore().getModel().getData().workcenter.workcenter;
-            this.workcenterid = sap.ui.getCore().getModel().getData().workcenter.id;
-            this.plantid = sap.ui.getCore().getModel().getData().workcenter.plant;
-            this.user = sap.ui.getCore().getModel().getData().workcenter.user;
-            var transactionName = "XAC_GetAllShopOrderForAWorkcenterByUser";
-            var site = "iGuzzini";
-            var input = "&plant=" + sap.ui.getCore().getModel().getData().workcenter.plant + "&workcenterid=" + sap.ui.getCore().getModel().getData().workcenter.id + "&user=" + sap.ui.getCore().getModel().getData().workcenter.user;
-            var transactionCall = site + "/XACQuery" + "/" + transactionName;
+            this.AREA = jQuery.sap.getUriParameters().get("AREA");
+            var link;
+            if (this.AREA === "2" || this.AREA === "3") {
+                link = "model/fakeShopOrders" + String(Math.floor(Math.random() * 4) + 1) + ".json";
+            } else {
 
-            var link = "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
+                this.workcenter = sap.ui.getCore().getModel().getData().workcenter.workcenter;
+                this.workcenterid = sap.ui.getCore().getModel().getData().workcenter.id;
+                this.plantid = sap.ui.getCore().getModel().getData().workcenter.plant;
+                this.user = sap.ui.getCore().getModel().getData().workcenter.user;
+                var transactionName = "XAC_GetAllShopOrderForAWorkcenterByUser";
+                var site = "iGuzzini";
+                var input = "&plant=" + sap.ui.getCore().getModel().getData().workcenter.plant + "&workcenterid=" + sap.ui.getCore().getModel().getData().workcenter.id + "&user=" + sap.ui.getCore().getModel().getData().workcenter.user;
+                var transactionCall = site + "/XACQuery" + "/" + transactionName;
+
+                link = "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
+            }
 
             Library.AjaxCallerData(link, this.SUCCESSInitShoporder.bind(this), this.FAILUREInitShoporder.bind(this));
         },
@@ -93,8 +101,8 @@ sap.ui.define([
         },
         apriDialog: function (event) {
             this.button = event.getSource();
-
-            var link = "model/menuShopOrders.json";
+            
+            var link = (this.AREA === "2" || this.AREA === "3") ? "model/menuShopOrdersInactive.json" : "model/menuShopOrders.json";
             Library.AjaxCallerData(link, this.SUCCESSApriDialog.bind(this), this.FAILUREApriDialog.bind(this));
         },
         SUCCESSApriDialog: function (Jdata) {
@@ -152,6 +160,9 @@ sap.ui.define([
                     oRouter.navTo("mainpod", true);
                 }
             }
+        },
+        navToMain: function () {
+            window.location.href = "../main/index.html";
         }
 
 //        apriDialog: function (oEvent) {
