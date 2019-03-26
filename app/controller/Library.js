@@ -4,6 +4,55 @@ sap.ui.define([
 ], function (jQuery, JSONModel) {
     return {
         exp: null,
+         AjaxCallerVoid: function (address, successFunc, errorFunc) {
+            jQuery.ajax({
+                url: address,
+                method: "POST",
+                dataType: "xml",
+                async: true,
+                success: successFunc,
+                error: errorFunc
+            });
+        },
+//        FUNZIONE CHE FA UNA CHIAMATA SINCRONA AL BACKEND SENZA RITORNO DI DATI
+        SyncAjaxCallerVoid: function (address, successFunc, errorFunc) {
+            jQuery.ajax({
+                url: address,
+                method: "POST",
+                dataType: "xml",
+                async: false,
+                success: successFunc,
+                error: errorFunc
+            });
+        },
+//        FUNZIONE CHE FA UNA CHIAMATA ASINCRONA AL BACKEND CON RITORNO DI DATI
+        AjaxCallerData: function (addressOfJSON, successFunc, errorFunc) {
+            jQuery.ajax({
+                url: addressOfJSON,
+                method: "GET",
+                dataType: "json",
+                async: true,
+                success: successFunc,
+                error: errorFunc
+            });
+        },
+//        FUNZIONE CHE FA UNA CHIAMATA SINCRONA AL BACKEND CON RITORNO DI DATI
+        SyncAjaxCallerData: function (addressOfJSON, successFunc, errorFunc) {
+            jQuery.ajax({
+                url: addressOfJSON,
+                method: "GET",
+                dataType: "json",
+                async: false,
+                success: successFunc,
+                error: errorFunc
+            });
+        },
+//        WrapperSuccessFunc: function (successFunc, Jdata) {
+//            if (jQuery.isXMLDoc(Jdata)) {
+//                Jdata = JSON.parse(Jdata.documentElement.textContent);
+//            }
+//            successFunc(Jdata);
+//        },
 // FUNZIONI TEMPORALI 
         roundTo: function (value, decimalpositions) {
             var i = value * Math.pow(10, decimalpositions);
@@ -159,49 +208,6 @@ sap.ui.define([
                 path_linea += "/" + vec_path[i];
             }
             return model.getProperty(path_linea).lineaID;
-        },
-        AjaxCallerVoid: function (address, successFunc, errorFunc) {
-            jQuery.ajax({
-                url: address,
-                method: "POST",
-                dataType: "xml",
-                async: true,
-                success: successFunc,
-                error: errorFunc
-            });
-        },
-//        FUNZIONE CHE FA UNA CHIAMATA SINCRONA AL BACKEND SENZA RITORNO DI DATI
-        SyncAjaxCallerVoid: function (address, successFunc, errorFunc) {
-            jQuery.ajax({
-                url: address,
-                method: "POST",
-                dataType: "xml",
-                async: false,
-                success: successFunc,
-                error: errorFunc
-            });
-        },
-//        FUNZIONE CHE FA UNA CHIAMATA ASINCRONA AL BACKEND CON RITORNO DI DATI
-        AjaxCallerData: function (addressOfJSON, successFunc, errorFunc) {
-            jQuery.ajax({
-                url: addressOfJSON,
-                method: "GET",
-                dataType: "json",
-                async: true,
-                success: successFunc,
-                error: errorFunc
-            });
-        },
-//        FUNZIONE CHE FA UNA CHIAMATA SINCRONA AL BACKEND CON RITORNO DI DATI
-        SyncAjaxCallerData: function (addressOfJSON, successFunc, errorFunc) {
-            jQuery.ajax({
-                url: addressOfJSON,
-                method: "GET",
-                dataType: "json",
-                async: false,
-                success: successFunc,
-                error: errorFunc
-            });
         },
 //FUNZIONI RICORSIVE PER LA TREETABLE        
         RecursiveJSONComparison: function (std, bck, arrayName) {

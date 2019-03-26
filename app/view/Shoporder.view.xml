@@ -11,6 +11,7 @@
         <VBox  alignItems="Center"
               justifyContent="Start">            
             <Text text="Select a ShopOrder:" class="cent"/> 
+            <Button icon="sap-icon://home" press="navToMain" class="homeButton"/>
         </VBox>   
         <TileContainer
             id="container"

@@ -12,8 +12,17 @@ sap.ui.define([
         myModel: new JSONModel({}),
         user: null,
         plant: null,
+        AREA: null,
+        modelArea: new JSONModel({}),
+        
         onInit: function() {
 
+            this.AREA = jQuery.sap.getUriParameters().get("AREA");
+            if (!this.AREA || ["1", "2", "3"].indexOf(this.AREA) === -1) {
+                this.AREA = 1;
+            }
+            this.modelArea.setData({"area": this.AREA});
+            this.getView().setModel(this.modelArea, "modelArea");
 
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
             this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
@@ -50,6 +59,8 @@ sap.ui.define([
             var transactionCall = site + "/XACQuery" + "/" + transactionName;
             var link = "XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
             
+            link = "model/machinesArea" + String(this.AREA) + ".json";
+            
             Library.AjaxCallerData(link, this.SUCCESSInitTiles.bind(this), this.FAILUREInitTiles.bind(this));
         },
         SUCCESSInitTiles: function(Jdata) {
@@ -83,6 +94,9 @@ sap.ui.define([
                 oRouter.navTo("shoporder", true);
             } else
                 alert("errore");
+        },
+        navToMain: function () {
+            window.location.href = "../main/index.html";
         }
     });
 

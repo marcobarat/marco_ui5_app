@@ -34,15 +34,25 @@ sap.ui.define([
         initOperations: function () {
 
 
+            if (sap.ui.getCore().getModel()) {
+                this.user = sap.ui.getCore().getModel().getData().informations.user;
+                this.workcenterid = sap.ui.getCore().getModel().getData().informations.workcenterid;
+                this.plantid = sap.ui.getCore().getModel().getData().informations.plant;
+                this.stepid = sap.ui.getCore().getModel().getData().informations.stepid;
+                this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
+                this.qty = sap.ui.getCore().getModel().getData().informations.qty;
 
-            this.user = sap.ui.getCore().getModel().getData().informations.user;
-            this.workcenterid = sap.ui.getCore().getModel().getData().informations.workcenterid;
-            this.plantid = sap.ui.getCore().getModel().getData().informations.plant;
-            this.stepid = sap.ui.getCore().getModel().getData().informations.stepid;
-            this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
-            this.qty = sap.ui.getCore().getModel().getData().informations.qty;
-
-            var oModel = new JSONModel();
+            } else {
+                this.user = "mbaratella";
+                this.workcenterid = 6;
+                this.qty = 250;
+                this.plantid = 1;
+                this.stepid = "10";
+                this.shoporderid = null;
+                var model = new JSONModel();
+                model.setProperty("/informations", {user: this.user, plant: this.plantid, stepid: this.stepid, workcenter: "74165", workcenterid: this.workcenter});
+                sap.ui.getCore().setModel(model);
+            }
             var transactionName = "XAC_GetAllPhaseOperation";
             var that = this;
             var site = "iGuzzini";
@@ -167,7 +177,7 @@ sap.ui.define([
         updateRowSel: function () {
             var oView = this.getView();
             this.clickEvent = sap.ui.getCore().getModel().getData().clickevent;
-           
+
         },
         getSelectedOp: function () {
             return this.selectedOp;

@@ -3,6 +3,11 @@
 {
     background-color: red;
 }
+.homeButton {
+    left: 44rem;
+    bottom: 2.5rem;
+    width: 4rem;
+}
 .sapMITBSelected .sapMITBFilterDefault {
     background: #ff282d;
 

@@ -1,0 +1,37 @@
+{
+    "Rowsets": { 
+        "DateCreated": "2019-03-22T16:05:11",
+        "Version": "15.1 SP5 Patch 7 (Oct 18, 2017)",
+        "StartDate": "2019-03-22T15:05:11+0100",
+        "EndDate": "2019-03-22T16:05:11+0100",
+        "CachedTime": "", 
+        "Rowset": [ 
+            {
+                "Row": [ 
+                    {
+                        "id": 1,
+                        "user": "Mbaratella",
+                        "workcenter": "Engel450T",
+                        "type": "M",
+                        "typemachine": "E",
+                        "description": "MACCHINA INIEZIONE ENGEL 450T",
+                        "status": "Warning",
+                        "info": "In Work, manual",
+                        "icon": "sap-icon://factory",
+                        "machinetypedescription": "Injection"
+                    }, 
+                    {
+                        "id": 6,
+                        "user": "Mbaratella",
+                        "workcenter": "74165",
+                        "type": "M",
+                        "typemachine": "S",
+                        "description": "Siliconatrice 6138",
+                        "status": "Warning",
+                        "info": "Automatic Mode",
+                        "icon": "sap-icon://factory",
+                        "machinetypedescription": "Siliconatrice"
+                    }]
+            }]
+    }
+}
