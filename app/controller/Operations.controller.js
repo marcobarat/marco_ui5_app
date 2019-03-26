@@ -12,6 +12,7 @@ sap.ui.define([
         shoporderid: null,
         plantid: null,
         user: null,
+        qty: null,
         stepid: null,
         selectedOp: null,
         clickEvent: null,
@@ -39,6 +40,8 @@ sap.ui.define([
             this.plantid = sap.ui.getCore().getModel().getData().informations.plant;
             this.stepid = sap.ui.getCore().getModel().getData().informations.stepid;
             this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
+            this.qty = sap.ui.getCore().getModel().getData().informations.qty;
+
             var oModel = new JSONModel();
             var transactionName = "XAC_GetAllPhaseOperation";
             var that = this;
@@ -46,9 +49,8 @@ sap.ui.define([
             var input = "&plant=" + this.plantid + "&shoporderid=" + this.shoporderid + "&stepid=" + this.stepid;
             var transactionCall = site + "/XACQuery" + "/" + transactionName;
             sap.ui.core.BusyIndicator.show();
-
             jQuery.ajax({
-                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                url: "model/op.json",
                 method: "GET",
                 async: true,
                 success: function (oData) {
@@ -61,6 +63,20 @@ sap.ui.define([
                     that.error(oData);
                 }
             });
+            /*jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: true,
+                success: function (oData) {
+                    oModel.setData(oData.Rowsets.Rowset[0].Row);
+                    that.getView().setModel(oModel);
+                    sap.ui.core.BusyIndicator.hide();
+
+                },
+                error: function (oData) {
+                    that.error(oData);
+                }
+            });*/
             sap.ui.getCore().getModel().setProperty("/operations",
                     oModel.getData());
             return oModel;
@@ -72,6 +88,8 @@ sap.ui.define([
             this.plantid = sap.ui.getCore().getModel().getData().informations.plant;
             this.stepid = sap.ui.getCore().getModel().getData().informations.stepid;
             this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
+            this.qty = sap.ui.getCore().getModel().getData().informations.qty;
+
             var oModel = new JSONModel();
             var transactionName = "XAC_GetAllPhaseOperation";
             var that = this;

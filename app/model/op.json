@@ -1,0 +1,209 @@
+{
+  "Rowsets": {
+    "DateCreated": "2019-03-26T10:32:52",
+    "Version": "15.1 SP5 Patch 7 (Oct 18, 2017)",
+    "StartDate": "2019-03-26T09:32:52+0100",
+    "EndDate": "2019-03-26T10:32:52+0100",
+    "CachedTime": "",
+    "Rowset": [
+      {
+        "Columns": {
+          "Column": [
+            {
+              "Name": "operation",
+              "SourceColumn": "operation",
+              "Description": "operation",
+              "SQLDataType": 12,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "d",
+              "SourceColumn": "d",
+              "Description": "d",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "w",
+              "SourceColumn": "w",
+              "Description": "w",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "id",
+              "SourceColumn": "id",
+              "Description": "id",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "sfcstepid",
+              "SourceColumn": "sfcstepid",
+              "Description": "sfcstepid",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "qtycompleted",
+              "SourceColumn": "qtycompleted",
+              "Description": "qtycompleted",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "qtyinqueue",
+              "SourceColumn": "qtyinqueue",
+              "Description": "qtyinqueue",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "qtyinwork",
+              "SourceColumn": "qtyinwork",
+              "Description": "qtyinwork",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "qtyrejected",
+              "SourceColumn": "qtyrejected",
+              "Description": "qtyrejected",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "resourceid",
+              "SourceColumn": "resourceid",
+              "Description": "resourceid",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "stepid",
+              "SourceColumn": "stepid",
+              "Description": "stepid",
+              "SQLDataType": 12,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "userid",
+              "SourceColumn": "userid",
+              "Description": "userid",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "workcenterid",
+              "SourceColumn": "workcenterid",
+              "Description": "workcenterid",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "operation",
+              "SourceColumn": "operation",
+              "Description": "operation",
+              "SQLDataType": 12,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "operation_revision",
+              "SourceColumn": "operation_revision",
+              "Description": "operation_revision",
+              "SQLDataType": 12,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "operation_id",
+              "SourceColumn": "operation_id",
+              "Description": "operation_id",
+              "SQLDataType": 4,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "operation_description",
+              "SourceColumn": "operation_description",
+              "Description": "operation_description",
+              "SQLDataType": 12,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            },
+            {
+              "Name": "status",
+              "SourceColumn": "status",
+              "Description": "status",
+              "SQLDataType": 12,
+              "MinRange": 1.0,
+              "MaxRange": 1.0
+            }
+          ]
+        },
+        "Row": [
+          {
+            "operation": "ATRZ",
+            "d": 0,
+            "w": 0,
+            "id": 15,
+            "sfcstepid": 15,
+            "qtycompleted": 0,
+            "qtyinqueue": 150,
+            "qtyinwork": 0,
+            "qtyrejected": 0,
+            "resourceid": 1,
+            "stepid": "10",
+            "userid": 1,
+            "workcenterid": 6,
+            "operation": "SILI",
+            "operation_revision": "A",
+            "operation_id": 11,
+            "operation_description": "Attrezzaggio",
+            "status": "Completed",
+            "sap_status": "Completata",
+            "mes_status": "Completata"
+
+          },
+          {
+            "operation": "STMP",
+            "d": 0,
+            "w": 0,
+            "id": 15,
+            "sfcstepid": 15,
+            "qtycompleted": 0,
+            "qtyinqueue": 150,
+            "qtyinwork": 0,
+            "qtyrejected": 0,
+            "resourceid": 1,
+            "stepid": "20",
+            "userid": 1,
+            "workcenterid": 6,
+            "operation": "OOPPLA",
+            "operation_revision": "A",
+            "operation_id": 11,
+            "operation_description": "Stampaggio",
+            "status": "In Work",
+            "status": "Completata",
+            "sap_status": "Da completare",
+            "mes_status": "In work"
+          }
+        ]
+      }
+    ]
+  }
+}

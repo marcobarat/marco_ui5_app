@@ -16,6 +16,7 @@ sap.ui.define([
         user: null,
         stepid: null,
         shoporder: null,
+        qty: null,
         sfc: null,
         test: null,
         _oDialog: null,
@@ -37,6 +38,8 @@ sap.ui.define([
             this.plantid = sap.ui.getCore().getModel().getData().informations.plant;
             this.stepid = sap.ui.getCore().getModel().getData().informations.stepid;
             this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
+            this.qty = sap.ui.getCore().getModel().getData().informations.qty;
+
             this.sfc = sap.ui.getCore().getModel().getData().informations.sfc;
             this.test = new JSONModel();
             this.test.setData(sap.ui.getCore().getModel().getData().informations);

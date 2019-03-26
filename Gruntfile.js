@@ -53,11 +53,11 @@
 				proxies: [
                     {
                         context: "/XMII", // When the url contains this...
-                        host: "sap-mii-ia1.techedge.corp", // Proxy to this host
-                        port: 53000,
+                        host: "ihqsdvmii01.iguzzini.local", // Proxy to this host
+                        port: 50000,
                         changeOrigin: true,
 						headers: {
-                            "Authorization": "Basic bWFyY29iYXJhdDpJbml0MTIzNA=="
+                            "Authorization": "Basic bWJhcmF0ZWxsYTppbml0MTIzNA=="
                         },
                     }
                 ]

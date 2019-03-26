@@ -24,16 +24,18 @@
                         justifyContent="SpaceBetween">
                         <Label text="Machine:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/workcenter}" class="sapUiMediumMarginEnd whiteText"/>
-                        <Label text="Resource" class="sapUiTinyMarginEnd boldt"/>
-                        <Label text="{/resource}" class="sapUiMediumMarginEnd whiteText"/>
+                        <!--<Label text="Resource" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/resource}" class="sapUiMediumMarginEnd whiteText"/> 
                         <Label text="Phase" class="sapUiTinyMarginEnd boldt"/>
-                        <Label text="{/stepid}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="{/stepid}" class="sapUiMediumMarginEnd whiteText"/> -->
                         <!--<Label text="Sfc" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/sfc}" class="sapUiMediumMarginEnd whiteText"/> -->
                         <Label text="User:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/user}" class="sapUiMediumMarginEnd whiteText"/>
                         <Label text="Shop Order:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/shoporder}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="Qta:" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/qty}" class="sapUiMediumMarginEnd whiteText"/>
                         <!--<Label text="{locale>myapp.generic.kenn.label}:" class="sapUiTinyMarginEnd"/>-->
                         <!--<Label text="{sel>/vin/kenn}" class="sapUiMediumMarginEnd whiteText"/>-->
                     </FlexBox>

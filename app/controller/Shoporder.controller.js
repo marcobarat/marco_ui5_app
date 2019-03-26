@@ -17,6 +17,7 @@ sap.ui.define([
         workcenter: null,
         shoporderid: null,
         sfc: null,
+        qty: null,
         shoporder: null,
         resource: null,
         resourceid: null,
@@ -92,6 +93,8 @@ sap.ui.define([
             }
         },
         apriDialog: function (event) {
+            this.getPhase(event);
+
             this.button = event.getSource();
 
             var link = "model/menuShopOrders.json";
@@ -137,6 +140,7 @@ sap.ui.define([
                     sap.ui.getCore().getModel().setProperty("/informations", {
                         "workcenter": this.workcenter,
                         "workcenterid": this.workcenterid,
+                        "qty": this.qty,
                         "user": this.user,
                         "shoporderid": this.shoporderid,
                         "plant": this.plantid,
@@ -151,6 +155,49 @@ sap.ui.define([
                     var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                     oRouter.navTo("mainpod", true);
                 }
+            }
+        },
+        getPhase: function (oEvent) {
+            var oModel = new JSONModel();
+
+            var str = oEvent.mParameters.id;
+            if (str.length > 0) {
+                var veryl = str.length;
+                var cont = "container-";
+                var num = str.search("container-");
+                var len = cont.length;
+                var res = str.substring(len + num, veryl);
+
+                var transactionName = "XAC_GetAllShopOrderPhase";
+                var that = this;
+                var site = "iGuzzini";
+                var input = "&plant=" + this.getView().getModel().getData()[res].PlantID + "&shoporderid=" + this.getView().getModel().getData()[res].ID;
+                var transactionCall = site + "/XACQuery" + "/" + transactionName;
+                this.shoporderid = this.getView().getModel().getData()[res].ID;
+                this.shoporder = this.getView().getModel().getData()[res].ShopOrder;
+                this.resourceid = this.getView().getModel().getData()[res].Resid;
+                this.resource = this.getView().getModel().getData()[res].Resource;
+                this.sfc = this.getView().getModel().getData()[res].Sfc;
+                this.qty = this.getView().getModel().getData()[res].QtyReleased;
+
+                jQuery.ajax({
+                    url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                    method: "GET",
+                    async: false,
+                    success: function (oData) {
+
+                        oModel.setData(oData.Rowsets.Rowset[0].Row);
+                    },
+                    error: function (oData) {
+                        that.error(oData);
+                    }
+                });
+                /*sap.ui.getCore().getModel().setProperty("/phase", {
+                 "stepid": this.getView().getModel().getData()[0].stepid,
+                 "plant": this.plant
+                 }); */
+
+                return oModel;
             }
         }
 
