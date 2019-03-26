@@ -9,7 +9,8 @@
                         "StatusID": 202,
                         "ShopOrder": "2017OLIN02256",
                         "User": "Mbaratella",
-                        "icon": "sap-icon://product"
+                        "icon": "sap-icon://product",
+                        "info": "In Lavorazione"
                     },
                     {
                         "ID": 52,
@@ -17,7 +18,8 @@
                         "StatusID": 147,
                         "ShopOrder": "2018OLIN02255",
                         "User": "Mbaratella",
-                        "icon": "sap-icon://product"
+                        "icon": "sap-icon://product",
+                        "info": "Chiuso"
                     },
                     {
                         "ID": 53,
@@ -25,7 +27,8 @@
                         "StatusID": 147,
                         "ShopOrder": "2019OLIN02242",
                         "User": "Mbaratella",
-                        "icon": "sap-icon://product"
+                        "icon": "sap-icon://product",
+                        "info": "Chiuso"
                     }]
             }]
     }

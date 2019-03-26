@@ -56,6 +56,8 @@ sap.ui.define([
 
                 link = "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
             }
+            
+            link = "model/fakeShopOrders" + String(Math.floor(Math.random() * 4) + 1) + ".json";
 
             Library.AjaxCallerData(link, this.SUCCESSInitShoporder.bind(this), this.FAILUREInitShoporder.bind(this));
         },
