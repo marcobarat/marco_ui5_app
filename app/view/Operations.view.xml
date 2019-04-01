@@ -33,10 +33,6 @@
                     </Column>
                     <Column minScreenWidth="Tablet"
                             demandPopin="true" hAlign="Center" vAlign="Middle">
-                        <Text text="MES Status" width="100%"/>
-                    </Column>
-                    <Column minScreenWidth="Tablet"
-                            demandPopin="true" hAlign="Center" vAlign="Middle">
                         <Text text="Info" width="100%"/>
                     </Column>
                     <!--<Column minScreenWidth="Tablet" width="20%"
@@ -56,8 +52,6 @@
                                 text="{operation_description}"/>
                             <Text
                                 text="{sap_status}"/>
-                            <Text
-                                text="{mes_status}"/>
                             <HBox alignItems="Center" justifyContent="Center">
                                 <VBox alignItems="Center" justifyContent="Center">
                                     <HBox>

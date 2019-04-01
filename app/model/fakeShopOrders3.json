@@ -10,7 +10,8 @@
                         "ShopOrder": "2017OLIN02256",
                         "User": "Mbaratella",
                         "icon": "sap-icon://product",
-                        "info": "Lavorabile"
+                        "info": "Lavorabile",
+                        "PlantID": 1
                     },
                     {
                         "ID": 52,
@@ -19,7 +20,8 @@
                         "ShopOrder": "2018OLIN02255",
                         "User": "Mbaratella",
                         "icon": "sap-icon://product",
-                        "info": "Lavorabile"
+                        "info": "Lavorabile",
+                        "PlantID": 1
                     }]
             }]
     }

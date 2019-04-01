@@ -1,21 +1,7 @@
 [
     {
         "name": "Lavora",
-        "isActive": true,
-        "subMenu": [
-            {
-                "name": "10",
-                "isActive": false
-            },
-            {
-                "name": "20",
-                "isActive": false
-            },
-            {
-                "name": "30",
-                "isActive": false
-            }
-        ]
+        "isActive": true
     },
     {
         "name": "Invia Parametri Macchina",

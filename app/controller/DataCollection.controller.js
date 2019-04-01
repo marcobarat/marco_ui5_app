@@ -72,10 +72,10 @@ sap.ui.define([
              }
              });
              */
-            var transactionName = "GetAllDataCollections";
+            var transactionName = "GetAllDataCollectionsFromShopOrderID";
             var that = this;
             var site = "iGuzzini";
-            var input = "&plant=" + this.plantid + "&shoporderid=" + this.shoporderid + "&stepid=" + this.stepid;
+            var input = "&plant=" + this.plantid + "&shoporderid=" + this.shoporderid;
             var transactionCall = site + "/Transaction" + "/" + transactionName;
 
             jQuery.ajax({
@@ -106,32 +106,52 @@ sap.ui.define([
             return true;
         },
         saveDc: function (oEv) {
-            var a = 12;
+            var str = oEv.oSource.sId;
+            var veryl = str.length;
+            var cont = "__list0-";
+            var num = str.search("__list0-");
+            var len = cont.length;
+            var res = str.substring(len + num, veryl);
             var dcGroups = this.getView().getModel().getData();
             var parXml = "", dc;
             var operationid;
             var resourceid;
             var sfc = sap.ui.getCore().getModel().getData().informations.sfc;
+            var ciclo = 1;
+            var send = 1;
+            while (ciclo != 0) {
+                try {
+                    dc = dcGroups[res];
+                    operationid = dc.operationid;
+                    parXml = parXml + this.dcMain.replace("${dcGroupId}", dc.dcgroupid).replace("${operationId}", dc.operationid)
+                            .replace("${user}", sap.ui.getCore().getModel().getData().informations.user)
+                            .replace("${sfc}", sap.ui.getCore().getModel().getData().informations.sfc).replace("${workCenterId}", sap.ui.getCore().getModel().getData().informations.workcenterid);
+                    var valueList = "", par, parameters = dc.dcparameterlist;
+                    for (var index in parameters) {
+                        par = parameters[index];
+                        if (typeof (par.value) != "undefined") {
+                            valueList = valueList + this.dcPar.replace("${dcparameterid}", par.dcparameterid)
+                                    .replace("${dcvalue}", par.value)
+                                    .replace("${dcmaxvalue}", par.max_value)
+                                    .replace("${dcminvalue}", par.min_value)
+                                    .replace("${dccheckvalue}", '0')
+                                    .replace("${dcisinteger}", par.isinteger);
+                        } else {
+                            MessageToast.show("Inser a value!");
+                            send = 0;
+                            break;
+                        }
 
-            for (var idc in dcGroups) {
-                dc = dcGroups[idc];
-                operationid = dc.operationid;
-                parXml = parXml + this.dcMain.replace("${dcGroupId}", dc.dcgroupid).replace("${operationId}", dc.operationid)
-                        .replace("${user}", sap.ui.getCore().getModel().getData().informations.user)
-                        .replace("${sfc}", sap.ui.getCore().getModel().getData().informations.sfc).replace("${workCenterId}", sap.ui.getCore().getModel().getData().informations.workcenterid);
-                var valueList = "", par, parameters = dc.dcparameterlist;
-                for (var index in parameters) {
-                    par = parameters[index];
-                    valueList = valueList + this.dcPar.replace("${dcparameterid}", par.dcparameterid)
-                            .replace("${dcvalue}", par.value)
-                            .replace("${dcmaxvalue}", par.max_value)
-                            .replace("${dcminvalue}", par.min_value)
-                            .replace("${dccheckvalue}", '0')
-                            .replace("${dcisinteger}", par.isinteger);
-                    //.replace("${dcComment}", par.comments.replace(/("|&|\n|\r|\\)/g, ' '));
+                        //.replace("${dcComment}", par.comments.replace(/("|&|\n|\r|\\)/g, ' '));
+                    }
+
+                    parXml = parXml.replace("${valueList}", valueList);
+                } catch (err) {
+                    MessageToast.show("Error!");
                 }
 
-                parXml = parXml.replace("${valueList}", valueList);
+
+                ciclo--;
             }
             var logdc = "<dcGroups>" + parXml + "</dcGroups>";
 
@@ -157,27 +177,27 @@ sap.ui.define([
                 "OutputParameter": "JSON"
             };
 
+            if (send == 1) {
+                jQuery.ajax({
+                    url: "/XMII/Runner",
+                    data: params,
+                    method: "POST",
+                    dataType: "xml",
+                    async: true,
+                    success: function (oData) {
+                        var result = JSON.parse(oData.documentElement.textContent);
+                        if (result.error == "0" || result.error == 0) {
+                            MessageToast.show("Saved!");
+                        } else {
+                            MessageToast.show("Error! " + result.errorMessage);
+                        }
+                    },
+                    error: function (oData) {
+                        MessageToast.show("Error while saving!");
 
-            jQuery.ajax({
-                url: "/XMII/Runner",
-                data: params,
-                method: "POST",
-                dataType: "xml",
-                async: true,
-                success: function (oData) {
-                    var result = JSON.parse(oData.documentElement.textContent);
-                    if (result.error == "0" || result.error == 0) {
-                        MessageToast.show("Saved!");
-                    } else {
-                        MessageToast.show("Error! " + result.errorMessage);
                     }
-                },
-                error: function (oData) {
-                    MessageToast.show("Error while saving!");
-
-                }
-            });
-
+                });
+            }
 
             console.log(logdc);
 

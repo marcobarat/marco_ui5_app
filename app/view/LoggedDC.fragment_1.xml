@@ -72,7 +72,7 @@
                         </Column>
                         <Column
                             hAlign="End">
-                            <Text text="Comments" />
+                            <Text text="Data" />
                         </Column>
                     </columns>
                     <items>

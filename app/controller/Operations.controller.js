@@ -53,13 +53,14 @@ sap.ui.define([
                 model.setProperty("/informations", {user: this.user, plant: this.plantid, stepid: this.stepid, workcenter: "74165", workcenterid: this.workcenter});
                 sap.ui.getCore().setModel(model);
             }
-            var transactionName = "XAC_GetAllPhaseOperation";
+            var oModel = new JSONModel();
+            var transactionName = "XAC_GetAllShopOrderOperations";
             var that = this;
             var site = "iGuzzini";
-            var input = "&plant=" + this.plantid + "&shoporderid=" + this.shoporderid + "&stepid=" + this.stepid;
+            var input = "&plant=" + this.plantid + "&shoporderid=" + this.shoporderid;
             var transactionCall = site + "/XACQuery" + "/" + transactionName;
             sap.ui.core.BusyIndicator.show();
-            jQuery.ajax({
+            /*jQuery.ajax({
                 url: "model/op.json",
                 method: "GET",
                 async: true,
@@ -72,8 +73,8 @@ sap.ui.define([
                 error: function (oData) {
                     that.error(oData);
                 }
-            });
-            /*jQuery.ajax({
+            });*/
+            jQuery.ajax({
                 url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
                 method: "GET",
                 async: true,
@@ -86,7 +87,7 @@ sap.ui.define([
                 error: function (oData) {
                     that.error(oData);
                 }
-            });*/
+            });
             sap.ui.getCore().getModel().setProperty("/operations",
                     oModel.getData());
             return oModel;

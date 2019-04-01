@@ -58,7 +58,7 @@ sap.ui.define([
                 link = "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
             }
             
-            link = "model/fakeShopOrders" + String(Math.floor(Math.random() * 4) + 1) + ".json";
+            //link = "model/fakeShopOrders" + String(Math.floor(Math.random() * 4) + 1) + ".json";
 
             Library.AjaxCallerData(link, this.SUCCESSInitShoporder.bind(this), this.FAILUREInitShoporder.bind(this));
         },
@@ -144,7 +144,7 @@ sap.ui.define([
                 if (selection.getParent().isSubMenu()) {
                     father = selection.getParent().getParent().getText();
                 }
-                if (father === "Lavora") {
+                //if (father === "Lavora") {
                     var phase = selection.getText();
                     this.transportModel = new JSONModel();
                     sap.ui.getCore().getModel().setProperty("/informations", {
@@ -157,14 +157,14 @@ sap.ui.define([
                         "shoporder": this.shoporder,
                         "resourceid": this.resourceid,
                         "resource": this.resource,
-                        "sfc": this.sfc,
-                        "stepid": phase
+                        "sfc": this.sfc
+                        //"stepid": phase
                     });
                     //sap.ui.getCore().setModel(this.transportModel);
 
                     var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                     oRouter.navTo("mainpod", true);
-                }
+                //}
             }
         },
         getPhase: function (oEvent) {

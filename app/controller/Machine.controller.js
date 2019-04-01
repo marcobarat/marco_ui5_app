@@ -55,11 +55,11 @@ sap.ui.define([
 
             var transactionName = "XAC_GetAllWorkcenterByTypeAndUsername";
             var site = "iGuzzini";
-            var input = "&plant=1&type=M&user=mbaratella";
+            var input = "&plant=1&type=A&user=mbaratella";
             var transactionCall = site + "/XACQuery" + "/" + transactionName;
             var link = "XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
             
-            link = "model/machinesArea" + String(this.AREA) + ".json";
+            //link = "model/machinesArea" + String(this.AREA) + ".json";
             
             Library.AjaxCallerData(link, this.SUCCESSInitTiles.bind(this), this.FAILUREInitTiles.bind(this));
         },

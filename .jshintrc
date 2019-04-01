@@ -20,6 +20,7 @@
         "navigator": false,
         "alert": false,
         "JustGage": false,
-        "vis": false
+        "vis": false,
+		"typeof": false
     }
 }
