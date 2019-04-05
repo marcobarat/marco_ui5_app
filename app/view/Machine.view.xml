@@ -6,16 +6,17 @@
     
     
     <Page
-        showHeader="false"
-        enableScrolling="false"
-        class="sfondotiles"  		title="Centered Title"
+        title="Seleziona un centro di lavoro: Area {modelArea>/area}"
+        class="sapUiContentPadding myapp"
+        showNavButton="true" 
     >
 
-        <VBox  alignItems="Center"
-              justifyContent="Start">            
-            <Text text="Select an available Machine: Area {modelArea>/area}" class="cent"/> 
-            <Button icon="sap-icon://home" press="navToMain" class="homeButton"/>
-        </VBox>            
+        <headerContent>
+            <Button icon="sap-icon://action" tooltip="Share" />
+        </headerContent>
+
+
+           
         <TileContainer
             id="container"
             tileDelete="handleTileDelete"
@@ -29,6 +30,7 @@
                 infoState="{status}"
                 press="navToShoporder"
                 numberUnit="Machine"
+                class="allarga"
             />
         </TileContainer>
   

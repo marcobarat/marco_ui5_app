@@ -22,7 +22,7 @@
                     <FlexBox
                         alignItems="Center"
                         justifyContent="SpaceBetween">
-                        <Label text="Machine:" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="Macchina:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/workcenter}" class="sapUiMediumMarginEnd whiteText"/>
                         <!--<Label text="Resource" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/resource}" class="sapUiMediumMarginEnd whiteText"/> 
@@ -30,12 +30,12 @@
                         <Label text="{/stepid}" class="sapUiMediumMarginEnd whiteText"/> -->
                         <!--<Label text="Sfc" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/sfc}" class="sapUiMediumMarginEnd whiteText"/> -->
-                        <Label text="User:" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="Utente:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/user}" class="sapUiMediumMarginEnd whiteText"/>
-                        <Label text="Shop Order:" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="Ordine di Lavoro:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/shoporder}" class="sapUiMediumMarginEnd whiteText"/>
                         <Label text="Qta:" class="sapUiTinyMarginEnd boldt"/>
-                        <Label text="{/qty}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="{/qtydone}/{/qty}" class="sapUiMediumMarginEnd whiteText"/>
                         <!--<Label text="{locale>myapp.generic.kenn.label}:" class="sapUiTinyMarginEnd"/>-->
                         <!--<Label text="{sel>/vin/kenn}" class="sapUiMediumMarginEnd whiteText"/>-->
                     </FlexBox>
@@ -48,7 +48,7 @@
                                width="45px" />
                         
                         <comp:PodButton width="40px" id="backButton" press="navToBackPage" iconSize="1.8rem"
-                                        icon="sap-icon://nav-back"/>
+                                        icon="sap-icon://nav-back" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"/>
                         <comp:PodButton width="40px" press="logOff" iconSize="1.8rem"
                                         icon="sap-icon://log" class="sapUiMediumMarginBegin sapUiMediumMarginEnd"/>
                     </FlexBox>
@@ -65,7 +65,7 @@
                             <items>
                                 <IconTabFilter
                                     icon="sap-icon://home"
-                                    text="Operations"
+                                    text="Operazioni"
                                     count=""
                                     key="OP">
                                     <mvc:XMLView viewName="myapp.view.Operations"/>
@@ -73,7 +73,7 @@
                                 <IconTabSeparator />
                                 <IconTabFilter
                                     icon="sap-icon://document-text"
-                                    text="Workinstruction"
+                                    text="Work instruction"
                                     key="WRK">
                                     <mvc:XMLView viewName="myapp.view.Workinstructions"/>
                                 </IconTabFilter>
@@ -126,12 +126,12 @@
                         <comp:PodButton width="120px" press="loggedDC"
                                         icon="sap-icon://sys-add" iconSize="3.5rem"
                                         text="Logged Data Collection" class="sapUiSmallMarginTop"/>
-                        <comp:PodButton width="120px" press="openGraph"
+                        <!-- <comp:PodButton width="120px" press="openGraph"
                                         icon="sap-icon://column-chart-dual-axis" iconSize="3.5rem"
                                         text="Graph" class="sapUiSmallMarginTop"/>
                         <comp:PodButton width="120px" press="openStatusMachine"
                                         icon="sap-icon://connected" iconSize="3.5rem"
-                                        text="Status Machine" class="sapUiSmallMarginTop"/>
+                                        text="Status Machine" class="sapUiSmallMarginTop"/> -->
                     </FlexBox>
                 </HBox>
             </VBox>

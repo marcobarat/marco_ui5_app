@@ -39,6 +39,7 @@
     text-align: center;
     color: #7d7d7d;
     font-size: 50px;
+    font-weight: bold;
     height: 50px;
     margin-top:20px;
     text-shadow: 1px 1px black;
@@ -60,7 +61,20 @@
 
 
 }
-
+.allarga{
+    width:300px;
+    height:300px;
+    font-size: 50px !important;
+}
+.sapMTileContent {
+    width: auto !important;
+}
+.sapMStdTileNumDiv {
+    width: auto !important;
+}
+.sapMStdTileTitle {
+    font-size:25px;
+}
 .myapp{
         background-color: #f0f0f0 !important;
 

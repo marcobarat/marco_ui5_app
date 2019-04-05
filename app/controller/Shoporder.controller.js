@@ -16,8 +16,10 @@ sap.ui.define([
         workcenterid: null,
         workcenter: null,
         shoporderid: null,
+        material: null,
         sfc: null,
         qty: null,
+        qtydone: null,
         shoporder: null,
         resource: null,
         resourceid: null,
@@ -151,13 +153,15 @@ sap.ui.define([
                         "workcenter": this.workcenter,
                         "workcenterid": this.workcenterid,
                         "qty": this.qty,
+                        "qtydone": this.qtydone,
                         "user": this.user,
                         "shoporderid": this.shoporderid,
                         "plant": this.plantid,
                         "shoporder": this.shoporder,
                         "resourceid": this.resourceid,
                         "resource": this.resource,
-                        "sfc": this.sfc
+                        "sfc": this.sfc,
+                        "material": this.material
                         //"stepid": phase
                     });
                     //sap.ui.getCore().setModel(this.transportModel);
@@ -188,8 +192,9 @@ sap.ui.define([
                 this.resourceid = this.getView().getModel().getData()[res].Resid;
                 this.resource = this.getView().getModel().getData()[res].Resource;
                 this.sfc = this.getView().getModel().getData()[res].Sfc;
-                this.qty = this.getView().getModel().getData()[res].QtyReleased;
-
+                this.qty = this.getView().getModel().getData()[res].Qty;
+                this.qtydone = this.getView().getModel().getData()[res].QtyDone;
+                this.material = this.getView().getModel().getData()[res].Material;
                 jQuery.ajax({
                     url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
                     method: "GET",

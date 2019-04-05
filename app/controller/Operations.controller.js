@@ -13,6 +13,7 @@ sap.ui.define([
         plantid: null,
         user: null,
         qty: null,
+        qtydone: null,
         stepid: null,
         selectedOp: null,
         clickEvent: null,
@@ -41,17 +42,9 @@ sap.ui.define([
                 this.stepid = sap.ui.getCore().getModel().getData().informations.stepid;
                 this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
                 this.qty = sap.ui.getCore().getModel().getData().informations.qty;
+                this.qtydone = sap.ui.getCore().getModel().getData().informations.qtydone;
 
-            } else {
-                this.user = "mbaratella";
-                this.workcenterid = 6;
-                this.qty = 250;
-                this.plantid = 1;
-                this.stepid = "10";
-                this.shoporderid = null;
-                var model = new JSONModel();
-                model.setProperty("/informations", {user: this.user, plant: this.plantid, stepid: this.stepid, workcenter: "74165", workcenterid: this.workcenter});
-                sap.ui.getCore().setModel(model);
+
             }
             var oModel = new JSONModel();
             var transactionName = "XAC_GetAllShopOrderOperations";
@@ -100,6 +93,7 @@ sap.ui.define([
             this.stepid = sap.ui.getCore().getModel().getData().informations.stepid;
             this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
             this.qty = sap.ui.getCore().getModel().getData().informations.qty;
+            this.qtydone = sap.ui.getCore().getModel().getData().informations.qtydone;
 
             var oModel = new JSONModel();
             var transactionName = "XAC_GetAllPhaseOperation";

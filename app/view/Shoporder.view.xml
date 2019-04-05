@@ -4,30 +4,35 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <Page
-        showHeader="false"
-        enableScrolling="false" 
-        showNavButton="true"
-        class="sfondotiles"        >
-        <VBox  alignItems="Center"
-              justifyContent="Start">            
-            <Text text="Select a ShopOrder:" class="cent"/> 
-            <Button icon="sap-icon://home" press="navToMain" class="homeButton"/>
-        </VBox>   
+        title="Seleziona un Ordine di Lavoro"
+        class="sapUiContentPadding myapp"
+        showNavButton="true" 
+    >
+
+        <headerContent>
+            <Button icon="sap-icon://action" tooltip="Share" />
+        </headerContent>
+  
         <TileContainer
             id="container"
             tileDelete="handleTileDelete"
-            tiles="{/}">
+            class="allarga"
+
+            tiles="{/}"
+        >
 
             <StandardTile
                 icon="{icon}"
                 type="Monitor"
                 number="{QtyOrdered}"
-                numberUnit="Qty Ordered"
-                title="{ShopOrder}"
+                numberUnit="OdL: {ShopOrder}"
+                title="Prodotto finito {Material}"
                 info="{info}"
                 infoState="{status}"
                 press="apriDialog"
                 idshoporder="{id}"
+                class="allarga"
+
             />
         </TileContainer>
         <footer>

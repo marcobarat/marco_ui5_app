@@ -38,18 +38,20 @@
                     </headerToolbar>
                     <columns>
                         <Column
-                            width="12em">
+                            width="12em" 
+                            hAlign="Center">
                             <Text text="DC Group" />
                         </Column>
                         <Column
                             minScreenWidth="Tablet"
+                            hAlign="Center"
                             demandPopin="true">
                             <Text text="DC Parameter" />
                         </Column>
                         <Column
                             minScreenWidth="Tablet"
                             demandPopin="true"
-                            hAlign="End">
+                            hAlign="Center">
                             <Text text="Unit Of Measure" />
                         </Column>
                         <Column
@@ -71,8 +73,8 @@
                             <Text text="Value" />
                         </Column>
                         <Column
-                            hAlign="End">
-                            <Text text="Comments" />
+                            hAlign="Center">
+                            <Text text="Data" />
                         </Column>
                     </columns>
                     <items>

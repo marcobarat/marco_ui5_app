@@ -16,6 +16,7 @@ sap.ui.define([
         user: null,
         stepid: null,
         shoporder: null,
+        qtydone: null,
         qty: null,
         sfc: null,
         test: null,
@@ -39,6 +40,7 @@ sap.ui.define([
             this.stepid = sap.ui.getCore().getModel().getData().informations.stepid;
             this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
             this.qty = sap.ui.getCore().getModel().getData().informations.qty;
+            this.qtydone = sap.ui.getCore().getModel().getData().informations.qtydone;
 
             this.sfc = sap.ui.getCore().getModel().getData().informations.sfc;
             this.test = new JSONModel();
@@ -368,7 +370,7 @@ sap.ui.define([
                         "_TempoCicloProg": oData.Rowsets.Rowset[0].Row[0]._TempoCicloProg,
                         "TempoCicloUltimo": oData.Rowsets.Rowset[0].Row[0].TempoCicloUltimo,
                         "um_cabina": oData.Rowsets.Rowset[0].Row[0].um_cabina,
-                        "temp_cabina": oData.Rowsets.Rowset[0].Row[0].temp_cabina 
+                        "temp_cabina": oData.Rowsets.Rowset[0].Row[0].temp_cabina
                     });
 
                 },

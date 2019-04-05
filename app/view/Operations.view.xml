@@ -23,9 +23,17 @@
                             demandPopin="true" hAlign="Center" vAlign="Middle">
                         <Text text="Operazione" width="100%"/>
                     </Column>
-                    <Column minScreenWidth="Tablet" width="35%"
+                    <Column minScreenWidth="Tablet" 
                             demandPopin="true" hAlign="Center" vAlign="Middle">
                         <Text text="Descrizione" width="100%"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet"
+                            demandPopin="true" hAlign="Center" vAlign="Middle">
+                        <Text text="Fase di macchina" width="100%"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" 
+                            demandPopin="true" hAlign="Center" vAlign="Middle">
+                        <Text text="Macchina coinvolta" width="100%"/>
                     </Column>
                     <Column minScreenWidth="Tablet"
                             demandPopin="true" hAlign="Center" vAlign="Middle">
@@ -48,15 +56,29 @@
                             
                             <Text
                                 text="{operation}" class="rt1OpText"/>
+
                             <Text
                                 text="{operation_description}"/>
+                            <HBox alignItems="Center" justifyContent="Center">
+                                <VBox alignItems="Center" justifyContent="Center">
+                                    <HBox>
+
+                                        <core:Icon size="1.5rem" visible="{=${IsMachineStep} > 0}" class=""
+                                                   src="sap-icon://accept" tooltip="" color="{ops>dcColor}"/>
+                                        <Text
+                                            text="{MachineDescription}" visible="{=${IsMachineStep} === 0}" class="rt1OpText"/>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+                            <Text
+                                text="{MachineDescription}"/>
                             <Text
                                 text="{sap_status}"/>
                             <HBox alignItems="Center" justifyContent="Center">
                                 <VBox alignItems="Center" justifyContent="Center">
                                     <HBox>
 
-                                        <core:Icon size="1.5rem" visible="{=${d} === 1}" class="sapUiSmallMarginEnd"
+                                        <core:Icon size="1.5rem" visible="{=${d} === 1}" class=""
                                                    src="sap-icon://sys-add" tooltip="{locale>myapp.view.operations.results.tooltip.datacollection}" color="{ops>dcColor}"/>
                                         <core:Icon size="1.5rem" visible="{=${w} ===  1}"
                                                    src="sap-icon://document-text" tooltip="{locale>myapp.view.operations.results.tooltip.workinstructions}" color="{ops>wisColor}"/>
