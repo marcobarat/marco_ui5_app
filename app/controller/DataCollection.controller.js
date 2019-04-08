@@ -129,12 +129,18 @@ sap.ui.define([
                     var valueList = "", par, parameters = dc.dcparameterlist;
                     for (var index in parameters) {
                         par = parameters[index];
+                        var comment = "";
+                        if (typeof (par.dccomment) != "undefined") 
+                            comment = par.dccomment;
+                        else
+                            comment = "";
                         if (typeof (par.value) != "undefined") {
                             valueList = valueList + this.dcPar.replace("${dcparameterid}", par.dcparameterid)
                                     .replace("${dcvalue}", par.value)
                                     .replace("${dcmaxvalue}", par.max_value)
                                     .replace("${dcminvalue}", par.min_value)
                                     .replace("${dccheckvalue}", '0')
+                                    .replace("${dcComment}",comment)
                                     .replace("${dcisinteger}", par.isinteger);
                         } else {
                             MessageToast.show("Inser a value!");

@@ -81,7 +81,7 @@
                     </Panel>-->
                     <Panel>
                         <Table inset="false"
-                               items="{path: 'wis>/wis/W'}">
+                               items="{path: '/'}">
                             <headerToolbar>
                                 <Toolbar>
                                     <Title text="Workinstructions" level="H2"/>
@@ -100,8 +100,8 @@
                             <items>
                                 <ColumnListItem type="Active">
                                     <cells>
-                                        <Text text="{wis>work_instruction}" />
-                                        <Link text="{wis>fileName}"
+                                        <Text text="{workinstruction}" />
+                                        <Link text="{url}"
                                               emphasized="true"
                                               press="openPdf"/>
                                     </cells>

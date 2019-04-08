@@ -7,7 +7,7 @@
         title="Logged DC">
         <l:VerticalLayout
             class="sapUiContentPadding"
-            width="100%">
+            width="1200px">
             <l:content>
                 <!-- <List
                     items="{/}"
@@ -76,6 +76,10 @@
                             hAlign="Center">
                             <Text text="Data" />
                         </Column>
+                        <Column
+                            hAlign="Center">
+                            <Text text="Commento" />
+                        </Column>
                     </columns>
                     <items>
                         <ColumnListItem>
@@ -96,7 +100,7 @@
                                     unit="{UnitOfMeasure}"
                                 />
                                 <Text text="{Date}"/>
-
+                                <Text text="{Comment}"/>
                             </cells>
                         </ColumnListItem>
                     </items>
