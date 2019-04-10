@@ -4,7 +4,7 @@ sap.ui.define([
 ], function (jQuery, Control) {
     "use strict";
 
-    var EmbedComponent = Control.extend("podlamb.component.Embed", {
+    var EmbedComponent = Control.extend("myapp.component.Embed", {
         metadata: {
             properties: {
                 "id": {type: "string"},

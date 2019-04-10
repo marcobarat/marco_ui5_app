@@ -3,7 +3,6 @@ sap.ui.define([
     'sap/m/MessageToast',
     'sap/m/MessageBox',
     'sap/ui/model/json/JSONModel',
-
     'sap/ui/core/mvc/Controller'
 ], function (jQuery, MessageToast, MessageBox, JSONModel, Controller) {
     "use strict";
@@ -13,10 +12,12 @@ sap.ui.define([
         shoporderid: null,
         plantid: null,
         user: null,
+        _oDialog: null,
+        
         onInit: function () {
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
             this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
-            this.getView().setModel(this.initWI()); 
+            this.getView().setModel(this.initWI());
         },
         onAfterRendering: function () {
 
@@ -29,24 +30,6 @@ sap.ui.define([
             this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
 
             var oModel = new JSONModel();
-            /*          var transactionName = "XAC_GetAllDataCollections";
-             var that = this;
-             var site = "iGuzzini";
-             var input = "&plant=" + this.plantid + "&shoporderid=" + this.shoporderid + "&stepid=" + this.stepid;
-             var transactionCall = site + "/XACQuery" + "/" + transactionName;
-             
-             jQuery.ajax({
-             url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
-             method: "GET",
-             async: false,
-             success: function (oData) {
-             oModel.setData(oData.Rowsets.Rowset[0].Row);
-             },
-             error: function (oData) {
-             that.error(oData);
-             }
-             });
-             */
             var transactionName = "GetAllWorkInstructionsFromShopOrderID";
             var that = this;
             var site = "iGuzzini";
@@ -79,6 +62,31 @@ sap.ui.define([
             }
 
             return true;
+        },
+        toPdfView: function (name,istext,pdfUrl,value) {
+                if (!this._oDialog) {
+                    this._oDialog = sap.ui.xmlfragment("myapp.view.Winstruction", this);
+                }
+                jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+                var obj = {"workinstruction":name,"IsText":istext,"url":pdfUrl,"value":value};
+                var model = new JSONModel();
+                model.setData(obj);
+                this._oDialog.setModel(model);
+                this._oDialog.open();
+ 
+        },
+        openPdf: function (event) {
+            var ctx = event.getSource().getParent().getBindingContext();
+            var model = ctx.getModel();
+            var path = ctx.getPath();
+            var obj = model.getProperty(path);
+            var pdfUrl = obj.url;
+            this.toPdfView(obj.workinstruction,obj.isText,pdfUrl,obj.value);
+        },
+        onExitWI: function () {
+            if (this._oDialog) {
+                this._oDialog.close();
+            }
         },
         update: function () {
             if (typeof sap.ui.getCore().getModel().getData().informations != null) {

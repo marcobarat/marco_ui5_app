@@ -108,15 +108,12 @@
                                 </ColumnListItem>
                             </items>
                         </Table>
+
                     </Panel>
                 </Page>
-                <!--<Page
-                    enableScrolling="true"
-                    showHeader="false"
-                    id="pdfPage">
-                    <comp:IFrame id="wisPdfView" src="{pdf>/url}" width="100%" visible="{renderWis>/visible}"/>
-                </Page>-->
+                
             </NavContainer>
+
         </items>
     </VBox>
 </mvc:View>

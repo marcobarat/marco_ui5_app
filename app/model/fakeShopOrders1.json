@@ -2,47 +2,9 @@
     "Rowsets": { 
         "Rowset": [ 
             {
-                "Row": [ 
-                    {
-                        "ID": 51,
-                        "QtyOrdered": 4000,
-                        "StatusID": 202,
-                        "ShopOrder": "2017OLIN02256",
-                        "User": "Mbaratella",
-                        "icon": "sap-icon://product",
-                        "info": "In Lavorazione",
-                        "PlantID": 1
-                    },
-                    {
-                        "ID": 52,
-                        "QtyOrdered": 5000,
-                        "StatusID": 147,
-                        "ShopOrder": "2018OLIN02255",
-                        "User": "Mbaratella",
-                        "icon": "sap-icon://product",
-                        "info": "Chiuso",
-                        "PlantID": 1
-                        
-                    },
-                    {
-                        "ID": 53,
-                        "QtyOrdered": 7000,
-                        "StatusID": 147,
-                        "ShopOrder": "2019OLIN02242",
-                        "User": "Mbaratella",
-                        "icon": "sap-icon://product",
-                        "info": "Lavorabile",
-                        "PlantID": 1
-                    },
-                    {
-                        "ID": 54,
-                        "QtyOrdered": 77000,
-                        "StatusID": 5236,
-                        "ShopOrder": "2019OLIN25786",
-                        "User": "Mbaratella",
-                        "icon": "sap-icon://product",
-                        "info": "Lavorabile",
-                        "PlantID": 1
+                "Row": [{
+                        "workinstruction": "Woasdsdrk!!",
+                        "url": "http://www.africau.edu/images/default/sample.pdf"
                     }]
             }]
     }
