@@ -30,6 +30,10 @@ sap.ui.define([
         BusyDialog: new sap.m.BusyDialog(),
         button: null,
         AREA: null,
+        oDialog: null,
+        IDTile: null,
+        modelInfo: new JSONModel(),
+        modelBom: new JSONModel(),
 
         onInit: function () {
 
@@ -59,7 +63,7 @@ sap.ui.define([
 
                 link = "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
             }
-            
+
             //link = "model/fakeShopOrders" + String(Math.floor(Math.random() * 4) + 1) + ".json";
 
             Library.AjaxCallerData(link, this.SUCCESSInitShoporder.bind(this), this.FAILUREInitShoporder.bind(this));
@@ -105,10 +109,12 @@ sap.ui.define([
             }
         },
         apriDialog: function (event) {
+            
+            this.IDTile = this.shopOrderModel.getProperty(event.getSource().getBindingContext().getPath()).ID;
             this.getPhase(event);
 
             this.button = event.getSource();
-            
+
             var link = (this.AREA === "2" || this.AREA === "3") ? "model/menuShopOrdersInactive.json" : "model/menuShopOrders.json";
             Library.AjaxCallerData(link, this.SUCCESSApriDialog.bind(this), this.FAILUREApriDialog.bind(this));
         },
@@ -139,37 +145,90 @@ sap.ui.define([
             }
             return menu;
         },
-        goToPod: function (event) {
+        discriminator: function (event) {
             var selection = event.getParameter("item");
+            var itemText = selection.getProperty("text");
             if (!selection.getSubmenu()) {
-                var father = null;
-                if (selection.getParent().isSubMenu()) {
-                    father = selection.getParent().getParent().getText();
+//                this.transportModel = new JSONModel();
+                switch (itemText) {
+                    case 'Inizio Teorico':
+                        this.goToPod();
+                        break;
+                    case 'Invia Parametri Macchina':
+                        break;
+                    case 'Informazioni':
+                        this.showInfo();
+                        break;
                 }
-                //if (father === "Lavora") {
-                    var phase = selection.getText();
-                    this.transportModel = new JSONModel();
-                    sap.ui.getCore().getModel().setProperty("/informations", {
-                        "workcenter": this.workcenter,
-                        "workcenterid": this.workcenterid,
-                        "qty": this.qty,
-                        "qtydone": this.qtydone,
-                        "user": this.user,
-                        "shoporderid": this.shoporderid,
-                        "plant": this.plantid,
-                        "shoporder": this.shoporder,
-                        "resourceid": this.resourceid,
-                        "resource": this.resource,
-                        "sfc": this.sfc,
-                        "material": this.material
-                        //"stepid": phase
-                    });
-                    //sap.ui.getCore().setModel(this.transportModel);
-
-                    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                    oRouter.navTo("mainpod", true);
-                //}
             }
+        },
+        goToPod: function (event) {
+//            var selection = event.getParameter("item");
+//            selection.getProperty("text")
+//            if (!selection.getSubmenu()) {
+//                var father = null;
+//                if (selection.getParent().isSubMenu()) {
+//                    father = selection.getParent().getParent().getText();
+//                }
+//                //if (father === "Lavora") {
+//                var phase = selection.getText();
+//                this.transportModel = new JSONModel();
+            sap.ui.getCore().getModel().setProperty("/informations", {
+                "workcenter": this.workcenter,
+                "workcenterid": this.workcenterid,
+                "qty": this.qty,
+                "qtydone": this.qtydone,
+                "user": this.user,
+                "shoporderid": this.shoporderid,
+                "plant": this.plantid,
+                "shoporder": this.shoporder,
+                "resourceid": this.resourceid,
+                "resource": this.resource,
+                "sfc": this.sfc,
+                "material": this.material
+                        //"stepid": phase
+            });
+            //sap.ui.getCore().setModel(this.transportModel);
+
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("mainpod", true);
+            //}
+//            }
+        },
+        showInfo: function () {
+            var oView = this.getView();
+            this.oDialog = oView.byId("infoODP");
+            if (!this.oDialog) {
+                this.oDialog = sap.ui.xmlfragment(oView.getId(), "myapp.view.infoODP", this);
+                oView.addDependent(this.oDialog);
+            }
+            var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/GetShopOrderInfo&orderID=" + this.IDTile + "&Content-Type=text/xml&OutputParameter=output";
+            this.oDialog.open();
+            this.oDialog.setBusy(true);
+            Library.AjaxCallerData(link, this.SUCCESSInfo.bind(this), this.FAILUREInfo.bind(this), "xml");
+        },
+        SUCCESSInfo: function (Jdata) {
+            var data, time;
+            for (var key in Jdata[0]) {
+                if (key.indexOf("date") > -1) {
+                    data = Jdata[0][key].split("T")[0].split("-").reverse().join("-");
+                    time = Jdata[0][key].split("T")[1];
+                    Jdata[0][key] = data + ", " + time;
+                }
+            }
+            this.modelInfo.setData(Jdata);
+            this.modelBom.setData(Jdata[0].BOM);
+            this.getView().setModel(this.modelInfo, "modelInfo");
+            this.getView().setModel(this.modelBom, "modelBOM");
+            this.oDialog.setBusy(false);
+            Library.RemoveClosingButtons(this.getView().byId("TabContainer"));
+        },
+        FAILUREInfo: function () {
+            this.oDialog.setBusy(false);
+            this.oDialog.close();
+        },
+        destroyDialog: function () {
+            this.oDialog.destroy();
         },
         getPhase: function (oEvent) {
             var oModel = new JSONModel();
