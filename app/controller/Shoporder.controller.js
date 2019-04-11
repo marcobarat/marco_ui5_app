@@ -20,6 +20,7 @@ sap.ui.define([
         sfc: null,
         qty: null,
         qtydone: null,
+        enabled: null,
         shoporder: null,
         resource: null,
         resourceid: null,
@@ -161,7 +162,8 @@ sap.ui.define([
                         "resourceid": this.resourceid,
                         "resource": this.resource,
                         "sfc": this.sfc,
-                        "material": this.material
+                        "material": this.material,
+                        "ena": this.enabled
                         //"stepid": phase
                     });
                     //sap.ui.getCore().setModel(this.transportModel);
@@ -188,6 +190,7 @@ sap.ui.define([
                 var input = "&plant=" + this.getView().getModel().getData()[res].PlantID + "&shoporderid=" + this.getView().getModel().getData()[res].ID;
                 var transactionCall = site + "/XACQuery" + "/" + transactionName;
                 this.shoporderid = this.getView().getModel().getData()[res].ID;
+                this.enabled = this.getView().getModel().getData()[res].enabled;
                 this.shoporder = this.getView().getModel().getData()[res].ShopOrder;
                 this.resourceid = this.getView().getModel().getData()[res].Resid;
                 this.resource = this.getView().getModel().getData()[res].Resource;

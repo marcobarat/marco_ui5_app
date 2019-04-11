@@ -37,7 +37,7 @@
                         <Label text="Qta:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/qtydone}/{/qty}" class="sapUiMediumMarginEnd whiteText"/>
                         <!--<Label text="{locale>myapp.generic.kenn.label}:" class="sapUiTinyMarginEnd"/>-->
-                        <!--<Label text="{sel>/vin/kenn}" class="sapUiMediumMarginEnd whiteText"/>-->
+                        <Label text="miamo miao {/enabled} {/ena}" class="sapUiMediumMarginEnd whiteText"/>
                     </FlexBox>
                     <FlexBox
                         alignItems="Center"
@@ -113,13 +113,13 @@
                             class="sapUiSmallMarginEnd"/>
                         <comp:PodButton width="120px" press="startOperation"
                                         icon="sap-icon://begin" iconSize="3.5rem"
-                                        text="Start" class="sapUiSmallMarginTop"/>
+                                        text="Start" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
                         <comp:PodButton width="120px" press="pauseOperation"
                                         icon="sap-icon://pause" iconSize="3.5rem"
-                                        text="Pause" class="sapUiSmallMarginTop"/>
+                                        text="Pause" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
                         <comp:PodButton width="120px" press="stopOperation"
                                         icon="sap-icon://complete" iconSize="3.5rem"
-                                        text="Complete" class="sapUiSmallMarginTop"/>
+                                        text="Complete" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
                         <!-- <comp:PodButton width="120px" press="onOpenDefect"
                         icon="sap-icon://quality-issue" iconSize="3.5rem"
                         text="Open NC" class="sapUiSmallMarginTop"/> -->
