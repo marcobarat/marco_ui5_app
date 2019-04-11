@@ -1,3 +1,18 @@
+.moveButton {
+    left: 45rem;
+    top: 1rem;
+}
+.closeButton .sapMBtnInner {
+    border-radius: 10px;
+    border: 1px solid red;
+    color: red;
+}
+
+.redTextFragment {
+    color: red;
+    font-size: 30pt;
+}
+
 /* Custom Styles  */
 .myButton
 {

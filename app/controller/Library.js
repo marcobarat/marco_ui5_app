@@ -26,33 +26,35 @@ sap.ui.define([
             });
         },
 //        FUNZIONE CHE FA UNA CHIAMATA ASINCRONA AL BACKEND CON RITORNO DI DATI
-        AjaxCallerData: function (addressOfJSON, successFunc, errorFunc) {
+        AjaxCallerData: function (addressOfJSON, successFunc, errorFunc, type) {
+            type = (!type) ? "json" : type;
             jQuery.ajax({
                 url: addressOfJSON,
                 method: "GET",
-                dataType: "json",
+                dataType: type,
                 async: true,
-                success: successFunc,
+                success: jQuery.proxy(this.WrapperSuccessFunc, this, successFunc),
                 error: errorFunc
             });
         },
 //        FUNZIONE CHE FA UNA CHIAMATA SINCRONA AL BACKEND CON RITORNO DI DATI
-        SyncAjaxCallerData: function (addressOfJSON, successFunc, errorFunc) {
+        SyncAjaxCallerData: function (addressOfJSON, successFunc, errorFunc, type) {
+            type = (!type) ? "json" : type;
             jQuery.ajax({
                 url: addressOfJSON,
                 method: "GET",
-                dataType: "json",
+                dataType: type,
                 async: false,
-                success: successFunc,
+                success: jQuery.proxy(this.WrapperSuccessFunc, this, successFunc),
                 error: errorFunc
             });
         },
-//        WrapperSuccessFunc: function (successFunc, Jdata) {
-//            if (jQuery.isXMLDoc(Jdata)) {
-//                Jdata = JSON.parse(Jdata.documentElement.textContent);
-//            }
-//            successFunc(Jdata);
-//        },
+        WrapperSuccessFunc: function (successFunc, Jdata) {
+            if (jQuery.isXMLDoc(Jdata)) {
+                Jdata = JSON.parse(Jdata.documentElement.textContent);
+            }
+            successFunc(Jdata);
+        },
 // FUNZIONI TEMPORALI 
         roundTo: function (value, decimalpositions) {
             var i = value * Math.pow(10, decimalpositions);
@@ -187,8 +189,8 @@ sap.ui.define([
             }
             return data;
         },
-        RemoveClosingButtons: function (tab_id) {
-            var tabContainer = this.getView().byId(tab_id);
+        RemoveClosingButtons: function (tabContainer) {
+//            var tabContainer = this.getView().byId(tab_id);
             var n_tabs = tabContainer.getAggregation("_tabStrip").getItems().length;
             var oTabStrip = tabContainer.getAggregation("_tabStrip");
             var oItems = oTabStrip.getItems();
