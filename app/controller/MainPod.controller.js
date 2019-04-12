@@ -19,6 +19,7 @@ sap.ui.define([
         qtydone: null,
         qty: null,
         sfc: null,
+        enabled: null,
         test: null,
         _oDialog: null,
         _oDialogSil: null,
@@ -41,6 +42,7 @@ sap.ui.define([
             this.shoporderid = sap.ui.getCore().getModel().getData().informations.shoporderid;
             this.qty = sap.ui.getCore().getModel().getData().informations.qty;
             this.qtydone = sap.ui.getCore().getModel().getData().informations.qtydone;
+            this.enabled = sap.ui.getCore().getModel().getData().informations.enabled;
 
             this.sfc = sap.ui.getCore().getModel().getData().informations.sfc;
             this.test = new JSONModel();
