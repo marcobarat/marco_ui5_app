@@ -164,16 +164,6 @@ sap.ui.define([
             }
         },
         goToPod: function (event) {
-//            var selection = event.getParameter("item");
-//            selection.getProperty("text")
-//            if (!selection.getSubmenu()) {
-//                var father = null;
-//                if (selection.getParent().isSubMenu()) {
-//                    father = selection.getParent().getParent().getText();
-//                }
-//                //if (father === "Lavora") {
-//                var phase = selection.getText();
-//                this.transportModel = new JSONModel();
             sap.ui.getCore().getModel().setProperty("/informations", {
                 "workcenter": this.workcenter,
                 "workcenterid": this.workcenterid,
@@ -190,12 +180,9 @@ sap.ui.define([
                 "ena": this.enabled
 
             });
-            //sap.ui.getCore().setModel(this.transportModel);
 
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.navTo("mainpod", true);
-            //}
-//            }
+             oRouter.navTo("mainpod", true);
         },
         showInfo: function () {
             var oView = this.getView();
@@ -281,81 +268,7 @@ sap.ui.define([
             window.location.href = "../main/index.html";
         }
 
-//        apriDialog: function (oEvent) {
-//            if (!this._oDialog) {
-//                this._oDialog = sap.ui.xmlfragment("myapp.view.ComponentDialog", this);
-//            }
-//            // toggle compact style
-//            jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-//
-//
-//            //this.getView().setModel(this.getPhase(oEvent), 'phase');
-//            this._oDialog.setModel(this.getPhase(oEvent));
-//            this._oDialog.open();
-//        },
-//        getPhase: function (oEvent) {
-//            var oModel = new JSONModel();
-//
-//            var str = oEvent.mParameters.id;
-//            if (str.length > 0) {
-//                var veryl = str.length;
-//                var cont = "container-";
-//                var num = str.search("container-");
-//                var len = cont.length;
-//                var res = str.substring(len + num, veryl);
-//
-//                var transactionName = "XAC_GetAllShopOrderPhase";
-//                var that = this;
-//                var site = "iGuzzini";
-//                var input = "&plant=" + this.getView().getModel().getData()[res].PlantID + "&shoporderid=" + this.getView().getModel().getData()[res].ID;
-//                var transactionCall = site + "/XACQuery" + "/" + transactionName;
-//                this.shoporderid = this.getView().getModel().getData()[res].ID;
-//                this.shoporder = this.getView().getModel().getData()[res].ShopOrder;
-//                this.resourceid = this.getView().getModel().getData()[res].Resid;
-//                this.resource = this.getView().getModel().getData()[res].Resource;
-//                this.sfc = this.getView().getModel().getData()[res].Sfc;
-//
-//
-//                jQuery.ajax({
-//                    url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
-//                    method: "GET",
-//                    async: false,
-//                    success: function (oData) {
-//
-//                        oModel.setData(oData.Rowsets.Rowset[0].Row);
-//                    },
-//                    error: function (oData) {
-//                        that.error(oData);
-//                    }
-//                });
-//                /*sap.ui.getCore().getModel().setProperty("/phase", {
-//                 "stepid": this.getView().getModel().getData()[0].stepid,
-//                 "plant": this.plant
-//                 }); */
-//
-//                return oModel;
-//            }
-//        },
-//        goToPod: function (oEvent) {
-//            var phase = oEvent.oSource.mProperties.title;
-//            this.transportModel = new JSONModel();
-//            sap.ui.getCore().getModel().setProperty("/informations", {
-//                "workcenter": this.workcenter,
-//                "workcenterid": this.workcenterid,
-//                "user": this.user,
-//                "shoporderid": this.shoporderid,
-//                "plant": this.plantid,
-//                "shoporder": this.shoporder,
-//                "resourceid": this.resourceid,
-//                "resource": this.resource,
-//                "sfc": this.sfc,
-//                "stepid": phase
-//            });
-//            //sap.ui.getCore().setModel(this.transportModel);
-//
-//            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-//            oRouter.navTo("mainpod", true);
-//        }
+
     });
 
     return ShoporderController;
