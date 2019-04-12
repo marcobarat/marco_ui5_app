@@ -111,7 +111,7 @@
 
             <OverflowToolbar id="otb2">
                 <ToolbarSpacer/>
-                <Button text="Close" type="Transparent" press="onExitDC"/>
+                <Button text="Close" press="onExitDC" class="closeButton"/>
 
             </OverflowToolbar>
         </l:VerticalLayout>

@@ -101,7 +101,6 @@ sap.ui.define([
             this.getView().setModel(newModel);
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("machine", true);
-
         },
         onExit: function () {
             if (this._oDialog) {

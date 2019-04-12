@@ -8,12 +8,22 @@
     <Page
         title="Seleziona un centro di lavoro: Area {modelArea>/area}"
         class="sapUiContentPadding myapp"
-        showNavButton="true" 
-    >
+        showNavButton="true">
 
-        <headerContent>
-            <Button icon="sap-icon://action" tooltip="Share" />
-        </headerContent>
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://slim-arrow-left" press="navToMain"/>
+                    <Image src="images/iguzlogo.png" height="75%" class="moveLogoUp"/>
+                </contentLeft>
+                <contentMiddle>
+                    <Title text="Seleziona un centro di lavoro: Area {modelArea>/area}" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://log" />
+                </contentRight>
+            </Bar>
+        </customHeader>
 
 
            

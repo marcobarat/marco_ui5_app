@@ -9,9 +9,21 @@
         showNavButton="true" 
     >
 
-        <headerContent>
-            <Button icon="sap-icon://action" tooltip="Share" />
-        </headerContent>
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://slim-arrow-left" press="onNavBack"/>
+                    <Image src="images/iguzlogo.png" height="75%" class="moveLogoUp"/>
+                </contentLeft>
+                <contentMiddle>
+                    <Title text="Seleziona un ordine di produzione" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://log" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+
   
         <TileContainer
             id="container"
