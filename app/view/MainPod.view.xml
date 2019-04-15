@@ -37,7 +37,7 @@
                         <Label text="Qta:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/qtydone}/{/qty}" class="sapUiMediumMarginEnd whiteText"/>
                         <!--<Label text="{locale>myapp.generic.kenn.label}:" class="sapUiTinyMarginEnd"/>-->
-                        <Label text="miamo miao {/enabled} {/ena}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="" class="sapUiMediumMarginEnd whiteText"/>
                     </FlexBox>
                     <FlexBox
                         alignItems="Center"

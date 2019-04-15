@@ -17,12 +17,12 @@
         >
             <l:content>
                 <comp:Embed src="{/url}"  height="600px" width="900px" visible="{=${/IsText} === '0'}" type="application/pdf" internalinstanceid="16"/> 
-<TextArea value="{/value}" visible="{=${/IsText} === '1'}" rows="8" />
+                <TextArea value="{/value}" visible="{=${/IsText} === '1'}" rows="8" class="espandi" />
             </l:content>
 
             <OverflowToolbar id="otb3">
                 <ToolbarSpacer/>
-                <Button text="Close" type="Transparent" press="onExitWI"/>
+                <Button text="Close" type="Transparent" press="onExitWI" class="closeButton"/>
 
             </OverflowToolbar>
         </l:VerticalLayout>

@@ -33,7 +33,7 @@
                     </Column>
                     <Column minScreenWidth="Tablet" 
                             demandPopin="true" hAlign="Center" vAlign="Middle">
-                        <Text text="Macchina coinvolta" width="100%"/>
+                        <Text text="Centro di lavoro" width="100%"/>
                     </Column>
                     <Column minScreenWidth="Tablet"
                             demandPopin="true" hAlign="Center" vAlign="Middle">
@@ -66,7 +66,7 @@
                                         <core:Icon size="1.5rem" visible="{=${IsMachineStep} > 0}" class=""
                                                    src="sap-icon://accept" tooltip="" color="{ops>dcColor}"/>
                                         <Text
-                                            text="{MachineDescription}" visible="{=${IsMachineStep} === 0}" class="rt1OpText"/>
+                                            text="-" visible="{=${IsMachineStep} === '0'}"/>
                                     </HBox>
                                 </VBox>
                             </HBox>

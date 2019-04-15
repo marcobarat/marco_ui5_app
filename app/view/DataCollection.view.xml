@@ -27,31 +27,31 @@
                         <columns>
                             <Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
-                                <Text text="Parameter" />
+                                <Text text="Parametro" />
                             </Column>
                             <Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
-                                <Text text="Description" />
+                                <Text text="Descrizione" />
                             </Column>
                             <Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
-                                <Text text="Unif of measure" />
+                                <Text text="Unità di misura" />
                             </Column>
                             <Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
-                                <Text text="Min value" />
+                                <Text text="Valore minimo" />
                             </Column>
                             <Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
-                                <Text text="Max value" />
+                                <Text text="Valore massimo" />
                             </Column>
                             <Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
-                                <Text text="Value" />
+                                <Text text="Valore" />
                             </Column>
                             <Column minScreenWidth="Tablet"
                                     demandPopin="true" hAlign="Left" vAlign="Middle">
-                                <Text text="Comment" />
+                                <Text text="Commento" />
                             </Column>
                         </columns>
                         <items>

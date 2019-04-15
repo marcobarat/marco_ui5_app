@@ -57,7 +57,7 @@ sap.ui.define([
                 this.workcenterid = sap.ui.getCore().getModel().getData().workcenter.id;
                 this.plantid = sap.ui.getCore().getModel().getData().workcenter.plant;
                 this.user = sap.ui.getCore().getModel().getData().workcenter.user;
-                var transactionName = "XAC_GetAllShopOrderForAWorkcenterByUser";
+                var transactionName = "XAC_GetAllShopOrderCanBePerformedForAWorkcenterByUser";
                 var site = "iGuzzini";
                 var input = "&plant=" + sap.ui.getCore().getModel().getData().workcenter.plant + "&workcenterid=" + sap.ui.getCore().getModel().getData().workcenter.id + "&user=" + sap.ui.getCore().getModel().getData().workcenter.user;
                 var transactionCall = site + "/XACQuery" + "/" + transactionName;
@@ -240,7 +240,7 @@ sap.ui.define([
                 this.resourceid = this.getView().getModel().getData()[res].Resid;
                 this.resource = this.getView().getModel().getData()[res].Resource;
                 this.sfc = this.getView().getModel().getData()[res].Sfc;
-                this.qty = this.getView().getModel().getData()[res].Qty;
+                this.qty = this.getView().getModel().getData()[res].QtyReleased;
                 this.qtydone = this.getView().getModel().getData()[res].QtyDone;
                 this.material = this.getView().getModel().getData()[res].Material;
                 jQuery.ajax({

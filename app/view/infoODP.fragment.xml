@@ -153,7 +153,7 @@
             </VBox>
             <VBox height="3%"/>
             <VBox height="17%">
-                <Button text="Close" class="moveButton closeButton" press="destroyDialog"/>
+                <Button text="Close" class="closeButton" press="destroyDialog"/>
             </VBox>
         </VBox>
     </Dialog>

@@ -40,37 +40,37 @@
                         <Column
                             width="12em" 
                             hAlign="Center">
-                            <Text text="DC Group" />
+                            <Text text="Categoria" />
                         </Column>
                         <Column
                             minScreenWidth="Tablet"
                             hAlign="Center"
                             demandPopin="true">
-                            <Text text="DC Parameter" />
+                            <Text text="Parametro" />
                         </Column>
                         <Column
                             minScreenWidth="Tablet"
                             demandPopin="true"
                             hAlign="Center">
-                            <Text text="Unit Of Measure" />
+                            <Text text="Unità di misura" />
                         </Column>
                         <Column
                             minScreenWidth="Tablet"
                             demandPopin="true"
                             hAlign="Center">
-                            <Text text="Max Value" />
+                            <Text text="Valore max" />
                         </Column>
                         <Column
                             minScreenWidth="Tablet"
                             demandPopin="true"
                             hAlign="Center">
-                            <Text text="Min Value" />
+                            <Text text="Valore min" />
                         </Column>
                         <Column
                             minScreenWidth="Tablet"
                             demandPopin="true"
                             hAlign="Center">
-                            <Text text="Value" />
+                            <Text text="Valore" />
                         </Column>
                         <Column
                             hAlign="Center">
