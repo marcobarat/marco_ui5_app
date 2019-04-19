@@ -10,7 +10,17 @@
     border: 1px solid red;
     color: red;
 }
+.sapMList {
+    border: 1px solid #ccc;
+}
 
+.ui-sortable {
+    min-height: 40px;
+}
+
+.ui-sortable>li{
+    cursor: pointer;
+}
 .redTextFragment {
     color: red;
     font-size: 30pt;
@@ -98,17 +108,17 @@
     font-size:25px;
 }
 .myapp{
-        background-color: #f0f0f0 !important;
+    background-color: #f0f0f0 !important;
 
 }
-    .sapMPageHeader::before{
-        content: "";
+.sapMPageHeader::before{
+    content: "";
     position: absolute;
     width: 100%;
     top: 0;
     border-top: 0.25rem solid white;
     z-index: 7;
-    }
+}
 /* new part ^^^ */
 .navigationExamples h2 {
     margin: 2em 5% 0;

@@ -39,7 +39,7 @@
                 info="{info}"
                 infoState="{status}"
                 press="navToShoporder"
-                numberUnit="Machine"
+                numberUnit="{wctype}"
                 class="allarga"
             />
         </TileContainer>
@@ -48,7 +48,7 @@
         <footer>
             <Toolbar>
                 <ToolbarSpacer/>
-                <Button text="Welcome {/0/user}!" press="handleEditPress" />
+                <Button text="Utente loggato: {/0/user}" press="handleEditPress" />
                 <ToolbarSpacer/>
             </Toolbar>
         </footer>

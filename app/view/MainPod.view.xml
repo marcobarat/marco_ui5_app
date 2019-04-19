@@ -116,16 +116,16 @@
                                         text="Start" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
                         <comp:PodButton width="120px" press="pauseOperation"
                                         icon="sap-icon://pause" iconSize="3.5rem"
-                                        text="Pause" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
+                                        text="Pausa" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
                         <comp:PodButton width="120px" press="stopOperation"
                                         icon="sap-icon://complete" iconSize="3.5rem"
-                                        text="Complete" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
+                                        text="Completa" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
                         <!-- <comp:PodButton width="120px" press="onOpenDefect"
                         icon="sap-icon://quality-issue" iconSize="3.5rem"
                         text="Open NC" class="sapUiSmallMarginTop"/> -->
                         <comp:PodButton width="120px" press="loggedDC"
                                         icon="sap-icon://sys-add" iconSize="3.5rem"
-                                        text="Logged Data Collection" class="sapUiSmallMarginTop"/>
+                                        text="Data Collection memorizzate" class="sapUiSmallMarginTop"/>
                         <!-- <comp:PodButton width="120px" press="openGraph"
                                         icon="sap-icon://column-chart-dual-axis" iconSize="3.5rem"
                                         text="Graph" class="sapUiSmallMarginTop"/>

@@ -18,7 +18,7 @@
                                     <VBox height="15%" width="100%"/>
                                     <VBox height="5%" width="100%">
                                         <FlexBox alignItems="Start" justifyContent="Center">
-                                            <Text text="Ciclo-Vita" class="redTextFragment"/>
+                                            <Text text="Informazioni base" class="redTextFragment"/>
                                         </FlexBox>
                                     </VBox>
                                     <VBox height="5%" width="100%"/>
@@ -153,7 +153,7 @@
             </VBox>
             <VBox height="3%"/>
             <VBox height="17%">
-                <Button text="Close" class="closeButton" press="destroyDialog"/>
+                <Button text="Close" class="closeButton moveButton" press="destroyDialog"/>
             </VBox>
         </VBox>
     </Dialog>
