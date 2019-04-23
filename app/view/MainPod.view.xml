@@ -126,12 +126,12 @@
                         <comp:PodButton width="120px" press="loggedDC"
                                         icon="sap-icon://sys-add" iconSize="3.5rem"
                                         text="Data Collection memorizzate" class="sapUiSmallMarginTop"/>
-                        <!-- <comp:PodButton width="120px" press="openGraph"
+                         <!--<comp:PodButton width="120px" press="openGraph"
                                         icon="sap-icon://column-chart-dual-axis" iconSize="3.5rem"
-                                        text="Graph" class="sapUiSmallMarginTop"/>
-                        <comp:PodButton width="120px" press="openStatusMachine"
+                                        text="Graph" class="sapUiSmallMarginTop"/>-->
+                        <comp:PodButton width="120px" press=""
                                         icon="sap-icon://connected" iconSize="3.5rem"
-                                        text="Status Machine" class="sapUiSmallMarginTop"/> -->
+                                        text="Invia Setup Macchina" enabled="{=${/ena} === '1'}" class="sapUiSmallMarginTop"/> 
                     </FlexBox>
                 </HBox>
             </VBox>

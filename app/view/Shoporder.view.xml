@@ -35,12 +35,11 @@
 
             <StandardTile
                 icon="{icon}"
-                type="Monitor"
                 number="{QtyOrdered}"
                 numberUnit="OdL: {ShopOrder}"
                 title="Prodotto finito {Material}"
-                info="{info}"
-                infoState="{status}"
+                info="{status}"
+                infoState="{stateoftile}"
                 press="apriDialog"
                 idshoporder="{id}"
                 class="allarga"
@@ -50,7 +49,7 @@
         <footer>
             <Toolbar>
                 <ToolbarSpacer/>
-                <Button text="Back" press="onNavBack" />
+                <Button text="Indietro" press="onNavBack" />
                 <ToolbarSpacer/>
             </Toolbar>
         </footer>
