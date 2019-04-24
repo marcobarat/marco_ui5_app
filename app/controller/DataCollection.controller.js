@@ -3,8 +3,10 @@ sap.ui.define([
     'sap/m/MessageToast',
     'sap/m/MessageBox',
     'sap/ui/model/json/JSONModel',
-    'sap/ui/core/mvc/Controller'
-], function (jQuery, MessageToast, MessageBox, JSONModel, Controller) {
+    'sap/ui/core/mvc/Controller',
+    'myapp/controller/Library'
+
+], function (jQuery, MessageToast, MessageBox, JSONModel, Controller, Library) {
     "use strict";
 
     var DataCollectionController = Controller.extend("myapp.controller.DataCollection", {
@@ -106,6 +108,8 @@ sap.ui.define([
             return true;
         },
         saveDc: function (oEv) {
+             Library.updateLastActionDate(this.user, this.plant);
+
             var str = oEv.oSource.sId;
             var veryl = str.length;
             var cont = "__list0-";

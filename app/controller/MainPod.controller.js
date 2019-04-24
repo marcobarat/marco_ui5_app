@@ -4,8 +4,10 @@ sap.ui.define([
     'sap/m/MessageToast',
     'sap/m/MessageBox',
     'sap/ui/core/routing/History',
-    'sap/ui/core/mvc/Controller'
-], function (jQuery, JSONModel, MessageToast, MessageBox, History, Controller) {
+    'sap/ui/core/mvc/Controller',
+    'myapp/controller/Library'
+
+], function (jQuery, JSONModel, MessageToast, MessageBox, History, Controller, Library) {
     "use strict";
     var MainPodController = Controller.extend("myapp.controller.MainPod", {
         workcenterid: null,
@@ -48,6 +50,8 @@ sap.ui.define([
             this.test = new JSONModel();
             this.test.setData(sap.ui.getCore().getModel().getData().informations);
             this.getView().setModel(this.test);
+            Library.updateLastActionDate(this.user, this.plantid);
+
         },
         changeEnelValue: function (oEvent) {
             var transactionName = "WriteEngelParameter";
@@ -97,12 +101,16 @@ sap.ui.define([
         },
         update: function () {
             if (typeof sap.ui.getCore().getModel().getData().informations != null) {
+                Library.updateLastActionDate(this.user, this.plantid);
+
                 this.initPod();
             } else {
                 alert("error");
             }
         },
         startOperation: function (event) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             var opselected = sap.ui.getCore().getModel().getData().operationselected;
             if (typeof opselected === "undefined") {
                 MessageToast.show("Select an operation first!");
@@ -115,6 +123,8 @@ sap.ui.define([
             }
         },
         pauseOperation: function (event) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             var opselected = sap.ui.getCore().getModel().getData().operationselected;
             if (typeof opselected === "undefined") {
                 MessageToast.show("Select an operation first!");
@@ -128,6 +138,8 @@ sap.ui.define([
             }
         },
         stopOperation: function (event) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             var opselected = sap.ui.getCore().getModel().getData().operationselected;
             if (typeof opselected === "undefined") {
                 MessageToast.show("Select an operation first!");
@@ -141,6 +153,8 @@ sap.ui.define([
             }
         },
         performPause: function (rowSelected) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             var transactionName = "PauseOperation";
             var that = this;
             var site = "iGuzzini";
@@ -168,6 +182,8 @@ sap.ui.define([
             });
         },
         performStart: function (rowSelected) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             var transactionName = "StartOperation";
             var that = this;
             var site = "iGuzzini";
@@ -195,6 +211,8 @@ sap.ui.define([
             });
         },
         performStop: function (rowSelected) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             var transactionName = "CompleteOperation";
             var that = this;
             var site = "iGuzzini";
@@ -222,11 +240,15 @@ sap.ui.define([
             });
         },
         onExit: function () {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             if (this._oDialog) {
                 this._oDialog.close();
             }
         },
         onExitDC: function () {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             if (this._oDialogDC) {
                 this._oDialogDC.close();
             }
@@ -237,12 +259,15 @@ sap.ui.define([
             }
         },
         onExitPara: function () {
+
             if (this._oDialogEdit) {
                 this._oDialogEdit.close();
             }
         },
 
         loggedDC: function (oEvent) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             if (!this._oDialogDC) {
                 this._oDialogDC = sap.ui.xmlfragment("myapp.view.LoggedDC", this);
             }
@@ -274,6 +299,8 @@ sap.ui.define([
             this._oDialogEdit.open();
         },
         openStatusMachine: function (oEvent) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             var typemachine = sap.ui.getCore().getModel().getData().workcenter.typemachine;
             if (typemachine == 'S') {
                 if (!this._oDialogSil) {
@@ -308,6 +335,8 @@ sap.ui.define([
 
         },
         getLoggedDC: function (oEvent) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
             var oModel = new JSONModel();
 
 

@@ -46,7 +46,6 @@ sap.ui.define([
         },
 
         initShoporder: function () {
-
             this.AREA = jQuery.sap.getUriParameters().get("AREA");
             var link;
             if (this.AREA === "2" || this.AREA === "3") {
@@ -61,11 +60,13 @@ sap.ui.define([
                 var site = "iGuzzini";
                 var input = "&plant=" + sap.ui.getCore().getModel().getData().workcenter.plant + "&workcenterid=" + sap.ui.getCore().getModel().getData().workcenter.id + "&user=" + sap.ui.getCore().getModel().getData().workcenter.user;
                 var transactionCall = site + "/XACQuery" + "/" + transactionName;
+                Library.updateLastActionDate(this.user, this.plantid);
 
                 link = "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
             }
 
             //link = "model/fakeShopOrders" + String(Math.floor(Math.random() * 4) + 1) + ".json";
+            Library.updateLastActionDate(this.user, this.plantid);
 
             Library.AjaxCallerData(link, this.SUCCESSInitShoporder.bind(this), this.FAILUREInitShoporder.bind(this));
         },
@@ -101,6 +102,7 @@ sap.ui.define([
             var newModel = new JSONModel();
             this.getView().setModel(newModel);
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+
             oRouter.navTo("machine", true);
         },
         onExit: function () {
@@ -109,9 +111,10 @@ sap.ui.define([
             }
         },
         apriDialog: function (event) {
-            
+
             this.IDTile = this.shopOrderModel.getProperty(event.getSource().getBindingContext().getPath()).ID;
             this.getPhase(event);
+            Library.updateLastActionDate(this.user, this.plantid);
 
             this.button = event.getSource();
 
@@ -125,6 +128,7 @@ sap.ui.define([
             }
             var eDock = sap.ui.core.Popup.Dock;
             this.shopOrderMenu.open(this._bKeyboard, this.button, eDock.BeginTop, eDock.BeginMiddle, this.button);
+            Library.updateLastActionDate(this.user, this.plantid);
 
             var menu = sap.ui.getCore().byId("menuID");
             menu.destroyItems();
@@ -181,7 +185,9 @@ sap.ui.define([
             });
 
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-             oRouter.navTo("mainpod", true);
+            Library.updateLastActionDate(this.user, this.plantid);
+
+            oRouter.navTo("mainpod", true);
         },
         showInfo: function () {
             var oView = this.getView();

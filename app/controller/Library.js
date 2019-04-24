@@ -1,10 +1,11 @@
 sap.ui.define([
     'jquery.sap.global',
-    'sap/ui/model/json/JSONModel'
-], function (jQuery, JSONModel) {
+    'sap/ui/model/json/JSONModel',
+    'sap/m/MessageToast',
+], function (jQuery, JSONModel, MessageToast) {
     return {
         exp: null,
-         AjaxCallerVoid: function (address, successFunc, errorFunc) {
+        AjaxCallerVoid: function (address, successFunc, errorFunc) {
             jQuery.ajax({
                 url: address,
                 method: "POST",
@@ -23,6 +24,37 @@ sap.ui.define([
                 async: false,
                 success: successFunc,
                 error: errorFunc
+            });
+        },
+        updateLastActionDate: function (user, plant) {
+            var transactionName = "UpdateActionDate";
+            var site = "iGuzzini";
+            var transactionCall = site + "/Transaction" + "/" + transactionName;
+            var params = {
+                "TRANSACTION": transactionCall,
+                "user": user,
+                "plant": plant,
+                "OutputParameter": "JSON"
+            };
+            jQuery.ajax({
+                url: "/XMII/Runner",
+                data: params,
+                method: "POST",
+                dataType: "xml",
+                async: true,
+                success: function (oData) {
+                    var result = JSON.parse(oData.documentElement.textContent);
+                    if (result.error == "0" || result.error == 0) {
+                        MessageToast.show("[Debug] update last date fatto.");
+                    }
+                    if (result.error == "1" || result.error == 1) {
+                        window.location.href = "../main/index.html";
+                    }
+                },
+                error: function (oData) {
+                    MessageToast.show("Error");
+
+                }
             });
         },
 //        FUNZIONE CHE FA UNA CHIAMATA ASINCRONA AL BACKEND CON RITORNO DI DATI

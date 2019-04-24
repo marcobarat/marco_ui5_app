@@ -3,8 +3,10 @@ sap.ui.define([
     'sap/ui/model/json/JSONModel',
     'sap/m/MessageToast',
     'sap/m/MessageBox',
-    'sap/ui/core/mvc/Controller'
-], function (jQuery, JSONModel, MessageToast, MessageBox, Controller) {
+    'sap/ui/core/mvc/Controller',
+    'myapp/controller/Library'
+
+], function (jQuery, JSONModel, MessageToast, MessageBox, Controller, Library) {
     "use strict";
 
     var OperationsController = Controller.extend("myapp.controller.Operations", {
@@ -18,6 +20,7 @@ sap.ui.define([
         selectedOp: null,
         clickEvent: null,
         onInit: function () {
+
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
             this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
 
@@ -54,19 +57,19 @@ sap.ui.define([
             var transactionCall = site + "/XACQuery" + "/" + transactionName;
             sap.ui.core.BusyIndicator.show();
             /*jQuery.ajax({
-                url: "model/op.json",
-                method: "GET",
-                async: true,
-                success: function (oData) {
-                    oModel.setData(oData.Rowsets.Rowset[0].Row);
-                    that.getView().setModel(oModel);
-                    sap.ui.core.BusyIndicator.hide();
-
-                },
-                error: function (oData) {
-                    that.error(oData);
-                }
-            });*/
+             url: "model/op.json",
+             method: "GET",
+             async: true,
+             success: function (oData) {
+             oModel.setData(oData.Rowsets.Rowset[0].Row);
+             that.getView().setModel(oModel);
+             sap.ui.core.BusyIndicator.hide();
+             
+             },
+             error: function (oData) {
+             that.error(oData);
+             }
+             });*/
             jQuery.ajax({
                 url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
                 method: "GET",
@@ -122,6 +125,7 @@ sap.ui.define([
             return oModel;
         },
         rowOpSelected: function (event) {
+            Library.updateLastActionDate(this.user, this.plant);
 
             var obj = event.getSource();
             var empty = {d: false, w: false};
@@ -178,6 +182,7 @@ sap.ui.define([
             return this.selectedOp;
         },
         refreshSelection: function () {
+            Library.updateLastActionDate(this.user, this.plant);
 
             var tab1 = this.getView().byId("tab1");
             var items = tab1.getItems();
@@ -206,6 +211,7 @@ sap.ui.define([
             return true;
         },
         update: function () {
+
             if (typeof sap.ui.getCore().getModel().getData().informations != null) {
                 this.getView().setModel(this.initOperations());
 

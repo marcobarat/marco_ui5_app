@@ -3,8 +3,10 @@ sap.ui.define([
     'sap/m/MessageToast',
     'sap/m/MessageBox',
     'sap/ui/model/json/JSONModel',
-    'sap/ui/core/mvc/Controller'
-], function (jQuery, MessageToast, MessageBox, JSONModel, Controller) {
+    'sap/ui/core/mvc/Controller',
+    'myapp/controller/Library'
+
+], function (jQuery, MessageToast, MessageBox, JSONModel, Controller, Library) {
     "use strict";
 
     var WorkinstructionsController = Controller.extend("myapp.controller.Workinstructions", {
@@ -13,7 +15,7 @@ sap.ui.define([
         plantid: null,
         user: null,
         _oDialog: null,
-        
+
         onInit: function () {
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
             this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
@@ -63,27 +65,31 @@ sap.ui.define([
 
             return true;
         },
-        toPdfView: function (name,istext,pdfUrl,value) {
-                if (!this._oDialog) {
-                    this._oDialog = sap.ui.xmlfragment("myapp.view.Winstruction", this);
-                }
-                jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-                var obj = {"workinstruction":name,"IsText":istext,"url":pdfUrl,"value":value};
-                var model = new JSONModel();
-                model.setData(obj);
-                this._oDialog.setModel(model);
-                this._oDialog.open();
- 
+        toPdfView: function (name, istext, pdfUrl, value) {
+            if (!this._oDialog) {
+                this._oDialog = sap.ui.xmlfragment("myapp.view.Winstruction", this);
+            }
+            jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+            var obj = {"workinstruction": name, "IsText": istext, "url": pdfUrl, "value": value};
+            var model = new JSONModel();
+            model.setData(obj);
+            this._oDialog.setModel(model);
+            this._oDialog.open();
+
         },
         openPdf: function (event) {
+            Library.updateLastActionDate(this.user, this.plant);
+
             var ctx = event.getSource().getParent().getBindingContext();
             var model = ctx.getModel();
             var path = ctx.getPath();
             var obj = model.getProperty(path);
             var pdfUrl = obj.url;
-            this.toPdfView(obj.workinstruction,obj.isText,pdfUrl,obj.value);
+            this.toPdfView(obj.workinstruction, obj.isText, pdfUrl, obj.value);
         },
         onExitWI: function () {
+            Library.updateLastActionDate(this.user, this.plant);
+
             if (this._oDialog) {
                 this._oDialog.close();
             }
