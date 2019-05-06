@@ -93,8 +93,12 @@
                                     <Text text="Nome" />
                                 </Column>
                                 <Column minScreenWidth="Tablet"
-                                        demandPopin="true"  width="70%">
+                                        demandPopin="true">
                                     <Text text="Link" />
+                                </Column>
+                                  <Column minScreenWidth="Tablet"
+                                        demandPopin="true"  width="30%">
+                                    <Text text="Relativa a" />
                                 </Column>
                             </columns>
                             <items>
@@ -104,6 +108,8 @@
                                         <Link text="{url}"
                                               emphasized="true"
                                               press="openPdf"/>
+                                         <Text text="{attachedTo}" />
+
                                     </cells>
                                 </ColumnListItem>
                             </items>
