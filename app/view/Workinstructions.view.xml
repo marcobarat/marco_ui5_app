@@ -94,9 +94,9 @@
                                 </Column>
                                 <Column minScreenWidth="Tablet"
                                         demandPopin="true">
-                                    <Text text="Link" />
+                                    <Text text="Tipo" />
                                 </Column>
-                                  <Column minScreenWidth="Tablet"
+                                <Column minScreenWidth="Tablet"
                                         demandPopin="true"  width="30%">
                                     <Text text="Relativa a" />
                                 </Column>
@@ -104,11 +104,18 @@
                             <items>
                                 <ColumnListItem type="Active">
                                     <cells>
-                                        <Text text="{workinstruction}" />
-                                        <Link text="{url}"
+                                        <Link text="{workinstruction}"
+                                              href="{href}"
                                               emphasized="true"
                                               press="openPdf"/>
-                                         <Text text="{attachedTo}" />
+                                        <HBox>
+
+                                            <core:Icon size="1.5rem" visible="{=${isText} ===  '1'}"
+                                                       src="sap-icon://document-text" color="blue"/>
+                                            <core:Icon size="1.5rem" visible="{=${isText} ===  '0'}"
+                                                       src="sap-icon://pdf-attachment" color="red"/>    
+                                        </HBox>                              
+                                        <Text text="{attachedTo}" />
 
                                     </cells>
                                 </ColumnListItem>
