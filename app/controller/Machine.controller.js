@@ -12,16 +12,22 @@ sap.ui.define([
         myModel: new JSONModel({}),
         user: null,
         plant: 1,
+        repartoid: null,
         AREA: null,
         modelArea: new JSONModel({}),
 
         onInit: function () {
             this.user = jQuery.sap.getUriParameters().get("CID");
+            this.repartoid = jQuery.sap.getUriParameters().get("repartoid");
+
             if (this.user == null || typeof this.user == "undefined") {
                 MessageToast.show("Violate regole di sicurezza.");
                 return;
             }
-
+            if (this.repartoid == null || typeof this.repartoid == "undefined") {
+                MessageToast.show("Violate regole di sicurezza.");
+                return;
+            }
             this.getView().setModel(this.modelArea, "modelArea");
 
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
@@ -51,11 +57,14 @@ sap.ui.define([
         initTiles: function () {
             Library.updateLastActionDate(this.user, this.plant);
 
-            var transactionName = "XAC_GetAllWorkcenterByTypeAndUsername";
+            //var transactionName = "XAC_GetAllWorkcenterByTypeAndUsername";
+            var transactionName = "XAC_GetAllWorkcenterByTypeAndRepartoID";
+
             var site = "iGuzzini";
-            var input = "&plant=1&type=A&user=" + this.user;
+            var input = "&plant=" + this.plant + "&type=I&repartoid=" + this.repartoid;
+            //var input = "&plant=1&type=A&user=" + this.user;
             var transactionCall = site + "/XACQuery" + "/" + transactionName;
-            var link = "XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
+            var link = "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
 
             //link = "model/machinesArea" + String(this.AREA) + ".json";
 
