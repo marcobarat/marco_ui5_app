@@ -77,7 +77,7 @@ sap.ui.define([
             var transactionName = "GetAllDataCollectionsFromShopOrderID";
             var that = this;
             var site = "iGuzzini";
-            var input = "&plant=" + this.plantid + "&shoporderid=" + this.shoporderid;
+            var input = "&plant=" + this.plantid + "&shoporderid=" + this.shoporderid + "&workcenterid=" + this.workcenterid;
             var transactionCall = site + "/Transaction" + "/" + transactionName;
 
             jQuery.ajax({
