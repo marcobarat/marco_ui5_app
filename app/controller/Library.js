@@ -110,6 +110,39 @@ sap.ui.define([
             }
             return (string_hours + ":" + string_mins + ":" + string_secs);
         },
+        LogOff: function (user,plant) {
+            var transactionName = "LogOff";
+            var site = "iGuzzini";
+            var transactionCall = site + "/Transaction" + "/" + transactionName;
+            var params = {
+                "TRANSACTION": transactionCall,
+                "user": user,
+                "plant": plant,
+                "OutputParameter": "JSON"
+            };
+            jQuery.ajax({
+                url: "/XMII/Runner",
+                data: params,
+                method: "POST",
+                dataType: "xml",
+                async: false,
+                success: function (oData) {
+                    var result = JSON.parse(oData.documentElement.textContent);
+                    if (result.error == "0" || result.error == 0) {
+                        MessageToast.show("Log Off effettuato con successo.");
+                    }
+                    if (result.error == "1" || result.error == 1) {
+                        window.location.href = "../main/index.html";
+                    }
+                },
+                error: function (oData) {
+                    MessageToast.show("Error");
+
+                }
+            });
+            window.location.href = "../main/index.html";
+
+        },
         DateToStandard: function (date) {
             var hours = this.StringTime(date.getHours());
             var mins = this.StringTime(date.getMinutes());

@@ -27,6 +27,7 @@ sap.ui.define([
         _oDialogSil: null,
         _oDialogEdit: null,
         _oDialogDC: null,
+        interval: null,
 
         onInit: function () {
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
@@ -83,14 +84,54 @@ sap.ui.define([
         },
         navToBackPage: function () {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            clearInterval(this.interval);
             oRouter.navTo("shoporder", true);
         },
         handleRouteMatched: function (oEvent) {
             if (!this._checkRoute(oEvent, "mainpod")) {
                 return;
             }
-
+            this.interval = this.partiRefresh();
             this.update();
+        },
+        partiRefresh: function () {
+            var that = this;
+            return setInterval(function () {
+
+                var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/GetShopOrderInfo&orderID=" + that.shoporderid + "&Content-Type=text/xml&OutputParameter=output";
+
+                //link = "model/machinesArea" + String(this.AREA) + ".json";
+                jQuery.ajax({
+                    url: link,
+                    method: "GET",
+                    async: false,
+                    success: function (oData) {
+                        //JSON.parse(oData.documentElement.textContent)[0].qtyDone;
+                        sap.ui.getCore().getModel().getData().informations.qtydone = JSON.parse(oData.documentElement.textContent)[0].qtyDone;
+                        that.test = new JSONModel();
+                        that.test.setData(sap.ui.getCore().getModel().getData().informations);
+                        that.getView().setModel(that.test);
+                    },
+                    error: function (oData) {
+                        that.error(oData);
+                    }
+                });
+            }, 5000);
+
+        },
+        SUCCESSInitInfo: function (Jdata) {
+
+            MessageToast.show("yeah");
+            /*sap.ui.getCore().getModel().getData().informations.qtydone;
+             
+             this.centerModel.setData(Jdata.Rowsets.Rowset[0].Row);
+             this.selectedID = Jdata.Rowsets.Rowset[0].Row[0].ID;
+             this.getView().setModel(this.centerModel, "centerModel");
+             this.changeSwitch();
+             this.centerModel.refresh(true);*/
+        },
+        FAILUREInitInfo: function () {
+            //alert("error");
         },
         _checkRoute: function (evt, pattern) {
             if (evt.getParameter("name") !== pattern) {
@@ -344,7 +385,7 @@ sap.ui.define([
             var transactionName = "XAC_GetLoggedDC";
             var that = this;
             var site = "iGuzzini";
-            var input = "&plant=" + this.plantid + "&sfc=" + this.sfc;
+            var input = "&plant=" + this.plantid + "&workcenterid=" + this.workcenterid;
             var transactionCall = site + "/XACQuery" + "/" + transactionName;
 
 

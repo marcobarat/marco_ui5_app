@@ -32,8 +32,10 @@
                         <Label text="{/sfc}" class="sapUiMediumMarginEnd whiteText"/> -->
                         <Label text="Utente:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/user}" class="sapUiMediumMarginEnd whiteText"/>
-                        <Label text="Ordine di Lavoro:" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="OdL" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/shoporder}" class="sapUiMediumMarginEnd whiteText"/>
+                        <Label text="Prodotto finito" class="sapUiTinyMarginEnd boldt"/>
+                        <Label text="{/material}" class="sapUiMediumMarginEnd whiteText"/>
                         <Label text="Qta:" class="sapUiTinyMarginEnd boldt"/>
                         <Label text="{/qtydone}/{/qty}" class="sapUiMediumMarginEnd whiteText"/>
                         <!--<Label text="{locale>myapp.generic.kenn.label}:" class="sapUiTinyMarginEnd"/>-->

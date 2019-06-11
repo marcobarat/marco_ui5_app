@@ -48,7 +48,6 @@
         <footer>
             <Toolbar>
                 <ToolbarSpacer/>
-                <Button text="Utente loggato: {/0/user}" press="handleEditPress" />
                 <ToolbarSpacer/>
             </Toolbar>
         </footer>
