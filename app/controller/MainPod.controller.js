@@ -193,6 +193,29 @@ sap.ui.define([
                 this.performStop(opselected);
             }
         },
+        sendSetupPP: function () {
+            Library.updateLastActionDate(this.user, this.plant);
+
+            //var transactionName = "XAC_GetAllWorkcenterByTypeAndUsername";
+            var transactionName = "SetupPP/RecuperaPartProgram";
+
+            var site = "iGuzzini";
+            var input = "&plant=" + this.plantid + "&cid=" + this.user + "&shoporderid=" + this.shoporderid + "&workcenterid=" + this.workcenterid;
+            //var input = "&plant=1&type=A&user=" + this.user;
+            var transactionCall = site + "/Transaction" + "/" + transactionName;
+            var link = "/XMII/Runner?Transaction=" + transactionCall + input + "&Content-Type=text/json&OutputParameter=JSON";
+
+            //link = "model/machinesArea" + String(this.AREA) + ".json";
+
+            Library.AjaxCallerData(link, this.SUCCESSsendSetupPP.bind(this), this.FAILUREsendSetupPP.bind(this));
+        },
+        SUCCESSsendSetupPP: function (Jdata) {
+            //controllo gli errori da fare
+            MessageToast.show("OK");
+        },
+        FAILUREsendSetupPP: function () {
+            alert("error");
+        },
         performPause: function (rowSelected) {
             Library.updateLastActionDate(this.user, this.plantid);
 
