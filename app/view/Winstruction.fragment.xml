@@ -17,7 +17,7 @@
         >
             <l:content>
                 <comp:Embed src="{/url}"  height="600px" width="900px" visible="{=${/IsText} === '0'}" type="application/pdf" internalinstanceid="16"/> 
-                <TextArea value="{/value}" visible="{=${/IsText} === '1'}" rows="8" class="espandi" />
+                <TextArea value="{/value}" visible="{=${/IsText} === '1'}" rows="8" class="espandi" editable="false" />
             </l:content>
 
             <OverflowToolbar id="otb3">
