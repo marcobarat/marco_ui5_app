@@ -152,46 +152,38 @@ sap.ui.define([
         startOperation: function (event) {
             Library.updateLastActionDate(this.user, this.plantid);
 
-            var opselected = sap.ui.getCore().getModel().getData().operationselected;
-            if (typeof opselected === "undefined") {
-                MessageToast.show("Select an operation first!");
-            } else {
-                if (opselected.status === "In queue") {
-                    this.performStart(opselected);
-                } else {
-                    MessageToast.show("Select an operation in queue!");
-                }
-            }
+            var CID = sap.ui.getCore().getModel().getData().informations.user;
+            var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
+            var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
+            var Attivita = "Start";
+            var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/InsertActivity&Content-Type=text/html&CID=" + CID + "&WorkcenterID=" + WorkcenterID + "&ShopOrderID=" + ShopOrderID + "&Attivita=" + Attivita + "&OutputParameter=Output";
+            Library.AjaxCallerData(link, this.SUCCESSInsertActivity.bind(this), this.FAILUREInsertActivity.bind(this));
+
         },
         pauseOperation: function (event) {
             Library.updateLastActionDate(this.user, this.plantid);
 
-            var opselected = sap.ui.getCore().getModel().getData().operationselected;
-            if (typeof opselected === "undefined") {
-                MessageToast.show("Select an operation first!");
-            } else {
-                //if (opselected.status === "In work") { 
-                /*
-                 * Bug nell'aggiornamento dell'operazione selezionata: dopo aver fatto lo start
-                 * l'operazione selezionata ha ancora status in queue e non in work!
-                 */
-                this.performPause(opselected);
-            }
+            var CID = sap.ui.getCore().getModel().getData().informations.user;
+            var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
+            var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
+            var Attivita = "Pausa";
+            var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/InsertActivity&Content-Type=text/html&CID=" + CID + "&WorkcenterID=" + WorkcenterID + "&ShopOrderID=" + ShopOrderID + "&Attivita=" + Attivita + "&OutputParameter=Output";
+            Library.AjaxCallerData(link, this.SUCCESSInsertActivity.bind(this), this.FAILUREInsertActivity.bind(this));
         },
         stopOperation: function (event) {
             Library.updateLastActionDate(this.user, this.plantid);
-
-            var opselected = sap.ui.getCore().getModel().getData().operationselected;
-            if (typeof opselected === "undefined") {
-                MessageToast.show("Select an operation first!");
-            } else {
-                //if (opselected.status === "In work") { 
-                /*
-                 * Bug nell'aggiornamento dell'operazione selezionata: dopo aver fatto lo start
-                 * l'operazione selezionata ha ancora status in queue e non in work!
-                 */
-                this.performStop(opselected);
-            }
+            var CID = sap.ui.getCore().getModel().getData().informations.user;
+            var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
+            var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
+            var Attivita = "Completa";
+            var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/InsertActivity&Content-Type=text/html&CID=" + CID + "&WorkcenterID=" + WorkcenterID + "&ShopOrderID=" + ShopOrderID + "&Attivita=" + Attivita + "&OutputParameter=Output";
+            Library.AjaxCallerData(link, this.SUCCESSInsertActivity.bind(this), this.FAILUREInsertActivity.bind(this));
+        },
+        SUCCESSInsertActivity: function (Jdata) {
+            MessageToast.show(Jdata[0].result.errorMessage, {duration: 2000});
+        },
+        FAILUREInsertActivity: function () {
+            MessageToast.show("Inserimento a log dell'attività fallito", {duration: 2000});
         },
         sendSetupPP: function () {
             Library.updateLastActionDate(this.user, this.plant);
