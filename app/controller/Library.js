@@ -45,7 +45,7 @@ sap.ui.define([
                 success: function (oData) {
                     var result = JSON.parse(oData.documentElement.textContent);
                     if (result.error == "0" || result.error == 0) {
-//                        MessageToast.show("[Debug] update last date fatto.");
+                        //MessageToast.show("[Debug] update last date fatto.");
                     }
                     if (result.error == "1" || result.error == 1) {
                         window.location.href = "../main/index.html";
@@ -110,7 +110,7 @@ sap.ui.define([
             }
             return (string_hours + ":" + string_mins + ":" + string_secs);
         },
-        LogOff: function (user,plant) {
+        LogOff: function (user, plant) {
             var transactionName = "LogOff";
             var site = "iGuzzini";
             var transactionCall = site + "/Transaction" + "/" + transactionName;

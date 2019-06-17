@@ -61,7 +61,7 @@ sap.ui.define([
              var site = "iGuzzini";
              var input = "&plant=" + this.plantid + "&shoporderid=" + this.shoporderid + "&stepid=" + this.stepid;
              var transactionCall = site + "/XACQuery" + "/" + transactionName;
-             
+
              jQuery.ajax({
              url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
              method: "GET",
@@ -108,7 +108,7 @@ sap.ui.define([
             return true;
         },
         saveDc: function (oEv) {
-             Library.updateLastActionDate(this.user, this.plant);
+            Library.updateLastActionDate(this.user, this.plant);
 
             var str = oEv.oSource.sId;
             var veryl = str.length;
@@ -117,7 +117,8 @@ sap.ui.define([
             var len = cont.length;
             var res = str.substring(len + num, veryl);
             var dcGroups = this.getView().getModel().getData();
-            var parXml = "", dc;
+            var parXml = "",
+                dc;
             var operationid;
             var resourceid;
             var sfc = sap.ui.getCore().getModel().getData().informations.sfc;
@@ -128,24 +129,25 @@ sap.ui.define([
                     dc = dcGroups[res];
                     operationid = dc.operationid;
                     parXml = parXml + this.dcMain.replace("${dcGroupId}", dc.dcgroupid).replace("${operationId}", dc.operationid)
-                            .replace("${user}", sap.ui.getCore().getModel().getData().informations.user)
-                            .replace("${sfc}", sap.ui.getCore().getModel().getData().informations.sfc).replace("${workCenterId}", sap.ui.getCore().getModel().getData().informations.workcenterid);
-                    var valueList = "", par, parameters = dc.dcparameterlist;
+                        .replace("${user}", sap.ui.getCore().getModel().getData().informations.user)
+                        .replace("${sfc}", sap.ui.getCore().getModel().getData().informations.sfc).replace("${workCenterId}", sap.ui.getCore().getModel().getData().informations.workcenterid);
+                    var valueList = "",
+                        par, parameters = dc.dcparameterlist;
                     for (var index in parameters) {
                         par = parameters[index];
                         var comment = "";
-                        if (typeof (par.dccomment) != "undefined") 
+                        if (typeof (par.dccomment) != "undefined")
                             comment = par.dccomment;
                         else
                             comment = "";
                         if (typeof (par.value) != "undefined") {
                             valueList = valueList + this.dcPar.replace("${dcparameterid}", par.dcparameterid)
-                                    .replace("${dcvalue}", par.value)
-                                    .replace("${dcmaxvalue}", par.max_value)
-                                    .replace("${dcminvalue}", par.min_value)
-                                    .replace("${dccheckvalue}", '0')
-                                    .replace("${dcComment}",comment)
-                                    .replace("${dcisinteger}", par.isinteger);
+                                .replace("${dcvalue}", par.value)
+                                .replace("${dcmaxvalue}", par.max_value)
+                                .replace("${dcminvalue}", par.min_value)
+                                .replace("${dccheckvalue}", '0')
+                                .replace("${dcComment}", comment)
+                                .replace("${dcisinteger}", par.isinteger);
                         } else {
                             MessageToast.show("Inser a value!");
                             send = 0;
@@ -198,6 +200,7 @@ sap.ui.define([
                         var result = JSON.parse(oData.documentElement.textContent);
                         if (result.error == "0" || result.error == 0) {
                             MessageToast.show("Saved!");
+                            that.onInit();
                         } else {
                             MessageToast.show("Error! " + result.errorMessage);
                         }
