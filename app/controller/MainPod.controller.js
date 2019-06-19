@@ -195,18 +195,25 @@ sap.ui.define([
             var input = "&plant=" + this.plantid + "&cid=" + this.user + "&shoporderid=" + this.shoporderid + "&workcenterid=" + this.workcenterid;
             //var input = "&plant=1&type=A&user=" + this.user;
             var transactionCall = site + "/Transaction" + "/" + transactionName;
-            var link = "/XMII/Runner?Transaction=" + transactionCall + input + "&Content-Type=text/json&OutputParameter=JSON";
+            var link = "/XMII/Runner?Transaction=" + transactionCall + input + "&Content-Type=text/html&OutputParameter=OutMsg";
 
             //link = "model/machinesArea" + String(this.AREA) + ".json";
 
             Library.AjaxCallerData(link, this.SUCCESSsendSetupPP.bind(this), this.FAILUREsendSetupPP.bind(this));
         },
         SUCCESSsendSetupPP: function (Jdata) {
-            //controllo gli errori da fare
-            MessageToast.show("OK");
+            if (isNaN(Jdata[0].result.error)) {
+                MessageToast.show("LA MACCHINA NON RISPONDE: " + Jdata[0].result.error);
+            } else {
+                if (Number(Jdata[0].result.error) !== 0) {
+                    MessageToast.show("SETUP NON INVIATO: " + Jdata[0].result.errorMessage);
+                } else {
+                    MessageToast.show("SETUP INVIATO CORRETTAMENTE");
+                }
+            }
         },
         FAILUREsendSetupPP: function () {
-            alert("error");
+            MessageToast.show("CONNESSIONE A BACKEND FALLITA");
         },
         performPause: function (rowSelected) {
             Library.updateLastActionDate(this.user, this.plantid);
