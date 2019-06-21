@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+    <Dialog id="sendSetupDialog" showHeader="false">
+        <l:VerticalLayout
+            class="sapUiContentPadding"
+            width="800px">
+            <Text text="Conferma Invio Setup" class="textSetupSize textSetupPosition"/>
+            <Button text="Conferma" press="sendSetupPP" class="openButton sendPosition enlargeButton"/>
+            <Button text="Annulla" press="onExitSendSetup" class="closeButton closePosition enlargeButton"/>
+
+        </l:VerticalLayout>
+    </Dialog>
+</core:FragmentDefinition>

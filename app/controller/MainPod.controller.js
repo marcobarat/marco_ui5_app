@@ -30,6 +30,7 @@ sap.ui.define([
         interval: null,
         buttonSource: null,
         backupState: null,
+        _oDialogSetup: null,
 
         onInit: function () {
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
@@ -149,6 +150,7 @@ sap.ui.define([
             info.startButton = false;
             info.pausaButton = false;
             info.completaButton = false;
+            info.setupButton = false;
             if (info.ena === "1") {
                 switch (state) {
                     case "Start":
@@ -158,28 +160,35 @@ sap.ui.define([
                         this.getView().byId("startButton").setEnabled(false);
                         this.getView().byId("pausaButton").setEnabled(true);
                         this.getView().byId("completaButton").setEnabled(true);
+                        this.getView().byId("setupButton").setEnabled(false);
                         break;
                     case "Pausa":
                         info.startButton = true;
                         info.completaButton = true;
+                        info.setupButton = true;
                         this.getView().byId("pausaButton").addStyleClass("buttonSelected");
                         this.getView().byId("startButton").setEnabled(true);
                         this.getView().byId("pausaButton").setEnabled(false);
                         this.getView().byId("completaButton").setEnabled(true);
+                        this.getView().byId("setupButton").setEnabled(true);
                         break;
                     case "Completa":
+                        info.setupButton = true;
                         this.getView().byId("completaButton").addStyleClass("buttonSelected");
                         this.getView().byId("startButton").setEnabled(false);
                         this.getView().byId("pausaButton").setEnabled(false);
                         this.getView().byId("completaButton").setEnabled(false);
+                        this.getView().byId("setupButton").setEnabled(true);
                         break;
                     default:
                         info.startButton = true;
                         info.pausaButton = true;
                         info.completaButton = true;
+                        info.setupButton = true;
                         this.getView().byId("startButton").setEnabled(true);
                         this.getView().byId("pausaButton").setEnabled(true);
                         this.getView().byId("completaButton").setEnabled(true);
+                        this.getView().byId("setupButton").setEnabled(true);
                         break;
                 }
             } else {
@@ -187,6 +196,7 @@ sap.ui.define([
                 this.getView().byId("startButton").setEnabled(false);
                 this.getView().byId("pausaButton").setEnabled(false);
                 this.getView().byId("completaButton").setEnabled(false);
+                this.getView().byId("setupButton").setEnabled(true);
             }
         },
         _checkRoute: function (evt, pattern) {
@@ -251,6 +261,14 @@ sap.ui.define([
         FAILUREInsertActivity: function () {
             MessageToast.show("Inserimento a log dell'attività fallito", {duration: 2000});
         },
+        openSetupDialog: function () {
+            if (!this._oDialogSetup) {
+                this._oDialogSetup = sap.ui.xmlfragment("myapp.view.SendSetup", this);
+            }
+            // toggle compact style
+            jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialogSetup);
+            this._oDialogSetup.open();
+        },
         sendSetupPP: function () {
             Library.updateLastActionDate(this.user, this.plant);
 
@@ -268,8 +286,9 @@ sap.ui.define([
             Library.AjaxCallerData(link, this.SUCCESSsendSetupPP.bind(this), this.FAILUREsendSetupPP.bind(this));
         },
         SUCCESSsendSetupPP: function (Jdata) {
+            this.onExitSendSetup();
             if (isNaN(Jdata[0].result.error) || isNaN(Jdata[0].result.error1)) {
-                MessageToast.show("LA MACCHINA NON RISPONDE: " + Jdata[0].result.error);
+                MessageToast.show("LA MACCHINA NON RISPONDE");
             } else {
                 if (Number(Jdata[0].result.error) !== 0) {
                     if (Jdata[0].result.error1 !== "" && Number(Jdata[0].result.error1) !== 0) {
@@ -381,6 +400,11 @@ sap.ui.define([
 
             if (this._oDialog) {
                 this._oDialog.close();
+            }
+        },
+        onExitSendSetup: function () {
+            if (this._oDialogSetup) {
+                this._oDialogSetup.close();
             }
         },
         onExitDC: function () {

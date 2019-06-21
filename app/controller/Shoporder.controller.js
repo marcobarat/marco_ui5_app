@@ -197,7 +197,8 @@ sap.ui.define([
                 "state": this.state,
                 "startButton": false,
                 "pausaButton": false,
-                "completaButton": false
+                "completaButton": false,
+                "setupButton": false
 
             });
 

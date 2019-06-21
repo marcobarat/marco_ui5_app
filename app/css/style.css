@@ -13,10 +13,34 @@
     left: 45rem;
     top: 1rem;
 }
+.textSetupSize {
+    font-size: 35pt;
+}
+.textSetupPosition {
+    margin-left: 10rem;
+}
+.openButton .sapMBtnInner {
+    border-radius: 10px;
+    border: 1px solid green;
+    color: green;
+}
+.enlargeButton .sapMBtnInner {
+    font-size: 25pt;
+    height: 2.7rem;
+    width: 12rem;
+}
+.sendPosition {
+    left: 6rem;
+    top: 2rem;
+}
 .closeButton .sapMBtnInner {
     border-radius: 10px;
     border: 1px solid red;
     color: red;
+}
+.closePosition {
+    left: 30rem;
+    bottom: 2rem
 }
 .sapMList {
     border: 1px solid #ccc;

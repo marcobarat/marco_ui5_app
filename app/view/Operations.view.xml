@@ -17,7 +17,7 @@
                 <columns>
                     <Column minScreenWidth="Tablet"
                             demandPopin="true" hAlign="Center" vAlign="Middle">
-                        <Text text="Fase" width="100%"/>
+                        <Text text="Step" width="100%"/>
                     </Column>
                     <Column minScreenWidth="Tablet"
                             demandPopin="true" hAlign="Center" vAlign="Middle">
