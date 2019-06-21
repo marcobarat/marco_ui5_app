@@ -35,6 +35,7 @@ sap.ui.define([
         IDTile: null,
         modelInfo: new JSONModel(),
         modelBom: new JSONModel(),
+        state: null,
 
         onInit: function () {
 
@@ -113,6 +114,18 @@ sap.ui.define([
         apriDialog: function (event) {
 
             this.IDTile = this.shopOrderModel.getProperty(event.getSource().getBindingContext().getPath()).ID;
+            this.state = this.shopOrderModel.getProperty(event.getSource().getBindingContext().getPath()).status;
+            switch (this.state) {
+                case "INPAUSE":
+                    this.state = "Pausa";
+                    break;
+                case "INWORK":
+                    this.state = "Start";
+                    break;
+                case "COMPLETED":
+                    this.state = "Completa";
+                    break;
+            }
             this.getPhase(event);
             Library.updateLastActionDate(this.user, this.plantid);
 
@@ -180,7 +193,11 @@ sap.ui.define([
                 "resource": this.resource,
                 "sfc": this.sfc,
                 "material": this.material,
-                "ena": this.enabled
+                "ena": this.enabled,
+                "state": this.state,
+                "startButton": false,
+                "pausaButton": false,
+                "completaButton": false
 
             });
 

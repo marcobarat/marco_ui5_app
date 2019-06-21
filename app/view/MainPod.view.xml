@@ -114,14 +114,17 @@
                             height="30px"
                             class="sapUiSmallMarginEnd"/>
                         <comp:PodButton width="120px" press="startOperation"
+                                        id="startButton"
                                         icon="sap-icon://begin" iconSize="3.5rem"
-                                        text="Start" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
+                                        text="Start" class="sapUiSmallMarginTop" enabled="{/startButton}"/>
                         <comp:PodButton width="120px" press="pauseOperation"
+                                        id="pausaButton"
                                         icon="sap-icon://pause" iconSize="3.5rem"
-                                        text="Pausa" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
+                                        text="Pausa" class="sapUiSmallMarginTop" enabled="{/pausaButton}"/>
                         <comp:PodButton width="120px" press="stopOperation"
+                                        id="completaButton"
                                         icon="sap-icon://complete" iconSize="3.5rem"
-                                        text="Completa" class="sapUiSmallMarginTop" enabled="{=${/ena} === '1'}"/>
+                                        text="Completa" class="sapUiSmallMarginTop" enabled="{/completaButton}"/>
                         <!-- <comp:PodButton width="120px" press="onOpenDefect"
                         icon="sap-icon://quality-issue" iconSize="3.5rem"
                         text="Open NC" class="sapUiSmallMarginTop"/> -->

@@ -1,3 +1,7 @@
+.buttonSelected {
+    color: red !important;
+    border: solid 5px red !important;
+}
 .red {
     font-weight: bolder !important;
     color:red;

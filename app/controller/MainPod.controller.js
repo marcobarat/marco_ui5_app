@@ -28,6 +28,8 @@ sap.ui.define([
         _oDialogEdit: null,
         _oDialogDC: null,
         interval: null,
+        buttonSource: null,
+        backupState: null,
 
         onInit: function () {
             this.router = sap.ui.core.UIComponent.getRouterFor(this);
@@ -35,6 +37,9 @@ sap.ui.define([
             this.initPod();
         },
         initPod: function () {
+
+            this.buttonsLogic(sap.ui.getCore().getModel().getData().informations.state);
+
             this.user = sap.ui.getCore().getModel().getData().informations.user;
             this.workcenter = sap.ui.getCore().getModel().getData().informations.workcenter;
             this.workcenterid = sap.ui.getCore().getModel().getData().informations.workcenterid;
@@ -107,7 +112,9 @@ sap.ui.define([
                     async: false,
                     success: function (oData) {
                         //JSON.parse(oData.documentElement.textContent)[0].qtyDone;
-                        sap.ui.getCore().getModel().getData().informations.qtydone = JSON.parse(oData.documentElement.textContent)[0].qtyDone;
+                        var data = JSON.parse(oData.documentElement.textContent)[0];
+                        var info = sap.ui.getCore().getModel().getData().informations;
+                        info.qtydone = data.qtyDone;
                         that.test = new JSONModel();
                         that.test.setData(sap.ui.getCore().getModel().getData().informations);
                         that.getView().setModel(that.test);
@@ -133,6 +140,55 @@ sap.ui.define([
         FAILUREInitInfo: function () {
             //alert("error");
         },
+        buttonsLogic: function (state) {
+            var info = sap.ui.getCore().getModel().getData().informations;
+            var buttonsID = ["startButton", "pausaButton", "completaButton"];
+            for (var i = 0; i < buttonsID.length; i++) {
+                this.getView().byId(buttonsID[i]).removeStyleClass("buttonSelected");
+            }
+            info.startButton = false;
+            info.pausaButton = false;
+            info.completaButton = false;
+            if (info.ena === "1") {
+                switch (state) {
+                    case "Start":
+                        info.pausaButton = true;
+                        info.completaButton = true;
+                        this.getView().byId("startButton").addStyleClass("buttonSelected");
+                        this.getView().byId("startButton").setEnabled(false);
+                        this.getView().byId("pausaButton").setEnabled(true);
+                        this.getView().byId("completaButton").setEnabled(true);
+                        break;
+                    case "Pausa":
+                        info.startButton = true;
+                        info.completaButton = true;
+                        this.getView().byId("pausaButton").addStyleClass("buttonSelected");
+                        this.getView().byId("startButton").setEnabled(true);
+                        this.getView().byId("pausaButton").setEnabled(false);
+                        this.getView().byId("completaButton").setEnabled(true);
+                        break;
+                    case "Completa":
+                        this.getView().byId("completaButton").addStyleClass("buttonSelected");
+                        this.getView().byId("startButton").setEnabled(false);
+                        this.getView().byId("pausaButton").setEnabled(false);
+                        this.getView().byId("completaButton").setEnabled(false);
+                        break;
+                    default:
+                        info.startButton = true;
+                        info.pausaButton = true;
+                        info.completaButton = true;
+                        this.getView().byId("startButton").setEnabled(true);
+                        this.getView().byId("pausaButton").setEnabled(true);
+                        this.getView().byId("completaButton").setEnabled(true);
+                        break;
+                }
+            } else {
+                this.getView().byId("completaButton").addStyleClass("buttonSelected");
+                this.getView().byId("startButton").setEnabled(false);
+                this.getView().byId("pausaButton").setEnabled(false);
+                this.getView().byId("completaButton").setEnabled(false);
+            }
+        },
         _checkRoute: function (evt, pattern) {
             if (evt.getParameter("name") !== pattern) {
                 return false;
@@ -152,6 +208,8 @@ sap.ui.define([
         startOperation: function (event) {
             Library.updateLastActionDate(this.user, this.plantid);
 
+            this.buttonSource = "Start";
+
             var CID = sap.ui.getCore().getModel().getData().informations.user;
             var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
             var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
@@ -163,6 +221,8 @@ sap.ui.define([
         pauseOperation: function (event) {
             Library.updateLastActionDate(this.user, this.plantid);
 
+            this.buttonSource = "Pausa";
+
             var CID = sap.ui.getCore().getModel().getData().informations.user;
             var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
             var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
@@ -172,6 +232,9 @@ sap.ui.define([
         },
         stopOperation: function (event) {
             Library.updateLastActionDate(this.user, this.plantid);
+
+            this.buttonSource = "Completa";
+
             var CID = sap.ui.getCore().getModel().getData().informations.user;
             var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
             var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
@@ -180,6 +243,9 @@ sap.ui.define([
             Library.AjaxCallerData(link, this.SUCCESSInsertActivity.bind(this), this.FAILUREInsertActivity.bind(this));
         },
         SUCCESSInsertActivity: function (Jdata) {
+            if (Jdata[0].result.errorMessage.indexOf("Errore") === -1) {
+                this.buttonsLogic(this.buttonSource);
+            }
             MessageToast.show(Jdata[0].result.errorMessage, {duration: 2000});
         },
         FAILUREInsertActivity: function () {
@@ -202,13 +268,21 @@ sap.ui.define([
             Library.AjaxCallerData(link, this.SUCCESSsendSetupPP.bind(this), this.FAILUREsendSetupPP.bind(this));
         },
         SUCCESSsendSetupPP: function (Jdata) {
-            if (isNaN(Jdata[0].result.error)) {
+            if (isNaN(Jdata[0].result.error) || isNaN(Jdata[0].result.error1)) {
                 MessageToast.show("LA MACCHINA NON RISPONDE: " + Jdata[0].result.error);
             } else {
                 if (Number(Jdata[0].result.error) !== 0) {
-                    MessageToast.show("SETUP NON INVIATO: " + Jdata[0].result.errorMessage);
+                    if (Jdata[0].result.error1 !== "" && Number(Jdata[0].result.error1) !== 0) {
+                        MessageToast.show("SETUP NON INVIATO. GIOTTO: " + Jdata[0].result.errorMessage + " CAMPETELLA: " + Jdata[0].result.errorMessage1);
+                    } else {
+                        MessageToast.show("SETUP NON INVIATO. GIOTTO: " + Jdata[0].result.errorMessage);
+                    }
                 } else {
-                    MessageToast.show("SETUP INVIATO CORRETTAMENTE");
+                    if (Number(Jdata[0].result.error1) !== 0 && Jdata[0].result.error1 !== "") {
+                        MessageToast.show("SETUP NON INVIATO. CAMPETELLA: " + Jdata[0].result.errorMessage1);
+                    } else {
+                        MessageToast.show("SETUP INVIATO CORRETTAMENTE");
+                    }
                 }
             }
         },
