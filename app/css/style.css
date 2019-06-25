@@ -1,3 +1,15 @@
+.sapMMessageToast {
+    font-size: 24pt;
+    width: 60rem !important;
+}
+.dimensionsMenu *{
+    font-size: 30pt !important;
+    margin-bottom: 1.5rem;
+    top: 0.5rem;
+}
+.dimensionsMenu {
+    height: 7rem !important;
+}
 .buttonSelected {
     color: red !important;
     border: solid 5px red !important;

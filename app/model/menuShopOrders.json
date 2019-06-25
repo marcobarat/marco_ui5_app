@@ -1,18 +1,10 @@
 [
     {
-        "name": "Inizio Teorico",
+        "name": "Vai a POD",
         "isActive": true
     },
     {
         "name": "Informazioni",
         "isActive": true
-    },
-    {
-        "name": "TBD",
-        "isActive": false
-    },
-    {
-        "name": "TBD",
-        "isActive": false
     }
 ]

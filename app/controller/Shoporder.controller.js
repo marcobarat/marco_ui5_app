@@ -168,7 +168,7 @@ sap.ui.define([
             if (!selection.getSubmenu()) {
 //                this.transportModel = new JSONModel();
                 switch (itemText) {
-                    case 'Inizio Teorico':
+                    case 'Vai a POD':
                         this.goToPod();
                         break;
                     case 'Invia Parametri Macchina':

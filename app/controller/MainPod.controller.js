@@ -255,8 +255,8 @@ sap.ui.define([
         SUCCESSInsertActivity: function (Jdata) {
             if (Jdata[0].result.errorMessage.indexOf("Errore") === -1) {
                 this.buttonsLogic(this.buttonSource);
+                MessageToast.show(Jdata[0].result.errorMessage, {duration: 2000});
             }
-            MessageToast.show(Jdata[0].result.errorMessage, {duration: 2000});
         },
         FAILUREInsertActivity: function () {
             MessageToast.show("Inserimento a log dell'attività fallito", {duration: 2000});
@@ -573,6 +573,13 @@ sap.ui.define([
 
             return oModel;
 
+        },
+        onNavBack: function () {
+            var newModel = new JSONModel();
+            this.getView().setModel(newModel);
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+
+            oRouter.navTo("shoporder", true);
         },
         getStatusMachineEng: function (oEvent) {
             var oModel = new JSONModel();
