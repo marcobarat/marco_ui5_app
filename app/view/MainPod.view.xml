@@ -8,7 +8,7 @@
         <customHeader>
             <Bar>
                 <contentLeft>
-                    <Button icon="sap-icon://slim-arrow-left" press="onNavBack"/>
+                    <Button icon="sap-icon://slim-arrow-left" press="navToBackPage"/>
                     <Image src="images/iguzlogo.png" height="75%" class="moveLogoUp"/>
                 </contentLeft>
                 <contentRight>

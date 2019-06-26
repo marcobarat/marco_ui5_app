@@ -112,8 +112,10 @@
 
                                             <core:Icon size="1.5rem" visible="{=${isText} ===  '1'}"
                                                        src="sap-icon://document-text" color="blue"/>
-                                            <core:Icon size="1.5rem" visible="{=${isText} ===  '0'}"
-                                                       src="sap-icon://pdf-attachment" color="red"/>    
+                                            <core:Icon size="1.5rem" visible="{=${isPDF} ===  '1'}"
+                                                       src="sap-icon://pdf-attachment" color="red"/> 
+                                            <core:Icon size="1.5rem" visible="{=${isIMG} ===  '1'}"
+                                                       src="sap-icon://background" color="green"/>    
                                         </HBox>                              
                                         <Text text="{attachedTo}" />
 

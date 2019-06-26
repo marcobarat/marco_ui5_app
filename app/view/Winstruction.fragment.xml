@@ -16,7 +16,8 @@
             height="100%"
         >
             <l:content>
-                <comp:Embed src="{/url}"  height="600px" width="900px" visible="{=${/IsText} === '0'}" type="application/pdf" internalinstanceid="16"/> 
+                <comp:Embed src="{/url}"  height="600px" width="900px" visible="{=${/IsPDF} === '1'}" type="application/pdf" internalinstanceid="16"/>
+                <Image src="{/url}"  height="600px" width="900px" visible="{=${/IsIMG} === '1'}"/> 
                 <TextArea value="{/value}" visible="{=${/IsText} === '1'}" rows="8" class="espandi" editable="false" />
             </l:content>
 
