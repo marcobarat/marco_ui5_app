@@ -91,6 +91,7 @@ sap.ui.define([
         navToBackPage: function () {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             clearInterval(this.interval);
+            this.getView().byId("mainIconTabBar").setSelectedKey("OP");
             oRouter.navTo("shoporder", true);
         },
         handleRouteMatched: function (oEvent) {

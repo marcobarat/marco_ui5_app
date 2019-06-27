@@ -36,6 +36,7 @@ sap.ui.define([
         modelInfo: new JSONModel(),
         modelBom: new JSONModel(),
         state: null,
+        _actionSheet: null,
 
         onInit: function () {
 
@@ -45,7 +46,6 @@ sap.ui.define([
                 alert("error");
             }
         },
-
         initShoporder: function () {
             this.AREA = jQuery.sap.getUriParameters().get("AREA");
             var link;
@@ -62,13 +62,11 @@ sap.ui.define([
                 var input = "&plant=" + sap.ui.getCore().getModel().getData().workcenter.plant + "&workcenterid=" + sap.ui.getCore().getModel().getData().workcenter.id + "&user=" + sap.ui.getCore().getModel().getData().workcenter.user;
                 var transactionCall = site + "/XACQuery" + "/" + transactionName;
                 Library.updateLastActionDate(this.user, this.plantid);
-
                 link = "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json";
             }
 
             //link = "model/fakeShopOrders" + String(Math.floor(Math.random() * 4) + 1) + ".json";
             Library.updateLastActionDate(this.user, this.plantid);
-
             Library.AjaxCallerData(link, this.SUCCESSInitShoporder.bind(this), this.FAILUREInitShoporder.bind(this));
         },
         SUCCESSInitShoporder: function (Jdata) {
@@ -103,7 +101,6 @@ sap.ui.define([
             var newModel = new JSONModel();
             this.getView().setModel(newModel);
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-
             oRouter.navTo("machine", true);
         },
         onExit: function () {
@@ -128,28 +125,39 @@ sap.ui.define([
             }
             this.getPhase(event);
             Library.updateLastActionDate(this.user, this.plantid);
-
-            this.button = event.getSource();
-
-            var link = (this.AREA === "2" || this.AREA === "3") ? "model/menuShopOrdersInactive.json" : "model/menuShopOrders.json";
-            Library.AjaxCallerData(link, this.SUCCESSApriDialog.bind(this), this.FAILUREApriDialog.bind(this));
-        },
-        SUCCESSApriDialog: function (Jdata) {
-            if (!this.shopOrderMenu) {
-                this.shopOrderMenu = sap.ui.xmlfragment("myapp/view/menuShopOrders", this);
-                this.getView().addDependent(this.shopOrderMenu);
+            var oButton = event.getSource();
+            // create action sheet only once
+            if (!this._actionSheet) {
+                this._actionSheet = sap.ui.xmlfragment(
+                        "myapp.view.PodInfoMenu",
+                        this
+                        );
+                this.getView().addDependent(this._actionSheet);
             }
-            var eDock = sap.ui.core.Popup.Dock;
-            this.shopOrderMenu.open(this._bKeyboard, this.button, eDock.BeginTop, eDock.BeginMiddle, this.button);
-            Library.updateLastActionDate(this.user, this.plantid);
 
-            var menu = sap.ui.getCore().byId("menuID");
-            menu.destroyItems();
-            menu = this.fillMenu(menu, Jdata);
+            this._actionSheet.openBy(oButton);
         },
-        FAILUREApriDialog: function () {
-            alert("error");
-        },
+//            this.button = event.getSource();
+//
+//            var link = (this.AREA === "2" || this.AREA === "3") ? "model/menuShopOrdersInactive.json" : "model/menuShopOrders.json";
+//            Library.AjaxCallerData(link, this.SUCCESSApriDialog.bind(this), this.FAILUREApriDialog.bind(this));
+//        },
+//        SUCCESSApriDialog: function (Jdata) {
+//            if (!this.shopOrderMenu) {
+//                this.shopOrderMenu = sap.ui.xmlfragment("myapp/view/menuShopOrders", this);
+//                this.getView().addDependent(this.shopOrderMenu);
+//            }
+//            var eDock = sap.ui.core.Popup.Dock;
+//            this.shopOrderMenu.open(this._bKeyboard, this.button, eDock.BeginTop, eDock.BeginMiddle, this.button);
+//            Library.updateLastActionDate(this.user, this.plantid);
+//
+//            var menu = sap.ui.getCore().byId("menuID");
+//            menu.destroyItems();
+//            menu = this.fillMenu(menu, Jdata);
+//        },
+//                FAILUREApriDialog: function () {
+//                alert("error");
+//                },
         fillMenu: function (menu, json) {
             for (var key in json) {
                 var item = new sap.ui.unified.MenuItem({text: json[key].name, enabled: json[key].isActive});
@@ -163,21 +171,20 @@ sap.ui.define([
             return menu;
         },
         discriminator: function (event) {
-            var selection = event.getParameter("item");
-            var itemText = selection.getProperty("text");
-            if (!selection.getSubmenu()) {
+//            var selection = event.getParameter("item");
+//            var itemText = selection.getProperty("text");
+            var itemText = event.getSource().getText();
+//            if (!selection.getSubmenu()) {
 //                this.transportModel = new JSONModel();
-                switch (itemText) {
-                    case 'Vai a POD':
-                        this.goToPod();
-                        break;
-                    case 'Invia Parametri Macchina':
-                        break;
-                    case 'Informazioni':
-                        this.showInfo();
-                        break;
-                }
+            switch (itemText) {
+                case 'Vai a POD':
+                    this.goToPod();
+                    break;
+                case 'Informazioni':
+                    this.showInfo();
+                    break;
             }
+//            }
         },
         goToPod: function (event) {
             sap.ui.getCore().getModel().setProperty("/informations", {
@@ -201,10 +208,8 @@ sap.ui.define([
                 "setupButton": false
 
             });
-
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             Library.updateLastActionDate(this.user, this.plantid);
-
             oRouter.navTo("mainpod", true);
         },
         showInfo: function () {
@@ -244,7 +249,6 @@ sap.ui.define([
         },
         getPhase: function (oEvent) {
             var oModel = new JSONModel();
-
             var str = oEvent.mParameters.id;
             if (str.length > 0) {
                 var veryl = str.length;
@@ -252,7 +256,6 @@ sap.ui.define([
                 var num = str.search("container-");
                 var len = cont.length;
                 var res = str.substring(len + num, veryl);
-
                 var transactionName = "XAC_GetAllShopOrderPhase";
                 var that = this;
                 var site = "iGuzzini";
@@ -293,7 +296,5 @@ sap.ui.define([
 
 
     });
-
     return ShoporderController;
-
 });
