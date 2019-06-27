@@ -35,9 +35,9 @@
 
             <StandardTile
                 icon="{icon}"
-                number="{QtyOrdered}"
-                numberUnit="OdL: {ShopOrder}"
-                title="Prodotto finito {Material}"
+                number="{QtyDone}/{QtyOrdered}"
+                numberUnit="OdL: {ShopOrder} | Priorita: {Priority}"
+                title="Prodotto finito {Material}  {PlannedCompDate}"
                 info="{status}"
                 infoState="{stateoftile}"
                 press="apriDialog"
