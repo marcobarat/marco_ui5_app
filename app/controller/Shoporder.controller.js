@@ -125,39 +125,39 @@ sap.ui.define([
             }
             this.getPhase(event);
             Library.updateLastActionDate(this.user, this.plantid);
-            var oButton = event.getSource();
-            // create action sheet only once
-            if (!this._actionSheet) {
-                this._actionSheet = sap.ui.xmlfragment(
-                        "myapp.view.PodInfoMenu",
-                        this
-                        );
-                this.getView().addDependent(this._actionSheet);
-            }
-
-            this._actionSheet.openBy(oButton);
-        },
-//            this.button = event.getSource();
-//
-//            var link = (this.AREA === "2" || this.AREA === "3") ? "model/menuShopOrdersInactive.json" : "model/menuShopOrders.json";
-//            Library.AjaxCallerData(link, this.SUCCESSApriDialog.bind(this), this.FAILUREApriDialog.bind(this));
-//        },
-//        SUCCESSApriDialog: function (Jdata) {
-//            if (!this.shopOrderMenu) {
-//                this.shopOrderMenu = sap.ui.xmlfragment("myapp/view/menuShopOrders", this);
-//                this.getView().addDependent(this.shopOrderMenu);
+//            var oButton = event.getSource();
+//            // create action sheet only once
+//            if (!this._actionSheet) {
+//                this._actionSheet = sap.ui.xmlfragment(
+//                        "myapp.view.PodInfoMenu",
+//                        this
+//                        );
+//                this.getView().addDependent(this._actionSheet);
 //            }
-//            var eDock = sap.ui.core.Popup.Dock;
-//            this.shopOrderMenu.open(this._bKeyboard, this.button, eDock.BeginTop, eDock.BeginMiddle, this.button);
-//            Library.updateLastActionDate(this.user, this.plantid);
 //
-//            var menu = sap.ui.getCore().byId("menuID");
-//            menu.destroyItems();
-//            menu = this.fillMenu(menu, Jdata);
+//            this._actionSheet.openBy(oButton);
 //        },
-//                FAILUREApriDialog: function () {
-//                alert("error");
-//                },
+            this.button = event.getSource();
+
+            var link = (this.AREA === "2" || this.AREA === "3") ? "model/menuShopOrdersInactive.json" : "model/menuShopOrders.json";
+            Library.AjaxCallerData(link, this.SUCCESSApriDialog.bind(this), this.FAILUREApriDialog.bind(this));
+        },
+        SUCCESSApriDialog: function (Jdata) {
+            if (!this.shopOrderMenu) {
+                this.shopOrderMenu = sap.ui.xmlfragment("myapp/view/menuShopOrders", this);
+                this.getView().addDependent(this.shopOrderMenu);
+            }
+            var eDock = sap.ui.core.Popup.Dock;
+            this.shopOrderMenu.open(this._bKeyboard, this.button, eDock.BeginTop, eDock.BeginMiddle, this.button);
+            Library.updateLastActionDate(this.user, this.plantid);
+
+            var menu = sap.ui.getCore().byId("menuID");
+            menu.destroyItems();
+            menu = this.fillMenu(menu, Jdata);
+        },
+        FAILUREApriDialog: function () {
+            alert("error");
+        },
         fillMenu: function (menu, json) {
             for (var key in json) {
                 var item = new sap.ui.unified.MenuItem({text: json[key].name, enabled: json[key].isActive});
@@ -171,19 +171,27 @@ sap.ui.define([
             return menu;
         },
         discriminator: function (event) {
-//            var selection = event.getParameter("item");
-//            var itemText = selection.getProperty("text");
-            var itemText = event.getSource().getText();
-//            if (!selection.getSubmenu()) {
-//                this.transportModel = new JSONModel();
-            switch (itemText) {
-                case 'Vai a POD':
-                    this.goToPod();
-                    break;
-                case 'Informazioni':
-                    this.showInfo();
-                    break;
+            var selection = event.getParameter("item");
+            var itemText = selection.getProperty("text");
+            if (!selection.getSubmenu()) {
+                this.transportModel = new JSONModel();
+                switch (itemText) {
+                    case 'Vai a POD':
+                        this.goToPod();
+                        break;
+                    case 'Informazioni':
+                        this.showInfo();
+                        break;
+                }
             }
+//            var itemText = event.getSource().getText();
+//            switch (itemText) {
+//                case 'Vai a POD':
+//                    this.goToPod();
+//                    break;
+//                case 'Informazioni':
+//                    this.showInfo();
+//                    break;
 //            }
         },
         goToPod: function (event) {

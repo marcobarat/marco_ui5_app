@@ -5,7 +5,7 @@
 		title="Choose Your Action"
 		showCancelButton="true"
 		placement="Bottom">
-			<Button text="Vai a POD" icon="sap-icon://bbyd-dashboard" press="discriminator" class="fontAction"/>
-			<Button text="Informazioni" icon="sap-icon://message-information" press="discriminator" class="fontAction" />
+			<Button text="Vai a POD" press="discriminator" class="fontAction"/>
+			<Button text="Informazioni" press="discriminator" class="fontAction" />
 	</ActionSheet>
 </core:FragmentDefinition>
