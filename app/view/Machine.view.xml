@@ -7,7 +7,7 @@
     
     <Page
         title="Seleziona un centro di lavoro: Area {modelArea>/area}"
-        class="sapUiContentPadding myapp"
+        class="sapUiContentPadding myapp scaled"
         showNavButton="true">
 
         <customHeader>

@@ -5,7 +5,7 @@
     xmlns="sap.m">
     <Page
         title="Seleziona un Ordine di Lavoro"
-        class="sapUiContentPadding myapp"
+        class="sapUiContentPadding myapp scaled"
         showNavButton="true" 
     >
 

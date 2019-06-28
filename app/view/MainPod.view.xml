@@ -2,7 +2,7 @@
           xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
           xmlns:f="sap.ui.layout.form" xmlns:comp="myapp.component"
           controllerName="myapp.controller.MainPod">
-    <Page title="POD" class="myPage sfondotiles"
+    <Page title="POD" class="myPage sfondotiles scaled"
           showHeader="true"
           enableScrolling="false">
         <customHeader>
