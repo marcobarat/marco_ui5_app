@@ -1,6 +1,9 @@
 .scaled {
     zoom: 75%;
 }
+.scaledPod {
+    zoom: 65%;
+}
 .fontAction .sapMBtnInner {
     font-size: 25pt;
 }
