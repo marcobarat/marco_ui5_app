@@ -17,7 +17,7 @@
                 <columns>
                     <Column minScreenWidth="Tablet"
                             demandPopin="true" hAlign="Center" vAlign="Middle">
-                        <Text text="Step" width="100%"/>
+                        <Text text="Fase" width="100%"/>
                     </Column>
                     <Column minScreenWidth="Tablet"
                             demandPopin="true" hAlign="Center" vAlign="Middle">
@@ -74,7 +74,11 @@
                                 text="{MachineDescription}"/>
                             <Text
                                 text="{sap_status}"/>
-                            <HBox alignItems="Center" justifyContent="Center">
+                                                       <Text
+                                text="{LastActionDate}"/>
+                            <!--<Text
+                                text="{LastActionDate}"/>
+                             <HBox alignItems="Center" justifyContent="Center">
                                 <VBox alignItems="Center" justifyContent="Center">
                                     <HBox>
 
@@ -84,7 +88,7 @@
                                                    src="sap-icon://document-text" tooltip="{locale>myapp.view.operations.results.tooltip.workinstructions}" color="{ops>wisColor}"/>
                                     </HBox>
                                 </VBox>
-                            </HBox>
+                            </HBox> -->
                             <!--
                             <HBox alignItems="Center" justifyContent="Center">
 
