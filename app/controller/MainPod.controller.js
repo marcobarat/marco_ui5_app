@@ -289,7 +289,7 @@ sap.ui.define([
         SUCCESSsendSetupPP: function (Jdata) {
             this.onExitSendSetup();
             if (isNaN(Jdata[0].result.error) || isNaN(Jdata[0].result.error1)) {
-                MessageToast.show("LA MACCHINA NON RISPONDE");
+                MessageToast.show("LA MACCHINA NON RISPONDE" + Jdata[0].result.errorMessage + " - " + Jdata[0].result.errorMessage1);
             } else {
                 if (Number(Jdata[0].result.error) !== 0) {
                     if (Jdata[0].result.error1 !== "" && Number(Jdata[0].result.error1) !== 0) {

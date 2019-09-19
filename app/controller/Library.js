@@ -27,7 +27,7 @@ sap.ui.define([
             });
         },
         updateLastActionDate: function (user, plant) {
-            var transactionName = "UpdateActionDate";
+            /*var transactionName = "UpdateActionDate";
             var site = "iGuzzini";
             var transactionCall = site + "/Transaction" + "/" + transactionName;
             var params = {
@@ -55,7 +55,7 @@ sap.ui.define([
                     MessageToast.show("Error");
 
                 }
-            });
+            }); */
         },
 //        FUNZIONE CHE FA UNA CHIAMATA ASINCRONA AL BACKEND CON RITORNO DI DATI
         AjaxCallerData: function (addressOfJSON, successFunc, errorFunc, type) {
