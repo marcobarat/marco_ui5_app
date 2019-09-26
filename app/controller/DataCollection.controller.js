@@ -149,7 +149,7 @@ sap.ui.define([
                                 .replace("${dcComment}", comment)
                                 .replace("${dcisinteger}", par.isinteger);
                         } else {
-                            MessageToast.show("Inser a value!");
+                            MessageToast.show("Insert a value!");
                             send = 0;
                             break;
                         }
@@ -161,8 +161,6 @@ sap.ui.define([
                 } catch (err) {
                     MessageToast.show("Error!");
                 }
-
-
                 ciclo--;
             }
             var logdc = "<dcGroups>" + parXml + "</dcGroups>";
@@ -212,7 +210,7 @@ sap.ui.define([
                 });
             }
 
-            console.log(logdc);
+            //console.log(logdc);
 
 
         },
