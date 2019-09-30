@@ -60,7 +60,34 @@ sap.ui.define([
             Library.updateLastActionDate(this.user, this.plantid);
 
         },
+        changeEnelValue: function (oEvent) {
+            var transactionName = "WriteEngelParameter";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&in_job_name=" + this._oDialogEdit.getModel().getData().parameter + "&in_parameter=" + this._oDialogEdit.getModel().getData().parameter + "&in_value=" + oEvent.oSource.mProperties.value;
+            var transactionCall = site + "/Shopfloor/XacuteQ" + "/" + transactionName;
 
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    if (oData.Rowsets.Rowset[0].Row[0].CODE == "OK") {
+
+                        MessageToast.show("Success.");
+                        that.onExitPara();
+                    } else {
+                        MessageToast.show("Error. " + oData.Rowsets.Rowset[0].Row[0].DESCRIPTION);
+                    }
+                },
+                error: function (oData) {
+                    MessageToast.show("Error. ");
+                }
+            });
+
+
+
+        },
         navToBackPage: function () {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             clearInterval(this.interval);
@@ -189,6 +216,43 @@ sap.ui.define([
                 alert("error");
             }
         },
+        startOperation: function (event) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
+            this.buttonSource = "Start";
+
+            var CID = sap.ui.getCore().getModel().getData().informations.user;
+            var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
+            var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
+            var Attivita = "Start";
+            var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/InsertActivity&Content-Type=text/html&CID=" + CID + "&WorkcenterID=" + WorkcenterID + "&ShopOrderID=" + ShopOrderID + "&Attivita=" + Attivita + "&OutputParameter=Output";
+            Library.AjaxCallerData(link, this.SUCCESSInsertActivity.bind(this), this.FAILUREInsertActivity.bind(this));
+
+        },
+        pauseOperation: function (event) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
+            this.buttonSource = "Pausa";
+
+            var CID = sap.ui.getCore().getModel().getData().informations.user;
+            var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
+            var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
+            var Attivita = "Pausa";
+            var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/InsertActivity&Content-Type=text/html&CID=" + CID + "&WorkcenterID=" + WorkcenterID + "&ShopOrderID=" + ShopOrderID + "&Attivita=" + Attivita + "&OutputParameter=Output";
+            Library.AjaxCallerData(link, this.SUCCESSInsertActivity.bind(this), this.FAILUREInsertActivity.bind(this));
+        },
+        stopOperation: function (event) {
+            Library.updateLastActionDate(this.user, this.plantid);
+
+            this.buttonSource = "Completa";
+
+            var CID = sap.ui.getCore().getModel().getData().informations.user;
+            var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
+            var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
+            var Attivita = "Completa";
+            var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/InsertActivity&Content-Type=text/html&CID=" + CID + "&WorkcenterID=" + WorkcenterID + "&ShopOrderID=" + ShopOrderID + "&Attivita=" + Attivita + "&OutputParameter=Output";
+            Library.AjaxCallerData(link, this.SUCCESSInsertActivity.bind(this), this.FAILUREInsertActivity.bind(this));
+        },
         SUCCESSInsertActivity: function (Jdata) {
             if (Jdata[0].result.errorMessage.indexOf("Errore") === -1) {
                 this.buttonsLogic(this.buttonSource);
@@ -225,7 +289,7 @@ sap.ui.define([
         SUCCESSsendSetupPP: function (Jdata) {
             this.onExitSendSetup();
             if (isNaN(Jdata[0].result.error) || isNaN(Jdata[0].result.error1)) {
-                MessageToast.show("LA MACCHINA NON RISPONDE" + Jdata[0].result.errorMessage + " - " + Jdata[0].result.errorMessage1);
+                MessageToast.show("LA MACCHINA NON RISPONDE");
             } else {
                 if (Number(Jdata[0].result.error) !== 0) {
                     if (Jdata[0].result.error1 !== "" && Number(Jdata[0].result.error1) !== 0) {
