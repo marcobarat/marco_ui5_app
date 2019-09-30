@@ -37,6 +37,33 @@ sap.ui.define([
             this.router.attachRoutePatternMatched(this.handleRouteMatched, this);
             this.initPod();
         },
+        checkStart: function (workcenterid, plantid) {
+            var transactionName = "PerformStartOrder";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&plant=" + plantid + "&workcenterid=" + workcenterid;
+            var transactionCall = site + "/Transaction" + "/" + transactionName;
+            jQuery.ajax({
+                url: "/XMII/Runner?Transaction=" + transactionCall + input + "&OutputParameter=JSON&Content-Type=text/xml",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    var result = JSON.parse(oData.documentElement.textContent);
+                    if (result.error == "0" || result.error == 0) {
+                        return 1;
+
+
+                    } else {
+                        MessageToast.show("Error! " + result.errorMessage);
+                        return 0;
+                    }
+                },
+                error: function (oData) {
+                    MessageToast.show("errore");
+                    return;
+                }
+            });
+        },
         initPod: function () {
 
             this.buttonsLogic(sap.ui.getCore().getModel().getData().informations.state);
@@ -144,6 +171,7 @@ sap.ui.define([
         },
         buttonsLogic: function (state) {
             var info = sap.ui.getCore().getModel().getData().informations;
+            var that = this;
             var buttonsID = ["startButton", "pausaButton", "completaButton"];
             for (var i = 0; i < buttonsID.length; i++) {
                 this.getView().byId(buttonsID[i]).removeStyleClass("buttonSelected");
@@ -162,6 +190,7 @@ sap.ui.define([
                         this.getView().byId("pausaButton").setEnabled(true);
                         this.getView().byId("completaButton").setEnabled(true);
                         this.getView().byId("setupButton").setEnabled(false);
+
                         break;
                     case "Pausa":
                         info.startButton = true;
@@ -216,18 +245,53 @@ sap.ui.define([
                 alert("error");
             }
         },
-        startOperation: function (event) {
+        startOperationBis: function (event) {
             Library.updateLastActionDate(this.user, this.plantid);
 
             this.buttonSource = "Start";
-
             var CID = sap.ui.getCore().getModel().getData().informations.user;
             var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
             var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
             var Attivita = "Start";
             var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/InsertActivity&Content-Type=text/html&CID=" + CID + "&WorkcenterID=" + WorkcenterID + "&ShopOrderID=" + ShopOrderID + "&Attivita=" + Attivita + "&OutputParameter=Output";
-            Library.AjaxCallerData(link, this.SUCCESSInsertActivity.bind(this), this.FAILUREInsertActivity.bind(this));
+            Library.SyncAjaxCallerData(link, this.SUCCESSInsertActivity.bind(this), this.FAILUREInsertActivity.bind(this));
 
+
+        },
+
+        startOperation: function (event) {
+            var transactionName = "PerformStartOrder";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&plant=" + this.plantid + "&workcenterid=" + this.workcenterid;
+            var transactionCall = site + "/Transaction" + "/" + transactionName;
+            jQuery.ajax({
+                url: "/XMII/Runner?Transaction=" + transactionCall + input + "&OutputParameter=JSON&Content-Type=text/xml",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    var result = JSON.parse(oData.documentElement.textContent);
+                    if (result.error == "0" || result.error == 0) {
+                        that.buttonSource = "Start";
+                        var CID = sap.ui.getCore().getModel().getData().informations.user;
+                        var WorkcenterID = sap.ui.getCore().getModel().getData().informations.workcenterid;
+                        var ShopOrderID = sap.ui.getCore().getModel().getData().informations.shoporderid;
+                        var Attivita = "Start";
+                        var link = "/XMII/Runner?Transaction=iGuzzini/Transaction/InsertActivity&Content-Type=text/html&CID=" + CID + "&WorkcenterID=" + WorkcenterID + "&ShopOrderID=" + ShopOrderID + "&Attivita=" + Attivita + "&OutputParameter=Output";
+                        Library.AjaxCallerData(link, that.SUCCESSInsertActivity.bind(that), that.FAILUREInsertActivity.bind(that));
+
+
+
+                    } else {
+                        MessageToast.show("Error! " + result.errorMessage);
+                        return 0;
+                    }
+                },
+                error: function (oData) {
+                    MessageToast.show("errore");
+                    return;
+                }
+            });
         },
         pauseOperation: function (event) {
             Library.updateLastActionDate(this.user, this.plantid);
@@ -340,32 +404,36 @@ sap.ui.define([
         },
         performStart: function (rowSelected) {
             Library.updateLastActionDate(this.user, this.plantid);
-
-            var transactionName = "StartOperation";
             var that = this;
-            var site = "iGuzzini";
-            var input = "&plant=" + this.plantid + "&operationid=" + rowSelected.operation_id + "&sfcstepid=" + rowSelected.sfcstepid + "&stepid=" + this.stepid + "&shoporderid=" + this.shoporderid + "&sfc=" + this.sfc + "&user=" + this.user + "&workcenterid=" + this.workcenterid + "&resourceid=" + this.resourceid;
-            var transactionCall = site + "/Transaction" + "/" + transactionName;
-            jQuery.ajax({
-                url: "/XMII/Runner?Transaction=" + transactionCall + input + "&OutputParameter=JSON&Content-Type=text/xml",
-                method: "GET",
-                async: false,
-                success: function (oData) {
-                    var result = JSON.parse(oData.documentElement.textContent);
-                    if (result.error == "0" || result.error == 0) {
-                        var oEventBus = sap.ui.getCore().getEventBus();
-                        oEventBus.publish("MainPod", "updateOperation");
-                        oEventBus.publish("MainPod", "updateRowSel");
+            if (that.checkStart(that.workcenterid, that.plantid) == 1) {
+
+                var transactionName = "StartOperation";
+                var site = "iGuzzini";
+                var input = "&plant=" + this.plantid + "&operationid=" + rowSelected.operation_id + "&sfcstepid=" + rowSelected.sfcstepid + "&stepid=" + this.stepid + "&shoporderid=" + this.shoporderid + "&sfc=" + this.sfc + "&user=" + this.user + "&workcenterid=" + this.workcenterid + "&resourceid=" + this.resourceid;
+                var transactionCall = site + "/Transaction" + "/" + transactionName;
+                jQuery.ajax({
+                    url: "/XMII/Runner?Transaction=" + transactionCall + input + "&OutputParameter=JSON&Content-Type=text/xml",
+                    method: "GET",
+                    async: false,
+                    success: function (oData) {
+                        var result = JSON.parse(oData.documentElement.textContent);
+                        if (result.error == "0" || result.error == 0) {
+                            var oEventBus = sap.ui.getCore().getEventBus();
+                            oEventBus.publish("MainPod", "updateOperation");
+                            oEventBus.publish("MainPod", "updateRowSel");
 
 
-                    } else {
-                        MessageToast.show("Error! " + result.errorMessage);
+                        } else {
+                            MessageToast.show("Error! " + result.errorMessage);
+                        }
+                    },
+                    error: function (oData) {
+                        alert("errore");
                     }
-                },
-                error: function (oData) {
-                    alert("errore");
-                }
-            });
+                });
+            } else {
+                return;
+            }
         },
         performStop: function (rowSelected) {
             Library.updateLastActionDate(this.user, this.plantid);
